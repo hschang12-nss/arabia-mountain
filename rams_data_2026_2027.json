@@ -60,8 +60,8 @@
         "grade": "Sophomore",
         "year": "2026-27",
         "height": "6'1",
-        "Weight": "180",
-        "BatThrows": "Left/Right"
+        "weight": "180",
+        "Bats/Throws": "Left/Right"
       }
     ]
   },
