@@ -437,7 +437,13 @@
       "description": "Maintains records and meeting minutes"
     }
   ],
-  "dues": {},
+  "dues": {
+        "fee": "740",
+        "deadline": "2026-04-15",
+        "installments": "3 Installments",
+        "included": ""
+    },
+
   "requirements": {},
   "lastUpdated": "2026-02-16T12:45:00"
 }
