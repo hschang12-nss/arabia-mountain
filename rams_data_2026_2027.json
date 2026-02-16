@@ -440,7 +440,7 @@
   "dues": {
         "fee": "740",
         "deadline": "2026-04-15",
-        "installments": "3 Installments",
+        "installments": "3",
         "included": ""
     },
 
