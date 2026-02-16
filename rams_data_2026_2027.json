@@ -61,7 +61,7 @@
         "year": "2026-27",
         "height": "6'1",
         "weight": "180",
-        "Bats/Throws": "Left/Right"
+        "batsThrows": "Left/Right"
       }
     ]
   },
