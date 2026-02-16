@@ -17,7 +17,7 @@
         "year": "2026-27"
       },
       {
-        "number": "3",
+        "number": "9",
         "name": "Ronald Jones II",
         "position": "Shortstop / Pitcher",
         "grade": "Senior",
@@ -54,11 +54,14 @@
         "year": "2026-27"
       },
       {
-        "number": "9",
+        "number": "3",
         "name": "Chancelor Caldwell",
         "position": "Right Fielder",
         "grade": "Sophomore",
-        "year": "2026-27"
+        "year": "2026-27",
+        "height": "6'1",
+        "Weight": "180",
+        "BatThrows": "Left/Right"
       }
     ]
   },
@@ -100,7 +103,7 @@
       "focus": "Assisting varsity operations and player growth"
     },
     {
-      "name": "JV Head Coach",
+      "name": "Eric Hoxie",
       "title": "Junior Varsity Program",
       "email": "jvcoach@arabiamtnhs.com",
       "phone": "",
@@ -421,14 +424,14 @@
     },
     {
       "title": "Treasurer",
-      "name": "",
+      "name": "Stacy",
       "email": "",
       "phone": "",
       "description": "Manages all financial matters"
     },
     {
       "title": "Secretary",
-      "name": "",
+      "name": "Dieldra",
       "email": "",
       "phone": "",
       "description": "Maintains records and meeting minutes"
