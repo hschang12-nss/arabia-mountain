@@ -53,6 +53,15 @@
         "height": "6'2\"",
         "weight": "195",
         "batsThrows": "R/R"
+      },
+      {
+        "number": "23",
+        "name": "Daniel Veal",
+        "position": "Short Stop / Second Baseman",
+        "grade": "Senior",
+        "height": "5'10",
+        "weight": "155",
+        "batsThrows": "R/R"
       }
     ],
     "jv": [
@@ -94,6 +103,56 @@
       }
     ]
   },
+  "coaches": [
+    {
+      "name": "Sharon Richard",
+      "title": "Athletic Director",
+      "email": "SHARON_G_RICHARD@dekalbschoolsga.org",
+      "phone": "678-875-3645",
+      "experience": "",
+      "philosophy": "",
+      "achievements": "",
+      "specialties": "",
+      "background": "",
+      "focus": "Oversight of all athletic programs and compliance"
+    },
+    {
+      "name": "Eric Hoxie",
+      "title": "Head Coach",
+      "email": "coach@arabiamtnhs.com",
+      "phone": "",
+      "experience": "",
+      "philosophy": "Developing complete student-athletes through discipline, hard work, and dedication to excellence both on and off the field.",
+      "achievements": "",
+      "specialties": "",
+      "background": "",
+      "focus": "Varsity Baseball Program Leadership"
+    },
+    {
+      "name": "Dex",
+      "title": "Assistant Coach",
+      "email": "assistant@arabiamtnhs.com",
+      "phone": "",
+      "experience": "",
+      "philosophy": "",
+      "achievements": "",
+      "specialties": "Player development and on-field support",
+      "background": "",
+      "focus": "Assisting varsity operations and player growth"
+    },
+    {
+      "name": "Eric Hoxie",
+      "title": "Junior Varsity Program",
+      "email": "jvcoach@arabiamtnhs.com",
+      "phone": "",
+      "experience": "",
+      "philosophy": "",
+      "achievements": "",
+      "specialties": "",
+      "background": "",
+      "focus": "Fundamental skill development and preparing players for varsity competition"
+    }
+  ],
   "schedule": [
     {
       "date": "2026-02-14",
@@ -383,56 +442,6 @@
       "team": "Varsity",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
       "notes": "Senior Night"
-    }
-  ],
-  "coaches": [
-    {
-      "name": "Sharon Richard",
-      "title": "Athletic Director",
-      "email": "SHARON_G_RICHARD@dekalbschoolsga.org",
-      "phone": "678-875-3645",
-      "experience": "",
-      "philosophy": "",
-      "achievements": "",
-      "specialties": "",
-      "background": "",
-      "focus": "Oversight of all athletic programs and compliance"
-    },
-    {
-      "name": "Eric Hoxie",
-      "title": "Head Coach",
-      "email": "coach@arabiamtnhs.com",
-      "phone": "",
-      "experience": "",
-      "philosophy": "Developing complete student-athletes through discipline, hard work, and dedication to excellence both on and off the field.",
-      "achievements": "",
-      "specialties": "",
-      "background": "",
-      "focus": "Varsity Baseball Program Leadership"
-    },
-    {
-      "name": "Dex",
-      "title": "Assistant Coach",
-      "email": "assistant@arabiamtnhs.com",
-      "phone": "",
-      "experience": "",
-      "philosophy": "",
-      "achievements": "",
-      "specialties": "Player development and on-field support",
-      "background": "",
-      "focus": "Assisting varsity operations and player growth"
-    },
-    {
-      "name": "Eric Hoxie",
-      "title": "Junior Varsity Program",
-      "email": "jvcoach@arabiamtnhs.com",
-      "phone": "",
-      "experience": "",
-      "philosophy": "",
-      "achievements": "",
-      "specialties": "",
-      "background": "",
-      "focus": "Fundamental skill development and preparing players for varsity competition"
     }
   ],
   "booster": [
