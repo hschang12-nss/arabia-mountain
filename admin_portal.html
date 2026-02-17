@@ -643,6 +643,16 @@
                 </div>
 
                 <div class="dashboard-cards">
+                    <div class="dashboard-card" onclick="showSection('import')">
+                        <h3><span class="icon">📥</span> Import Data</h3>
+                        <p>Import a previous JSON configuration file to modify and update</p>
+                    </div>
+
+                    <div class="dashboard-card" onclick="showSection('sponsors')">
+                        <h3><span class="icon">🏢</span> Sponsors</h3>
+                        <p>Manage sponsor logos and information for homepage rotation</p>
+                    </div>
+
                     <div class="dashboard-card" onclick="showSection('players')">
                         <h3><span class="icon">⚾</span> Players</h3>
                         <p>Manage varsity and JV rosters, add new players, update grades and positions</p>
@@ -675,6 +685,94 @@
                 </div>
             </div>
 
+            <!-- Import Section -->
+            <div id="importSection" class="edit-section">
+                <div class="success-message" id="importSuccess">
+                    <strong>✓ Success!</strong> Data has been imported successfully.
+                </div>
+                
+                <div class="section-header">
+                    <h2>Import Configuration</h2>
+                    <button class="back-btn" onclick="showDashboard()">← Back to Dashboard</button>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; margin-bottom: 30px;">
+                    <h3 style="color: var(--ram-navy); margin-bottom: 15px;">📥 Import Previous Data</h3>
+                    <p style="margin-bottom: 20px; line-height: 1.6;">
+                        Upload a previously exported JSON file (rams_data_2026_2027.json) to load all the data into this admin panel. 
+                        This is useful for:
+                    </p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 1.8;">
+                        <li>Starting a new season based on last year's data</li>
+                        <li>Making bulk changes to an existing configuration</li>
+                        <li>Recovering data from a backup</li>
+                        <li>Switching between different season configurations</li>
+                    </ul>
+                    
+                    <input type="file" id="jsonFileInput" accept=".json" style="display: none;" onchange="handleFileImport(event)">
+                    
+                    <button class="btn btn-primary" onclick="document.getElementById('jsonFileInput').click()" 
+                            style="padding: 15px 30px; font-size: 1.1em; margin-right: 15px;">
+                        📂 Choose JSON File
+                    </button>
+                    
+                    <span id="fileName" style="color: #666; font-style: italic;"></span>
+                </div>
+
+                <div id="importPreview" style="display: none; background: white; padding: 30px; border-radius: 10px; border: 2px solid var(--ram-gold);">
+                    <h3 style="color: var(--ram-navy); margin-bottom: 15px;">📋 Import Preview</h3>
+                    <div id="importDetails" style="line-height: 1.8; color: #555;"></div>
+                    
+                    <div style="margin-top: 30px;">
+                        <button class="btn btn-primary" onclick="confirmImport()" style="padding: 15px 40px; font-size: 1.1em; margin-right: 15px;">
+                            ✓ Confirm Import
+                        </button>
+                        <button class="btn" onclick="cancelImport()" style="padding: 15px 40px; font-size: 1.1em;">
+                            ✗ Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sponsors Section -->
+            <div id="sponsorsSection" class="edit-section">
+                <div class="success-message" id="sponsorsSuccess">
+                    <strong>✓ Success!</strong> Sponsor information has been saved.
+                </div>
+                
+                <div class="section-header">
+                    <h2>Manage Sponsors</h2>
+                    <button class="back-btn" onclick="showDashboard()">← Back to Dashboard</button>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+                    <p style="line-height: 1.6; color: #555;">
+                        <strong>How it works:</strong> Sponsors will rotate on the homepage hero section, alternating with "RAMS BASEBALL" every 5 seconds.
+                        Each sponsor can have either a logo image OR text (not both).
+                    </p>
+                </div>
+
+                <button class="btn btn-add" onclick="addSponsor()">+ Add New Sponsor</button>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sponsor Name</th>
+                            <th>Logo URL/Path</th>
+                            <th>Display Text</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sponsorsTableBody">
+                        <!-- Sponsors will be loaded here -->
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 30px;">
+                    <button class="btn btn-primary" onclick="saveSponsors()">💾 Save Changes</button>
+                </div>
+            </div>
+
             <!-- Players Section -->
             <div id="playersSection" class="edit-section">
                 <div class="success-message" id="playersSuccess">
@@ -701,7 +799,9 @@
                                 <th>Name</th>
                                 <th>Position</th>
                                 <th>Grade</th>
-                                <th>Year</th>
+                                <th>Height</th>
+                                <th>Weight</th>
+                                <th>Bats/Throws</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -719,7 +819,9 @@
                                 <th>Name</th>
                                 <th>Position</th>
                                 <th>Grade</th>
-                                <th>Year</th>
+                                <th>Height</th>
+                                <th>Weight</th>
+                                <th>Bats/Throws</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -901,6 +1003,8 @@ Team equipment and supplies"></textarea>
         let coachesData = [];
         let scheduleData = [];
         let boosterData = [];
+        let sponsorsData = [];
+        let pendingImportData = null;
 
         // Login functionality
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -933,6 +1037,8 @@ Team equipment and supplies"></textarea>
             document.getElementById('dashboardView').style.display = 'none';
             document.getElementById(section + 'Section').classList.add('active');
             
+            if (section === 'import') loadImportSection();
+            if (section === 'sponsors') loadSponsors();
             if (section === 'players') loadPlayers();
             if (section === 'coaches') loadCoaches();
             if (section === 'schedule') loadSchedule();
@@ -1040,9 +1146,9 @@ Team equipment and supplies"></textarea>
             playersData[team].forEach((player, index) => {
                 const row = tbody.insertRow();
                 row.innerHTML = `
-                    <td><input type="text" value="${player.number}" data-team="${team}" data-index="${index}" data-field="number"></td>
-                    <td><input type="text" value="${player.name}" data-team="${team}" data-index="${index}" data-field="name"></td>
-                    <td><input type="text" value="${player.position}" data-team="${team}" data-index="${index}" data-field="position"></td>
+                    <td><input type="text" value="${player.number || ''}" data-team="${team}" data-index="${index}" data-field="number" style="width: 60px;"></td>
+                    <td><input type="text" value="${player.name || ''}" data-team="${team}" data-index="${index}" data-field="name"></td>
+                    <td><input type="text" value="${player.position || ''}" data-team="${team}" data-index="${index}" data-field="position"></td>
                     <td>
                         <select data-team="${team}" data-index="${index}" data-field="grade">
                             <option ${player.grade === 'Senior' ? 'selected' : ''}>Senior</option>
@@ -1051,7 +1157,9 @@ Team equipment and supplies"></textarea>
                             <option ${player.grade === 'Freshman' ? 'selected' : ''}>Freshman</option>
                         </select>
                     </td>
-                    <td><input type="text" value="${player.year}" data-team="${team}" data-index="${index}" data-field="year"></td>
+                    <td><input type="text" value="${player.height || ''}" data-team="${team}" data-index="${index}" data-field="height" placeholder="5'10&quot;" style="width: 80px;"></td>
+                    <td><input type="text" value="${player.weight || ''}" data-team="${team}" data-index="${index}" data-field="weight" placeholder="165" style="width: 70px;"></td>
+                    <td><input type="text" value="${player.batsThrows || ''}" data-team="${team}" data-index="${index}" data-field="batsThrows" placeholder="R/R" style="width: 70px;"></td>
                     <td><button class="btn btn-danger" onclick="deletePlayer('${team}', ${index})">Delete</button></td>
                 `;
             });
@@ -1087,7 +1195,9 @@ Team equipment and supplies"></textarea>
                 name: '',
                 position: '',
                 grade: 'Freshman',
-                year: '2025-26'
+                height: '',
+                weight: '',
+                batsThrows: ''
             });
             renderPlayerTable(currentTeam);
         }
@@ -1364,6 +1474,7 @@ function loadSeasonData() {
     const seasonKey = `rams_${currentAdminSeason.replace('-', '_')}`;
     
     // Try to load season-specific data
+    const savedSponsors = localStorage.getItem(`${seasonKey}_sponsors`);
     const savedPlayers = localStorage.getItem(`${seasonKey}_players`);
     const savedCoaches = localStorage.getItem(`${seasonKey}_coaches`);
     const savedSchedule = localStorage.getItem(`${seasonKey}_schedule`);
@@ -1371,6 +1482,7 @@ function loadSeasonData() {
     const savedDues = localStorage.getItem(`${seasonKey}_dues`);
     const savedRequirements = localStorage.getItem(`${seasonKey}_requirements`);
     
+    if (savedSponsors) sponsorsData = JSON.parse(savedSponsors);
     if (savedPlayers) playersData = JSON.parse(savedPlayers);
     if (savedCoaches) coachesData = JSON.parse(savedCoaches);
     if (savedSchedule) scheduleData = JSON.parse(savedSchedule);
@@ -1389,18 +1501,17 @@ function exportDataToJson() {
     const seasonKey = currentAdminSeason.replace('-', '_');
     
     const masterData = {
-        season: currentAdminSeason,
+        sponsors: JSON.parse(localStorage.getItem(`rams_${seasonKey}_sponsors`)) || sponsorsData,
         players: JSON.parse(localStorage.getItem(`rams_${seasonKey}_players`)) || playersData,
         coaches: JSON.parse(localStorage.getItem(`rams_${seasonKey}_coaches`)) || coachesData,
         schedule: JSON.parse(localStorage.getItem(`rams_${seasonKey}_schedule`)) || scheduleData,
         booster: JSON.parse(localStorage.getItem(`rams_${seasonKey}_booster`)) || boosterData,
         dues: JSON.parse(localStorage.getItem(`rams_${seasonKey}_dues`)) || {},
-        requirements: JSON.parse(localStorage.getItem(`rams_${seasonKey}_requirements`)) || {},
-        lastUpdated: new Date().toLocaleString()
+        requirements: JSON.parse(localStorage.getItem(`rams_${seasonKey}_requirements`)) || {}
     };
 
     const blob = new Blob(
-        [JSON.stringify(masterData, null, 4)],
+        [JSON.stringify(masterData, null, 2)],
         { type: "application/json" }
     );
 
@@ -1464,10 +1575,190 @@ function clearCacheAndReload() {
     localStorage.clear();
     sessionStorage.clear();
     location.reload(true);
-}      
+}
+
+// ===== IMPORT FUNCTIONALITY =====
+function loadImportSection() {
+    document.getElementById('importPreview').style.display = 'none';
+    document.getElementById('fileName').textContent = '';
+}
+
+function handleFileImport(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    document.getElementById('fileName').textContent = `Selected: ${file.name}`;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            pendingImportData = data;
+            showImportPreview(data);
+        } catch (error) {
+            alert('Error reading JSON file: ' + error.message);
+        }
+    };
+    reader.readAsText(file);
+}
+
+function showImportPreview(data) {
+    const preview = document.getElementById('importPreview');
+    const details = document.getElementById('importDetails');
+    
+    let html = '<ul style="list-style: none; padding: 0;">';
+    
+    if (data.sponsors) {
+        html += `<li>✓ <strong>Sponsors:</strong> ${data.sponsors.length} sponsors</li>`;
+    }
+    if (data.players) {
+        const varsityCount = data.players.varsity ? data.players.varsity.length : 0;
+        const jvCount = data.players.jv ? data.players.jv.length : 0;
+        html += `<li>✓ <strong>Players:</strong> ${varsityCount} Varsity, ${jvCount} JV</li>`;
+    }
+    if (data.coaches) {
+        html += `<li>✓ <strong>Coaches:</strong> ${data.coaches.length} coaches</li>`;
+    }
+    if (data.schedule) {
+        html += `<li>✓ <strong>Schedule:</strong> ${data.schedule.length} games</li>`;
+    }
+    if (data.booster) {
+        html += `<li>✓ <strong>Booster Club:</strong> ${data.booster.length} members</li>`;
+    }
+    if (data.dues) {
+        html += `<li>✓ <strong>Dues:</strong> Information included</li>`;
+    }
+    if (data.requirements) {
+        html += `<li>✓ <strong>Requirements:</strong> Information included</li>`;
+    }
+    
+    html += '</ul>';
+    html += '<p style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 5px; color: #856404;"><strong>⚠️ Warning:</strong> Importing will overwrite your current data for this season. Make sure to export your current data first if you want to keep it!</p>';
+    
+    details.innerHTML = html;
+    preview.style.display = 'block';
+}
+
+function confirmImport() {
+    if (!pendingImportData) {
+        alert('No data to import!');
+        return;
+    }
+    
+    const confirmed = confirm('Are you sure you want to import this data? This will overwrite your current data for the ' + currentAdminSeason + ' season.');
+    
+    if (confirmed) {
+        const seasonKey = currentAdminSeason.replace('-', '_');
+        
+        // Import all data sections
+        if (pendingImportData.sponsors) {
+            sponsorsData = pendingImportData.sponsors;
+            localStorage.setItem(`rams_${seasonKey}_sponsors`, JSON.stringify(sponsorsData));
+        }
+        
+        if (pendingImportData.players) {
+            playersData = pendingImportData.players;
+            localStorage.setItem(`rams_${seasonKey}_players`, JSON.stringify(playersData));
+        }
+        
+        if (pendingImportData.coaches) {
+            coachesData = pendingImportData.coaches;
+            localStorage.setItem(`rams_${seasonKey}_coaches`, JSON.stringify(coachesData));
+        }
+        
+        if (pendingImportData.schedule) {
+            scheduleData = pendingImportData.schedule;
+            localStorage.setItem(`rams_${seasonKey}_schedule`, JSON.stringify(scheduleData));
+        }
+        
+        if (pendingImportData.booster) {
+            boosterData = pendingImportData.booster;
+            localStorage.setItem(`rams_${seasonKey}_booster`, JSON.stringify(boosterData));
+        }
+        
+        if (pendingImportData.dues) {
+            localStorage.setItem(`rams_${seasonKey}_dues`, JSON.stringify(pendingImportData.dues));
+        }
+        
+        if (pendingImportData.requirements) {
+            localStorage.setItem(`rams_${seasonKey}_requirements`, JSON.stringify(pendingImportData.requirements));
+        }
+        
+        showSuccess('importSuccess');
+        pendingImportData = null;
+        
+        // Reload all sections
+        loadSeasonData();
+        
+        setTimeout(() => {
+            showDashboard();
+        }, 2000);
+    }
+}
+
+function cancelImport() {
+    pendingImportData = null;
+    document.getElementById('importPreview').style.display = 'none';
+    document.getElementById('fileName').textContent = '';
+    document.getElementById('jsonFileInput').value = '';
+}
+
+// ===== SPONSORS MANAGEMENT =====
+function loadSponsors() {
+    const seasonKey = currentAdminSeason.replace('-', '_');
+    const saved = localStorage.getItem(`rams_${seasonKey}_sponsors`);
+    if (saved) {
+        sponsorsData = JSON.parse(saved);
+    }
+    renderSponsorsTable();
+}
+
+function renderSponsorsTable() {
+    const tbody = document.getElementById('sponsorsTableBody');
+    tbody.innerHTML = '';
+    
+    sponsorsData.forEach((sponsor, index) => {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+            <td><input type="text" value="${sponsor.name || ''}" data-index="${index}" data-field="name"></td>
+            <td><input type="text" value="${sponsor.logo || ''}" data-index="${index}" data-field="logo" placeholder="path/to/logo.png"></td>
+            <td><input type="text" value="${sponsor.text || ''}" data-index="${index}" data-field="text" placeholder="Leave empty if using logo"></td>
+            <td><button class="btn btn-danger" onclick="deleteSponsor(${index})">Delete</button></td>
+        `;
+    });
+    
+    // Add event listeners
+    tbody.querySelectorAll('input').forEach(input => {
+        input.addEventListener('change', function() {
+            const index = this.dataset.index;
+            const field = this.dataset.field;
+            sponsorsData[index][field] = this.value;
+        });
+    });
+}
+
+function addSponsor() {
+    sponsorsData.push({
+        name: '',
+        logo: null,
+        text: null
+    });
+    renderSponsorsTable();
+}
+
+function deleteSponsor(index) {
+    if (confirm('Are you sure you want to delete this sponsor?')) {
+        sponsorsData.splice(index, 1);
+        renderSponsorsTable();
+    }
+}
+
+function saveSponsors() {
+    const seasonKey = currentAdminSeason.replace('-', '_');
+    localStorage.setItem(`rams_${seasonKey}_sponsors`, JSON.stringify(sponsorsData));
+    showSuccess('sponsorsSuccess');
+}
     </script>
 
-    
-}
 </body>
 </html>
