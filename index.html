@@ -971,12 +971,18 @@
                 <button class="filter-btn" data-roster-filter="jv">JV</button>
             </div>
 
-            <div id="varsityRosterGrid" class="roster-grid">
-                <!-- Varsity roster will be loaded dynamically -->
+            <div id="varsityRosterSection">
+                <h3 style="font-family: 'Oswald', sans-serif; color: var(--ram-navy); margin: 40px 0 20px 0; font-size: 2em; text-align: center;">Varsity Roster</h3>
+                <div id="varsityRosterGrid" class="roster-grid">
+                    <!-- Varsity roster will be loaded dynamically -->
+                </div>
             </div>
 
-            <div id="jvRosterGrid" class="roster-grid" style="margin-top: 50px;">
-                <!-- JV roster will be loaded dynamically -->
+            <div id="jvRosterSection">
+                <h3 style="font-family: 'Oswald', sans-serif; color: var(--ram-navy); margin: 40px 0 20px 0; font-size: 2em; text-align: center;">Junior Varsity Roster</h3>
+                <div id="jvRosterGrid" class="roster-grid">
+                    <!-- JV roster will be loaded dynamically -->
+                </div>
             </div>
         </section>
     </div>
@@ -1737,42 +1743,59 @@
 
         // Load Roster
         function loadRoster() {
-            if (!websiteData || !websiteData.players) return;
+            console.log('🔄 loadRoster called with filter:', currentRosterFilter);
+            
+            if (!websiteData || !websiteData.players) {
+                console.error('❌ No websiteData or players data');
+                return;
+            }
 
             const varsityGrid = document.getElementById('varsityRosterGrid');
             const jvGrid = document.getElementById('jvRosterGrid');
+            const varsitySection = document.getElementById('varsityRosterSection');
+            const jvSection = document.getElementById('jvRosterSection');
+            
+            if (!varsityGrid || !jvGrid || !varsitySection || !jvSection) {
+                console.error('❌ Could not find roster elements');
+                return;
+            }
             
             varsityGrid.innerHTML = '';
             jvGrid.innerHTML = '';
 
             // Load Varsity players
             if (websiteData.players.varsity && Array.isArray(websiteData.players.varsity)) {
+                console.log(`✅ Loading ${websiteData.players.varsity.length} varsity players`);
                 websiteData.players.varsity.forEach(player => {
-                    if (currentRosterFilter === 'all' || currentRosterFilter === 'varsity') {
-                        varsityGrid.appendChild(createPlayerCard(player));
-                    }
+                    varsityGrid.appendChild(createPlayerCard(player));
                 });
+            } else {
+                console.warn('⚠️ No varsity players found');
             }
 
             // Load JV players
             if (websiteData.players.jv && Array.isArray(websiteData.players.jv)) {
+                console.log(`✅ Loading ${websiteData.players.jv.length} JV players`);
                 websiteData.players.jv.forEach(player => {
-                    if (currentRosterFilter === 'all' || currentRosterFilter === 'jv') {
-                        jvGrid.appendChild(createPlayerCard(player));
-                    }
+                    jvGrid.appendChild(createPlayerCard(player));
                 });
+            } else {
+                console.warn('⚠️ No JV players found');
             }
 
             // Show/hide sections based on filter
             if (currentRosterFilter === 'varsity') {
-                varsityGrid.style.display = 'grid';
-                jvGrid.style.display = 'none';
+                console.log('👁️ Showing: Varsity only');
+                varsitySection.style.display = 'block';
+                jvSection.style.display = 'none';
             } else if (currentRosterFilter === 'jv') {
-                varsityGrid.style.display = 'none';
-                jvGrid.style.display = 'grid';
+                console.log('👁️ Showing: JV only');
+                varsitySection.style.display = 'none';
+                jvSection.style.display = 'block';
             } else {
-                varsityGrid.style.display = 'grid';
-                jvGrid.style.display = 'grid';
+                console.log('👁️ Showing: All players');
+                varsitySection.style.display = 'block';
+                jvSection.style.display = 'block';
             }
         }
 
@@ -1781,27 +1804,28 @@
             card.className = 'player-card';
             card.innerHTML = `
                 <div class="player-header">
-                    <div class="player-number">#${player.number}</div>
-                    <div class="player-name">${player.name}</div>
-                    <div class="player-position">${player.position}</div>
+                    <div class="player-number">#${player.number || '?'}</div>
+                    <div class="player-name">${player.name || 'Unknown'}</div>
+                    <div class="player-position">${player.position || 'Position TBD'}</div>
                 </div>
                 <div class="player-body">
                     <div class="player-info">
+                        ${player.grade ? `
                         <div class="player-info-item">
-                            <div class="player-info-label">Year</div>
-                            <div class="player-info-value">${player.year}</div>
-                        </div>
+                            <div class="player-info-label">Grade</div>
+                            <div class="player-info-value">${player.grade}</div>
+                        </div>` : ''}
                         <div class="player-info-item">
                             <div class="player-info-label">Height</div>
-                            <div class="player-info-value">${player.height}</div>
+                            <div class="player-info-value">${player.height || 'N/A'}</div>
                         </div>
                         <div class="player-info-item">
                             <div class="player-info-label">Weight</div>
-                            <div class="player-info-value">${player.weight} lbs</div>
+                            <div class="player-info-value">${player.weight ? player.weight + ' lbs' : 'N/A'}</div>
                         </div>
                         <div class="player-info-item">
                             <div class="player-info-label">Bats/Throws</div>
-                            <div class="player-info-value">${player.batsThrows}</div>
+                            <div class="player-info-value">${player.batsThrows || 'N/A'}</div>
                         </div>
                     </div>
                     ${player.bio ? `<div class="player-bio">${player.bio}</div>` : ''}
@@ -2097,20 +2121,8 @@
                     
                     currentRosterFilter = btn.dataset.rosterFilter;
                     
-                    // Show/hide roster sections
-                    const varsitySection = document.getElementById('varsityRosterGrid').parentElement;
-                    const jvSection = document.getElementById('jvRosterGrid').parentElement;
-                    
-                    if (currentRosterFilter === 'all') {
-                        varsitySection.style.display = 'block';
-                        jvSection.style.display = 'block';
-                    } else if (currentRosterFilter === 'varsity') {
-                        varsitySection.style.display = 'block';
-                        jvSection.style.display = 'none';
-                    } else if (currentRosterFilter === 'jv') {
-                        varsitySection.style.display = 'none';
-                        jvSection.style.display = 'block';
-                    }
+                    // Reload roster with new filter
+                    loadRoster();
                 });
             });
         });

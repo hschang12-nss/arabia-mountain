@@ -3,7 +3,7 @@
     {
       "name": "McCart Plumbing",
       "logo": "McCart.png",
-      "text": "We know everything about plumbing"
+      "text": null
     },
     {
       "name": "Smith & Sons Hardware",
@@ -19,65 +19,78 @@
   "players": {
     "varsity": [
       {
-        "number": "17",
+        "number": "1",
         "name": "Dominic Chang",
         "position": "Second Baseman / Pitcher",
         "grade": "Sophomore",
-        "year": "2026-27"
+        "height": "5'10\"",
+        "weight": "165",
+        "batsThrows": "R/R"
       },
       {
         "number": "2",
         "name": "Darian Rainey",
         "position": "Catcher",
         "grade": "Sophomore",
-        "year": "2026-27"
+        "height": "5'11\"",
+        "weight": "180",
+        "batsThrows": "R/R"
       },
       {
         "number": "9",
         "name": "Ronald Jones II",
         "position": "Shortstop / Pitcher",
         "grade": "Senior",
-        "year": "2026-27"
+        "height": "6'0\"",
+        "weight": "175",
+        "batsThrows": "R/R"
       },
       {
         "number": "5",
         "name": "Tracy Finch",
         "position": "First Baseman",
         "grade": "Senior",
-        "year": "2026-27"
+        "height": "6'2\"",
+        "weight": "195",
+        "batsThrows": "L/L"
       }
     ],
     "jv": [
       {
-        "number": "17",
+        "number": "1",
         "name": "Dominic Chang",
         "position": "Second Baseman / Pitcher",
         "grade": "Sophomore",
-        "year": "2026-27"
+        "height": "5'10\"",
+        "weight": "165",
+        "batsThrows": "R/R"
       },
       {
         "number": "2",
         "name": "Darian Rainey",
         "position": "Catcher",
         "grade": "Sophomore",
-        "year": "2026-27"
+        "height": "5'11\"",
+        "weight": "180",
+        "batsThrows": "R/R"
       },
       {
-        "number": "12",
-        "name": "Alex",
+        "number": "3",
+        "name": "Tracy Finch",
         "position": "First Baseman",
         "grade": "Senior",
-        "year": "2026-27"
+        "height": "6'2\"",
+        "weight": "195",
+        "batsThrows": "L/L"
       },
       {
         "number": "3",
         "name": "Chancelor Caldwell",
         "position": "Right Fielder",
         "grade": "Sophomore",
-        "year": "2026-27",
-        "height": "6'1",
+        "height": "6'1\"",
         "weight": "180",
-        "batsThrows": "Left/Right"
+        "batsThrows": "L/R"
       }
     ]
   },
