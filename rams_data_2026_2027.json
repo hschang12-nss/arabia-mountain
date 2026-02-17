@@ -2,8 +2,8 @@
   "sponsors": [
     {
       "name": "McCart Plumbing",
-      "logo": McCart.png,
-      "text": "McCart Plumbing www.mccartplumbing.com"
+      "logo": "McCart.png",
+      "text": "We know everything about plumbing"
     },
     {
       "name": "Smith & Sons Hardware",
@@ -16,7 +16,7 @@
       "text": "Green Valley Bank - Supporting Local Sports"
     }
   ],
-"players": {
+  "players": {
     "varsity": [
       {
         "number": "1",
@@ -81,6 +81,297 @@
       }
     ]
   },
+  "schedule": [
+    {
+      "date": "2026-02-14",
+      "opponent": "Cedar Grove",
+      "location": "Home",
+      "time": "11:00 AM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-14",
+      "opponent": "Cedar Grove",
+      "location": "Home",
+      "time": "1:00 PM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-21",
+      "opponent": "Sandy Creek",
+      "location": "Home",
+      "time": "11:00 AM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-21",
+      "opponent": "Sandy Creek",
+      "location": "Home",
+      "time": "1:00 PM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-28",
+      "opponent": "Stephenson",
+      "location": "Away",
+      "time": "11:00 AM",
+      "team": "JV",
+      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
+    },
+    {
+      "date": "2026-02-28",
+      "opponent": "Stephenson",
+      "location": "Away",
+      "time": "1:00 PM",
+      "team": "JV",
+      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
+    },
+    {
+      "date": "2026-03-07",
+      "opponent": "Columbia",
+      "location": "Home",
+      "time": "9:00 AM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-07",
+      "opponent": "Towers",
+      "location": "Home",
+      "time": "12:00 PM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-14",
+      "opponent": "McNair",
+      "location": "Home",
+      "time": "9:00 AM",
+      "team": "JV",
+      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA"
+    },
+    {
+      "date": "2026-03-14",
+      "opponent": "McNair",
+      "location": "Away",
+      "time": "11:00 AM",
+      "team": "JV",
+      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA"
+    },
+    {
+      "date": "2026-02-09",
+      "opponent": "Columbia",
+      "location": "Away",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "2106 Columbia Drive, Decatur, GA 30032, USA"
+    },
+    {
+      "date": "2026-02-11",
+      "opponent": "Columbia",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-12",
+      "opponent": "Stephenson",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
+    },
+    {
+      "date": "2026-02-23",
+      "opponent": "Lakeside",
+      "location": "Away",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
+    },
+    {
+      "date": "2026-02-25",
+      "opponent": "Lakeside",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-26",
+      "opponent": "Lakeside",
+      "location": "Away",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
+    },
+    {
+      "date": "2026-03-02",
+      "opponent": "Shiloh",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-04",
+      "opponent": "Shiloh",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "4210 Shiloh Road, Snellville, GA 30039, USA"
+    },
+    {
+      "date": "2026-03-05",
+      "opponent": "Shiloh",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-09",
+      "opponent": "Woodward Academy",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "1662 Rugby Avenue, College Park, GA 30337, USA"
+    },
+    {
+      "date": "2026-03-10",
+      "opponent": "Lovejoy",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-11",
+      "opponent": "Woodward Academy",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-12",
+      "opponent": "Woodward Academy",
+      "location": "Home",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-16",
+      "opponent": "Tri-Cities",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-18",
+      "opponent": "Tri-Cities",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "2575 Harris Street, East Point, GA 30344, USA"
+    },
+    {
+      "date": "2026-03-19",
+      "opponent": "Tri-Cities",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-23",
+      "opponent": "Chamblee",
+      "location": "Away",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA"
+    },
+    {
+      "date": "2026-03-25",
+      "opponent": "Chamblee",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-26",
+      "opponent": "Chamblee",
+      "location": "Away",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA"
+    },
+    {
+      "date": "2026-03-30",
+      "opponent": "Decatur",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Decatur",
+      "location": "Away",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "310 North McDonough Street, Decatur, GA 30030, USA"
+    },
+    {
+      "date": "2026-04-02",
+      "opponent": "Decatur",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-04-13",
+      "opponent": "Dunwoody",
+      "location": "Home",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-04-15",
+      "opponent": "Dunwoody",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "5035 Vermack Road, Dunwoody, GA 30338, USA"
+    },
+    {
+      "date": "2026-04-16",
+      "opponent": "Dunwoody",
+      "location": "Home",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-04-17",
+      "opponent": "Douglas HS",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "notes": "Senior Night"
+    }
+  ],
   "coaches": [
     {
       "name": "Sharon Richard",
@@ -131,349 +422,6 @@
       "focus": "Fundamental skill development and preparing players for varsity competition"
     }
   ],
- "schedule": [
-    {
-      "date": "2026-02-14",
-      "opponent": "Cedar Grove",
-      "location": "Home",
-      "time": "11:00 AM",
-      "team": "JV",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-02-14",
-      "opponent": "Cedar Grove",
-      "location": "Home",
-      "time": "1:00 PM",
-      "team": "JV",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-02-21",
-      "opponent": "Sandy Creek",
-      "location": "Home",
-      "time": "11:00 AM",
-      "team": "JV",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-02-21",
-      "opponent": "Sandy Creek",
-      "location": "Home",
-      "time": "1:00 PM",
-      "team": "JV",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-02-28",
-      "opponent": "Stephenson",
-      "location": "Away",
-      "time": "11:00 AM",
-      "team": "JV",
-      "schoolAddress": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
-    },
-    {
-      "date": "2026-02-28",
-      "opponent": "Stephenson",
-      "location": "Away",
-      "time": "1:00 PM",
-      "team": "JV",
-      "schoolAddress": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
-    },
-    {
-      "date": "2026-03-07",
-      "opponent": "Columbia",
-      "location": "Home",
-      "time": "9:00 AM",
-      "team": "JV",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-07",
-      "opponent": "Towers",
-      "location": "Home",
-      "time": "12:00 PM",
-      "team": "JV",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-14",
-      "opponent": "McNair",
-      "location": "Home",
-      "time": "9:00 AM",
-      "team": "JV",
-      "schoolAddress": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA"
-    },
-    {
-      "date": "2026-03-14",
-      "opponent": "McNair",
-      "location": "Away",
-      "time": "11:00 AM",
-      "team": "JV",
-      "schoolAddress": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA"
-    },
-
-    {
-      "date": "2026-02-09",
-      "opponent": "Columbia",
-      "location": "Away",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "2106 Columbia Drive, Decatur, GA 30032, USA"
-    },
-    {
-      "date": "2026-02-11",
-      "opponent": "Columbia",
-      "location": "Home",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-02-12",
-      "opponent": "Stephenson",
-      "location": "Away",
-      "time": "5:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
-    },
-    {
-      "date": "2026-02-23",
-      "opponent": "Lakeside",
-      "location": "Away",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
-    },
-    {
-      "date": "2026-02-25",
-      "opponent": "Lakeside",
-      "location": "Home",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-02-26",
-      "opponent": "Lakeside",
-      "location": "Away",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
-    },
-    {
-      "date": "2026-03-02",
-      "opponent": "Shiloh",
-      "location": "Home",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-04",
-      "opponent": "Shiloh",
-      "location": "Away",
-      "time": "5:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "4210 Shiloh Road, Snellville, GA 30039, USA"
-    },
-    {
-      "date": "2026-03-05",
-      "opponent": "Shiloh",
-      "location": "Home",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-09",
-      "opponent": "Woodward Academy",
-      "location": "Away",
-      "time": "5:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "1662 Rugby Avenue, College Park, GA 30337, USA"
-    },
-    {
-      "date": "2026-03-10",
-      "opponent": "Lovejoy",
-      "location": "Home",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-11",
-      "opponent": "Woodward Academy",
-      "location": "Home",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-12",
-      "opponent": "Woodward Academy",
-      "location": "Home",
-      "time": "5:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-16",
-      "opponent": "Tri-Cities",
-      "location": "Home",
-      "time": "5:00 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-18",
-      "opponent": "Tri-Cities",
-      "location": "Away",
-      "time": "5:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "2575 Harris Street, East Point, GA 30344, USA"
-    },
-    {
-      "date": "2026-03-19",
-      "opponent": "Tri-Cities",
-      "location": "Home",
-      "time": "5:00 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-23",
-      "opponent": "Chamblee",
-      "location": "Away",
-      "time": "5:00 PM",
-      "team": "Varsity",
-      "schoolAddress": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA"
-    },
-    {
-      "date": "2026-03-25",
-      "opponent": "Chamblee",
-      "location": "Home",
-      "time": "5:00 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-03-26",
-      "opponent": "Chamblee",
-      "location": "Away",
-      "time": "5:00 PM",
-      "team": "Varsity",
-      "schoolAddress": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA"
-    },
-    {
-      "date": "2026-03-30",
-      "opponent": "Decatur",
-      "location": "Home",
-      "time": "5:00 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-04-01",
-      "opponent": "Decatur",
-      "location": "Away",
-      "time": "5:00 PM",
-      "team": "Varsity",
-      "schoolAddress": "310 North McDonough Street, Decatur, GA 30030, USA"
-    },
-    {
-      "date": "2026-04-02",
-      "opponent": "Decatur",
-      "location": "Home",
-      "time": "5:00 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-04-13",
-      "opponent": "Dunwoody",
-      "location": "Home",
-      "time": "5:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-04-15",
-      "opponent": "Dunwoody",
-      "location": "Away",
-      "time": "5:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "5035 Vermack Road, Dunwoody, GA 30338, USA"
-    },
-    {
-      "date": "2026-04-16",
-      "opponent": "Dunwoody",
-      "location": "Home",
-      "time": "5:30 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
-    },
-    {
-      "date": "2026-04-17",
-      "opponent": "Douglas HS",
-      "location": "Home",
-      "time": "5:00 PM",
-      "team": "Varsity",
-      "schoolAddress": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
-      "notes": "Senior Night"
-    }
-  ],
- "coaches": [
-    {
-      "name": "Sharon Richard",
-      "title": "Athletic Director",
-      "email": "SHARON_G_RICHARD@dekalbschoolsga.org",
-      "phone": "678-875-3645",
-      "experience": "",
-      "philosophy": "",
-      "achievements": "",
-      "specialties": "",
-      "background": "",
-      "focus": "Oversight of all athletic programs and compliance"
-    },
-    {
-      "name": "Eric Hoxie",
-      "title": "Head Coach",
-      "email": "coach@arabiamtnhs.com",
-      "phone": "",
-      "experience": "",
-      "philosophy": "Developing complete student-athletes through discipline, hard work, and dedication to excellence both on and off the field.",
-      "achievements": "",
-      "specialties": "",
-      "background": "",
-      "focus": "Varsity Baseball Program Leadership"
-    },
-    {
-      "name": "Dex",
-      "title": "Assistant Coach",
-      "email": "assistant@arabiamtnhs.com",
-      "phone": "",
-      "experience": "",
-      "philosophy": "",
-      "achievements": "",
-      "specialties": "Player development and on-field support",
-      "background": "",
-      "focus": "Assisting varsity operations and player growth"
-    },
-    {
-      "name": "Eric Hoxie",
-      "title": "Junior Varsity Program",
-      "email": "jvcoach@arabiamtnhs.com",
-      "phone": "",
-      "experience": "",
-      "philosophy": "",
-      "achievements": "",
-      "specialties": "",
-      "background": "",
-      "focus": "Fundamental skill development and preparing players for varsity competition"
-    }
-  ],
-
   "booster": [
     {
       "title": "President",
@@ -504,14 +452,12 @@
       "description": "Maintains records and meeting minutes"
     }
   ],
-
   "dues": {
-        "fee": "740",
-        "deadline": "2026-04-15",
-        "installments": "",
-        "included": "Batting Jacket w/ logo - $50\nCoach Uniform - 11.25\nCustom Jersey - $65\nCoach Pay - $60\nPre-game meals - $276\nBatting Cages - $80\nSr. Gift - $30\nSr. Night Meal - $22.50\nArabia Spring Banquet - $20\nRams Baseball Banquet - $75\nAdmin - $50"
-    },
-
+    "fee": "740",
+    "deadline": "2026-04-15",
+    "installments": "",
+    "included": "Batting Jacket w/ logo - $50\nCoach Uniform - 11.25\nCustom Jersey - $65\nCoach Pay - $60\nPre-game meals - $276\nBatting Cages - $80\nSr. Gift - $30\nSr. Night Meal - $22.50\nArabia Spring Banquet - $20\nRams Baseball Banquet - $75\nAdmin - $50"
+  },
   "requirements": {
     "registration": "2026-12-01",
     "physicalDue": "2027-01-15",
