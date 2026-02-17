@@ -440,8 +440,8 @@
   "dues": {
         "fee": "740",
         "deadline": "2026-04-15",
-        "installments": "3",
-        "included": ""
+        "installments": "",
+        "included": "Batting Jacket w/ logo - $50\nCoach Uniform - 11.25\nCustom Jersey - $65\nCoach Pay - $60\nPre-game meals - $276\nBatting Cages - $80\nSr. Gift - $30\nSr. Night Meal - $22.50\nArabia Spring Banquet - $20\nRams Baseball Banquet - $75\nAdmin - $50"
     },
 
   "requirements": {},
