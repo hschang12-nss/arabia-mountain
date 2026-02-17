@@ -174,7 +174,7 @@
     {
       "date": "2026-02-14",
       "opponent": "Cedar Grove",
-      "location": "Home",
+      "location": "Away",
       "time": "1:00 PM",
       "team": "JV",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
@@ -190,7 +190,7 @@
     {
       "date": "2026-02-21",
       "opponent": "Sandy Creek",
-      "location": "Home",
+      "location": "Away",
       "time": "1:00 PM",
       "team": "JV",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
@@ -206,7 +206,7 @@
     {
       "date": "2026-02-28",
       "opponent": "Stephenson",
-      "location": "Away",
+      "location": "Home",
       "time": "1:00 PM",
       "team": "JV",
       "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
