@@ -447,23 +447,3 @@
   "requirements": {},
   "lastUpdated": "2026-02-16T12:45:00"
 }
-{
-  "sponsors": [
-    {
-      "name": "McCart Plumbing",
-      "logo": "McCart.png",
-      "text": We know everything about plumbing - www.mccartplumbing.com
-    },
-    {
-      "name": "Example Company 2",
-      "logo": null,
-      "text": "ACME Corporation"
-    },
-    {
-      "name": "Example Company 3",
-      "logo": "path/to/logo3.png",
-      "text": null
-    }
-  ]
-}
-
