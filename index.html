@@ -207,6 +207,64 @@
             letter-spacing: 2px;
         }
 
+        /* Sponsor Rotation */
+        .hero-rotating-content {
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rotating-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rotating-item.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        .sponsor-content {
+            text-align: center;
+        }
+
+        .sponsor-label {
+            font-size: 1em;
+            color: var(--ram-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .sponsor-logo {
+            max-width: 300px;
+            max-height: 120px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .sponsor-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5em;
+            color: var(--ram-white);
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
         @keyframes slideDown {
             from {
                 opacity: 0;
@@ -812,8 +870,14 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h2>RAMS BASEBALL</h2>
-                <p>Tradition • Excellence • Brotherhood</p>
+                <div class="hero-rotating-content">
+                    <!-- RAMS Baseball (default) -->
+                    <div class="rotating-item active" data-type="default">
+                        <h2>RAMS BASEBALL</h2>
+                        <p>Tradition • Excellence • Brotherhood</p>
+                    </div>
+                    <!-- Sponsors will be dynamically inserted here -->
+                </div>
                 <div class="hero-stats">
                     <div class="stat-box">
                         <div class="stat-number" id="heroYear">2026-2027</div>
@@ -1483,6 +1547,7 @@
                 loadBooster();
                 loadDues();
                 loadRequirements();
+                loadSponsors();
             } catch (error) {
                 console.error('Error loading data:', error);
                 // Fallback to localStorage if JSON file is not available
@@ -1507,6 +1572,71 @@
             loadBooster();
             loadDues();
             loadRequirements();
+            loadSponsors();
+        }
+
+        // Load and rotate sponsors
+        function loadSponsors() {
+            if (!websiteData || !websiteData.sponsors || websiteData.sponsors.length === 0) {
+                // No sponsors, just show default RAMS BASEBALL
+                return;
+            }
+
+            const rotatingContainer = document.querySelector('.hero-rotating-content');
+            
+            // Add sponsor items to the rotation
+            websiteData.sponsors.forEach((sponsor, index) => {
+                const sponsorDiv = document.createElement('div');
+                sponsorDiv.className = 'rotating-item';
+                sponsorDiv.dataset.type = 'sponsor';
+                
+                const sponsorContent = document.createElement('div');
+                sponsorContent.className = 'sponsor-content';
+                
+                const label = document.createElement('div');
+                label.className = 'sponsor-label';
+                label.textContent = 'Sponsored By';
+                sponsorContent.appendChild(label);
+                
+                if (sponsor.logo) {
+                    // Display logo image
+                    const logo = document.createElement('img');
+                    logo.src = sponsor.logo;
+                    logo.alt = sponsor.name;
+                    logo.className = 'sponsor-logo';
+                    sponsorContent.appendChild(logo);
+                } else if (sponsor.text) {
+                    // Display text
+                    const text = document.createElement('div');
+                    text.className = 'sponsor-text';
+                    text.textContent = sponsor.text;
+                    sponsorContent.appendChild(text);
+                }
+                
+                sponsorDiv.appendChild(sponsorContent);
+                rotatingContainer.appendChild(sponsorDiv);
+            });
+            
+            // Start rotation
+            startRotation();
+        }
+
+        function startRotation() {
+            const items = document.querySelectorAll('.rotating-item');
+            if (items.length <= 1) return; // No need to rotate if only default content
+            
+            let currentIndex = 0;
+            
+            setInterval(() => {
+                // Hide current item
+                items[currentIndex].classList.remove('active');
+                
+                // Move to next item
+                currentIndex = (currentIndex + 1) % items.length;
+                
+                // Show next item
+                items[currentIndex].classList.add('active');
+            }, 5000); // Rotate every 5 seconds
         }
 
         // Load Schedule
@@ -1527,12 +1657,26 @@
                 }
                 
                 // If dates are the same, compare times
-                // Convert time strings to comparable format (assumes format like "11:00 AM" or "1:00 PM")
-                const timeA = a.time.toLowerCase();
-                const timeB = b.time.toLowerCase();
+                const timeA = a.time || '';
+                const timeB = b.time || '';
                 
-                // Simple comparison that works for most time formats
-                return timeA.localeCompare(timeB);
+                // Convert times to 24-hour format for proper comparison
+                const getTimeValue = (timeStr) => {
+                    if (!timeStr) return 0;
+                    const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+                    if (!match) return 0;
+                    
+                    let hours = parseInt(match[1]);
+                    const minutes = parseInt(match[2]);
+                    const period = match[3].toUpperCase();
+                    
+                    if (period === 'PM' && hours !== 12) hours += 12;
+                    if (period === 'AM' && hours === 12) hours = 0;
+                    
+                    return hours * 60 + minutes;
+                };
+                
+                return getTimeValue(timeA) - getTimeValue(timeB);
             });
 
             renderSchedule();
