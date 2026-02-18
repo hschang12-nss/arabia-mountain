@@ -3,14 +3,13 @@
     {
       "name": "McCart Plumbing",
       "logo": "McCart.png",
-      "text": "We know everything about plumbing"
+      "text": null
     },
-     {
+    {
       "name": "AromaRidge Coffee",
       "logo": "aromaridge.png",
       "text": "https://aromaridge.com"
     }
-
   ],
   "players": {
     "varsity": [
@@ -19,20 +18,29 @@
         "name": "Dominic Chang",
         "position": "Second Baseman / Pitcher",
         "grade": "Sophomore",
+        "height": "5'10\"",
+        "weight": "165",
+        "batsThrows": "R/R",
         "year": "2026-27"
       },
       {
-        "number": "2",
+        "number": "12",
         "name": "Darian Rainey",
         "position": "Catcher",
         "grade": "Sophomore",
+        "height": "5'11\"",
+        "weight": "180",
+        "batsThrows": "R/R",
         "year": "2026-27"
       },
       {
         "number": "9",
-        "name": "Ronald Jones II",
+        "name": "Ronald Jones III",
         "position": "Shortstop / Pitcher",
         "grade": "Senior",
+        "height": "6'0\"",
+        "weight": "175",
+        "batsThrows": "R/R",
         "year": "2026-27"
       },
       {
@@ -40,6 +48,69 @@
         "name": "Tracy Finch",
         "position": "First Baseman",
         "grade": "Senior",
+        "height": "6'2\"",
+        "weight": "195",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "23",
+        "name": "Daniel Veal",
+        "position": "Short Stop / Second Baseman",
+        "grade": "Senior",
+        "height": "5'10",
+        "weight": "155",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "3",
+        "name": "Chancelor Caldwell",
+        "position": "Right Fielder",
+        "grade": "Sophomore",
+        "height": "6'1",
+        "weight": "180",
+        "batsThrows": "L/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "15",
+        "name": "James Carter III",
+        "position": "Outfield",
+        "grade": "Senior",
+        "height": "5'10",
+        "weight": "165",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "19",
+        "name": "Tyler  Frederick",
+        "position": "Outfield",
+        "grade": "Sophomore",
+        "height": "5'10",
+        "weight": "160",
+        "batsThrows": "R/R"
+        "year": "2026-27"
+      },
+      {
+        "number": "20",
+        "name": "Cameron Polain",
+        "position": "Outfield",
+        "grade": "Sophomore",
+        "height": "5'10",
+        "weight": "150",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "21",
+        "name": "Milton Swinson",
+        "position": "Short Stop",
+        "grade": "Sophomore",
+        "height": "5'10",
+        "weight": "160",
+        "batsThrows": "R/R",
         "year": "2026-27"
       }
     ],
@@ -49,20 +120,29 @@
         "name": "Dominic Chang",
         "position": "Second Baseman / Pitcher",
         "grade": "Sophomore",
-        "year": "2026-27"
-      },
-      {
-        "number": "2",
-        "name": "Darian Rainey",
-        "position": "Catcher",
-        "grade": "Sophomore",
+        "height": "5'10\"",
+        "weight": "165",
+        "batsThrows": "R/R",
         "year": "2026-27"
       },
       {
         "number": "12",
-        "name": "Alex",
-        "position": "First Baseman",
-        "grade": "Senior",
+        "name": "Darian Rainey",
+        "position": "Catcher",
+        "grade": "Sophomore",
+        "height": "5'11\"",
+        "weight": "180",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "13",
+        "name": "Alexander Kinsale",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "5'8\"",
+        "weight": "195",
+        "batsThrows": "R/R",
         "year": "2026-27"
       },
       {
@@ -70,13 +150,153 @@
         "name": "Chancelor Caldwell",
         "position": "Right Fielder",
         "grade": "Sophomore",
-        "year": "2026-27",
-        "height": "6'1",
+        "height": "6'1\"",
         "weight": "180",
-        "batsThrows": "Left/Right"
+        "batsThrows": "L/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "14",
+        "name": " Rylen Brown",
+        "position": "Second Baseman",
+        "grade": "Freshman",
+        "height": "5'8",
+        "weight": "150",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "15",
+        "name": "Aiden Eugene",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "17",
+        "name": "Willie Jones Jr.",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "25",
+        "name": "Syrus Melendrez-Lloyd",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "6",
+        "name": "Ayden Mincey",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "18",
+        "name": "Carson Parks",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "33",
+        "name": "Avery Uryga",
+        "position": "Third Baseman",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "25",
+        "name": "Braylon Williams",
+        "position": "Second Baseman",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "19",
+        "name": "Tyler  Frederick",
+        "position": "Outfield",
+        "grade": "Sophomore",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
       }
     ]
   },
+  "coaches": [
+    {
+      "name": "Sharon Richard",
+      "title": "Athletic Director",
+      "email": "SHARON_G_RICHARD@dekalbschoolsga.org",
+      "phone": "678-875-3645",
+      "experience": "",
+      "philosophy": "",
+      "achievements": "",
+      "specialties": "",
+      "background": "",
+      "focus": "Oversight of all athletic programs and compliance"
+    },
+    {
+      "name": "Eric Hoxie",
+      "title": "Head Coach",
+      "email": "coach@arabiamtnhs.com",
+      "phone": "",
+      "experience": "",
+      "philosophy": "Developing complete student-athletes through discipline, hard work, and dedication to excellence both on and off the field.",
+      "achievements": "",
+      "specialties": "",
+      "background": "",
+      "focus": "Varsity Baseball Program Leadership"
+    },
+    {
+      "name": "Dex",
+      "title": "Assistant Coach",
+      "email": "assistant@arabiamtnhs.com",
+      "phone": "",
+      "experience": "",
+      "philosophy": "",
+      "achievements": "",
+      "specialties": "Player development and on-field support",
+      "background": "",
+      "focus": "Assisting varsity operations and player growth"
+    },
+    {
+      "name": "Eric Hoxie",
+      "title": "Junior Varsity Program",
+      "email": "jvcoach@arabiamtnhs.com",
+      "phone": "",
+      "experience": "",
+      "philosophy": "",
+      "achievements": "",
+      "specialties": "",
+      "background": "",
+      "focus": "Fundamental skill development and preparing players for varsity competition"
+    }
+  ],
   "schedule": [
     {
       "date": "2026-02-14",
@@ -89,7 +309,7 @@
     {
       "date": "2026-02-14",
       "opponent": "Cedar Grove",
-      "location": "Home",
+      "location": "Away",
       "time": "1:00 PM",
       "team": "JV",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
@@ -105,7 +325,7 @@
     {
       "date": "2026-02-21",
       "opponent": "Sandy Creek",
-      "location": "Home",
+      "location": "Away",
       "time": "1:00 PM",
       "team": "JV",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
@@ -121,7 +341,7 @@
     {
       "date": "2026-02-28",
       "opponent": "Stephenson",
-      "location": "Away",
+      "location": "Home",
       "time": "1:00 PM",
       "team": "JV",
       "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
@@ -366,56 +586,6 @@
       "team": "Varsity",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
       "notes": "Senior Night"
-    }
-  ],
-  "coaches": [
-    {
-      "name": "Sharon Richard",
-      "title": "Athletic Director",
-      "email": "SHARON_G_RICHARD@dekalbschoolsga.org",
-      "phone": "678-875-3645",
-      "experience": "",
-      "philosophy": "",
-      "achievements": "",
-      "specialties": "",
-      "background": "",
-      "focus": "Oversight of all athletic programs and compliance"
-    },
-    {
-      "name": "Eric Hoxie",
-      "title": "Head Coach",
-      "email": "coach@arabiamtnhs.com",
-      "phone": "",
-      "experience": "",
-      "philosophy": "Developing complete student-athletes through discipline, hard work, and dedication to excellence both on and off the field.",
-      "achievements": "",
-      "specialties": "",
-      "background": "",
-      "focus": "Varsity Baseball Program Leadership"
-    },
-    {
-      "name": "Dex",
-      "title": "Assistant Coach",
-      "email": "assistant@arabiamtnhs.com",
-      "phone": "",
-      "experience": "",
-      "philosophy": "",
-      "achievements": "",
-      "specialties": "Player development and on-field support",
-      "background": "",
-      "focus": "Assisting varsity operations and player growth"
-    },
-    {
-      "name": "Eric Hoxie",
-      "title": "Junior Varsity Program",
-      "email": "jvcoach@arabiamtnhs.com",
-      "phone": "",
-      "experience": "",
-      "philosophy": "",
-      "achievements": "",
-      "specialties": "",
-      "background": "",
-      "focus": "Fundamental skill development and preparing players for varsity competition"
     }
   ],
   "booster": [
