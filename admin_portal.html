@@ -601,9 +601,7 @@
                 </div>
                 <button type="submit" class="login-btn">Login</button>
             </form>
-            <p style="margin-top: 20px; text-align: center; color: #999; font-size: 0.85em;">
-                Default credentials: admin / rams2026
-            </p>
+
         </div>
     </div>
 
@@ -636,10 +634,10 @@
                     Welcome, Admin - <span id="dashboardSeasonDisplay">2026-2027</span> Season
                 </h2>
                 
-                <div class="info-box">
-                    <h4>📝 Quick Start Guide</h4>
-                    <p>Select the season year above, then click on any card below to manage different sections of the website. All changes are saved locally in your browser. Make sure to click "Save Changes" after editing any section.</p>
-                    <p style="margin-top: 10px;"><strong>💡 Pro Tip:</strong> After saving changes, click "💾 Publish Data" to download the season data file, then upload it to your website!</p>
+                <div class="info-box" id="dataStatusBox">
+                    <h4 id="dataStatusTitle">⏳ Loading data...</h4>
+                    <p id="dataStatusMsg">Fetching <strong id="dataStatusFile">rams_data_2026_2027.json</strong> from the server...</p>
+                    <p style="margin-top: 10px; font-size:0.9em; color:#555;" id="dataStatusHint"></p>
                 </div>
 
                 <div class="dashboard-cards">
@@ -681,6 +679,16 @@
                     <div class="dashboard-card" onclick="showSection('requirements')">
                         <h3><span class="icon">📋</span> Requirements</h3>
                         <p>Update physical deadlines, forms, and eligibility requirements</p>
+                    </div>
+
+                    <div class="dashboard-card" onclick="showSection('newseason')" style="border-top: 4px solid var(--ram-green);">
+                        <h3><span class="icon">🆕</span> New Season</h3>
+                        <p>Create a new season data file, carry over coaches/booster, and choose which players to bring forward</p>
+                    </div>
+
+                    <div class="dashboard-card" onclick="exportDataToJson()" style="border-top: 5px solid var(--ram-gold);">
+                        <h3><span class="icon">💾</span> Publish Data</h3>
+                        <p>Save <strong>rams_data_${currentAdminSeason.replace('-','_')}.json</strong> back to your computer to upload to the server</p>
                     </div>
                 </div>
             </div>
@@ -978,20 +986,85 @@ Team equipment and supplies"></textarea>
                 <div class="action-buttons">
                     <button class="btn btn-success" onclick="saveRequirements()">Save Changes</button>
                 </div>
-                 
-               
-</div>
-        </div>
-                <!-- ✅ NEW PUBLISH CARD -->
-            <div class="dashboard-card"
-                 onclick="exportDataToJson()"
-                 style="border-top:5px solid var(--ram-gold)">
-                <h3>💾 Publish Data</h3>
-                <p>Download <b>rams_data.json</b> for the public website</p>
             </div>
 
+            <!-- New Season Section -->
+            <div id="newseasonSection" class="edit-section">
+                <div class="section-header">
+                    <h2>🆕 Create New Season</h2>
+                    <button class="back-btn" onclick="showDashboard()">← Back to Dashboard</button>
+                </div>
 
+                <!-- Step 1: Name the new season -->
+                <div id="newSeasonStep1">
+                    <div style="background:#f8f9fa; padding:25px; border-radius:10px; margin-bottom:25px;">
+                        <h3 style="color:var(--ram-navy); margin-bottom:15px; font-family:'Oswald',sans-serif;">Step 1 — Name the New Season</h3>
+                        <p style="color:#555; margin-bottom:20px;">Enter the new season year range. The JSON file will be saved as <strong id="newSeasonFilenamePreview">rams_data_XXXX_XXXX.json</strong> in the same directory as the current file.</p>
+                        <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                            <div class="form-field" style="flex:1; min-width:180px;">
+                                <label>Start Year (e.g. 2027)</label>
+                                <input type="number" id="newSeasonStart" placeholder="2027" min="2020" max="2040" oninput="updateNewSeasonPreview()">
+                            </div>
+                            <div class="form-field" style="flex:1; min-width:180px;">
+                                <label>End Year (e.g. 2028)</label>
+                                <input type="number" id="newSeasonEnd" placeholder="2028" min="2020" max="2041" oninput="updateNewSeasonPreview()">
+                            </div>
+                        </div>
+                        <p style="margin-top:15px; color:#777; font-size:0.9em;">New file: <strong id="newSeasonFilenamePreview2" style="color:var(--ram-navy);">rams_data_2027_2028.json</strong></p>
+                    </div>
+
+                    <!-- Step 2: Choose players -->
+                    <div style="background:#f8f9fa; padding:25px; border-radius:10px; margin-bottom:25px;">
+                        <h3 style="color:var(--ram-navy); margin-bottom:5px; font-family:'Oswald',sans-serif;">Step 2 — Select Players to Carry Over</h3>
+                        <p style="color:#555; margin-bottom:5px;">Only players you check will be included in the new season. Seniors are unchecked by default.</p>
+
+                        <div style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap; margin-top:15px;">
+                            <button class="btn btn-secondary" onclick="selectAllNewSeasonPlayers(true)" style="padding:8px 18px; font-size:0.85em;">✅ Select All</button>
+                            <button class="btn btn-secondary" onclick="selectAllNewSeasonPlayers(false)" style="padding:8px 18px; font-size:0.85em;">☐ Deselect All</button>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div>
+                                <h4 style="color:var(--ram-navy); margin-bottom:10px; border-bottom:2px solid var(--ram-gold); padding-bottom:8px;">⚾ Varsity</h4>
+                                <div id="newSeasonVarsityList" style="max-height:300px; overflow-y:auto;"></div>
+                            </div>
+                            <div>
+                                <h4 style="color:var(--ram-navy); margin-bottom:10px; border-bottom:2px solid var(--ram-gold); padding-bottom:8px;">⚾ Junior Varsity</h4>
+                                <div id="newSeasonJVList" style="max-height:300px; overflow-y:auto;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: What else to carry over -->
+                    <div style="background:#f8f9fa; padding:25px; border-radius:10px; margin-bottom:25px;">
+                        <h3 style="color:var(--ram-navy); margin-bottom:10px; font-family:'Oswald',sans-serif;">Step 3 — Carry Over Other Data?</h3>
+                        <p style="color:#555; margin-bottom:15px;">Choose what to copy from the current season into the new one:</p>
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:1em;">
+                                <input type="checkbox" id="carryCoaches" checked style="width:18px;height:18px;"> Coaches
+                            </label>
+                            <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:1em;">
+                                <input type="checkbox" id="carryBooster" checked style="width:18px;height:18px;"> Booster Club members
+                            </label>
+                            <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:1em;">
+                                <input type="checkbox" id="carrySponsors" checked style="width:18px;height:18px;"> Sponsors
+                            </label>
+                            <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:1em;">
+                                <input type="checkbox" id="carryDues" style="width:18px;height:18px;"> Dues & Costs info
+                            </label>
+                        </div>
+                        <p style="margin-top:12px; color:#777; font-size:0.85em;">Schedule and Requirements will always start fresh for the new season.</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="createNewSeason()" style="padding:15px 40px; font-size:1.1em;">🆕 Create New Season File</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+
 
     <script>
         // Initialize data storage
@@ -1018,6 +1091,7 @@ Team equipment and supplies"></textarea>
                 document.getElementById('adminContainer').classList.add('active');
                 document.body.style.background = '#f5f7fa';
                 loadAllData();
+                autoFetchSeasonJson();
             } else {
                 document.getElementById('errorMessage').style.display = 'block';
             }
@@ -1045,6 +1119,7 @@ Team equipment and supplies"></textarea>
             if (section === 'booster') loadBooster();
             if (section === 'dues') loadDues();
             if (section === 'requirements') loadRequirements();
+            if (section === 'newseason') loadNewSeason();
         }
 
         function showDashboard() {
@@ -1405,13 +1480,19 @@ Team equipment and supplies"></textarea>
 
         // Dues Management
         function loadDues() {
-            const saved = localStorage.getItem('ramsDues');
+            const seasonKey = currentAdminSeason.replace('-', '_');
+            const saved = localStorage.getItem(`rams_${seasonKey}_dues`);
             if (saved) {
                 const data = JSON.parse(saved);
-                document.getElementById('seasonFee').value = data.fee || 500;
+                document.getElementById('seasonFee').value = data.fee || '';
                 document.getElementById('paymentDeadline').value = data.deadline || '';
-                document.getElementById('installments').value = data.installments || 3;
+                document.getElementById('installments').value = data.installments || '';
                 document.getElementById('duesIncluded').value = data.included || '';
+            } else {
+                document.getElementById('seasonFee').value = '';
+                document.getElementById('paymentDeadline').value = '';
+                document.getElementById('installments').value = '';
+                document.getElementById('duesIncluded').value = '';
             }
         }
 
@@ -1429,13 +1510,19 @@ Team equipment and supplies"></textarea>
 
         // Requirements Management
         function loadRequirements() {
-            const saved = localStorage.getItem('ramsRequirements');
+            const seasonKey = currentAdminSeason.replace('-', '_');
+            const saved = localStorage.getItem(`rams_${seasonKey}_requirements`);
             if (saved) {
                 const data = JSON.parse(saved);
                 document.getElementById('physicalDueDate').value = data.physicalDue || '';
                 document.getElementById('registrationDate').value = data.registration || '';
                 document.getElementById('tryoutsDate').value = data.tryouts || '';
                 document.getElementById('seasonStartDate').value = data.seasonStart || '';
+            } else {
+                document.getElementById('physicalDueDate').value = '';
+                document.getElementById('registrationDate').value = '';
+                document.getElementById('tryoutsDate').value = '';
+                document.getElementById('seasonStartDate').value = '';
             }
         }
 
@@ -1466,8 +1553,8 @@ let currentAdminSeason = '2026-2027';
 document.getElementById('adminSeasonYear').addEventListener('change', function() {
     currentAdminSeason = this.value;
     document.getElementById('dashboardSeasonDisplay').textContent = currentAdminSeason;
-    // Load data for the selected season
     loadSeasonData();
+    autoFetchSeasonJson();
 });
 
 function loadSeasonData() {
@@ -1497,34 +1584,113 @@ function loadSeasonData() {
     loadRequirements();
 }
 
-function exportDataToJson() {
+// =============================================
+// AUTO-FETCH JSON FROM SERVER ON LOGIN
+// =============================================
+
+// Called right after successful login
+async function autoFetchSeasonJson() {
     const seasonKey = currentAdminSeason.replace('-', '_');
-    
+    const filename = `rams_data_${seasonKey}.json`;
+
+    updateStatusBox('loading', filename);
+
+    try {
+        // Fetch relative to the current page's directory
+        const res = await fetch(`./${filename}?_=${Date.now()}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status} – file not found`);
+        const data = await res.json();
+
+        // Push data into localStorage so all existing load* functions work unchanged
+        ingestJsonData(data, seasonKey);
+
+        updateStatusBox('ok', filename, `✅ Loaded from server. Edit any section below, then click 💾 Publish Data to save changes back.`);
+    } catch (err) {
+        updateStatusBox('error', filename,
+            `⚠️ Could not auto-load (${err.message}). You can still use the Import Data card to load a file manually, or start fresh.`);
+    }
+}
+
+function ingestJsonData(data, seasonKey) {
+    if (data.sponsors)     { sponsorsData  = data.sponsors;  localStorage.setItem(`rams_${seasonKey}_sponsors`,     JSON.stringify(sponsorsData)); }
+    if (data.players)      { playersData   = data.players;   localStorage.setItem(`rams_${seasonKey}_players`,      JSON.stringify(playersData)); }
+    if (data.coaches)      { coachesData   = data.coaches;   localStorage.setItem(`rams_${seasonKey}_coaches`,      JSON.stringify(coachesData)); }
+    if (data.schedule)     { scheduleData  = data.schedule;  localStorage.setItem(`rams_${seasonKey}_schedule`,     JSON.stringify(scheduleData)); }
+    if (data.booster)      { boosterData   = data.booster;   localStorage.setItem(`rams_${seasonKey}_booster`,      JSON.stringify(boosterData)); }
+    if (data.dues)                                           { localStorage.setItem(`rams_${seasonKey}_dues`,         JSON.stringify(data.dues)); }
+    if (data.requirements)                                   { localStorage.setItem(`rams_${seasonKey}_requirements`, JSON.stringify(data.requirements)); }
+}
+
+function updateStatusBox(state, filename, hint = '') {
+    const box   = document.getElementById('dataStatusBox');
+    const title = document.getElementById('dataStatusTitle');
+    const msg   = document.getElementById('dataStatusMsg');
+    const hintEl= document.getElementById('dataStatusHint');
+    document.getElementById('dataStatusFile').textContent = filename;
+
+    if (state === 'loading') {
+        box.style.background = '#e3f2fd'; box.style.borderLeftColor = '#2196F3';
+        title.textContent = '⏳ Loading data...';
+        msg.innerHTML = `Fetching <strong>${filename}</strong> from the server...`;
+        hintEl.textContent = '';
+    } else if (state === 'ok') {
+        box.style.background = '#e8f5e9'; box.style.borderLeftColor = '#28a745';
+        title.textContent = `✅ ${filename}`;
+        msg.innerHTML = `Data loaded successfully from the server.`;
+        hintEl.textContent = hint;
+    } else {
+        box.style.background = '#fff3cd'; box.style.borderLeftColor = '#ffc107';
+        title.textContent = `⚠️ Could not auto-load ${filename}`;
+        msg.innerHTML = '';
+        hintEl.textContent = hint;
+    }
+}
+
+// =============================================
+// PUBLISH DATA – File System Access API + fallback download
+// =============================================
+async function exportDataToJson() {
+    const seasonKey = currentAdminSeason.replace('-', '_');
+    const filename  = `rams_data_${seasonKey}.json`;
+
     const masterData = {
-        sponsors: JSON.parse(localStorage.getItem(`rams_${seasonKey}_sponsors`)) || sponsorsData,
-        players: JSON.parse(localStorage.getItem(`rams_${seasonKey}_players`)) || playersData,
-        coaches: JSON.parse(localStorage.getItem(`rams_${seasonKey}_coaches`)) || coachesData,
-        schedule: JSON.parse(localStorage.getItem(`rams_${seasonKey}_schedule`)) || scheduleData,
-        booster: JSON.parse(localStorage.getItem(`rams_${seasonKey}_booster`)) || boosterData,
-        dues: JSON.parse(localStorage.getItem(`rams_${seasonKey}_dues`)) || {},
+        sponsors:     JSON.parse(localStorage.getItem(`rams_${seasonKey}_sponsors`))     || sponsorsData,
+        players:      JSON.parse(localStorage.getItem(`rams_${seasonKey}_players`))      || playersData,
+        coaches:      JSON.parse(localStorage.getItem(`rams_${seasonKey}_coaches`))      || coachesData,
+        schedule:     JSON.parse(localStorage.getItem(`rams_${seasonKey}_schedule`))     || scheduleData,
+        booster:      JSON.parse(localStorage.getItem(`rams_${seasonKey}_booster`))      || boosterData,
+        dues:         JSON.parse(localStorage.getItem(`rams_${seasonKey}_dues`))         || {},
         requirements: JSON.parse(localStorage.getItem(`rams_${seasonKey}_requirements`)) || {}
     };
 
-    const blob = new Blob(
-        [JSON.stringify(masterData, null, 2)],
-        { type: "application/json" }
-    );
+    const jsonString = JSON.stringify(masterData, null, 2);
 
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `rams_data_${seasonKey}.json`;
-    document.body.appendChild(a);
-    a.click();
+    // Try File System Access API "Save As" so user can overwrite the original file
+    if (window.showSaveFilePicker) {
+        try {
+            const handle = await window.showSaveFilePicker({
+                suggestedName: filename,
+                types: [{ description: 'JSON File', accept: { 'application/json': ['.json'] } }]
+            });
+            const writable = await handle.createWritable();
+            await writable.write(jsonString);
+            await writable.close();
+            alert(`✅ Saved as: ${handle.name}\n\nUpload this file to your web server to publish the changes.`);
+            return;
+        } catch (err) {
+            if (err.name === 'AbortError') return; // user cancelled
+        }
+    }
+
+    // Fallback: trigger browser download
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    
-    alert(`Data exported successfully for ${currentAdminSeason} season!\nFile: rams_data_${seasonKey}.json`);
+    alert(`Downloaded: ${filename}\n\nUpload this file to your web server to publish the changes.`);
 }
 
 // Update save functions to use season-specific keys
@@ -1757,6 +1923,179 @@ function saveSponsors() {
     const seasonKey = currentAdminSeason.replace('-', '_');
     localStorage.setItem(`rams_${seasonKey}_sponsors`, JSON.stringify(sponsorsData));
     showSuccess('sponsorsSuccess');
+}
+
+// =============================================
+// NEW SEASON WIZARD
+// =============================================
+
+function loadNewSeason() {
+    updateNewSeasonPreview();
+    renderNewSeasonPlayerLists();
+}
+
+function updateNewSeasonPreview() {
+    const start = document.getElementById('newSeasonStart').value;
+    const end   = document.getElementById('newSeasonEnd').value;
+    const name  = (start && end) ? `rams_data_${start}_${end}.json` : 'rams_data_XXXX_XXXX.json';
+    document.getElementById('newSeasonFilenamePreview').textContent  = name;
+    document.getElementById('newSeasonFilenamePreview2').textContent = name;
+}
+
+function renderNewSeasonPlayerLists() {
+    const seasonKey = currentAdminSeason.replace('-', '_');
+    const saved = localStorage.getItem(`rams_${seasonKey}_players`);
+    const data  = saved ? JSON.parse(saved) : playersData;
+
+    ['varsity', 'jv'].forEach(team => {
+        const container = document.getElementById(`newSeason${team === 'varsity' ? 'Varsity' : 'JV'}List`);
+        container.innerHTML = '';
+        const players = (data[team] || []);
+
+        if (players.length === 0) {
+            container.innerHTML = '<p style="color:#999; font-style:italic;">No players on this roster.</p>';
+            return;
+        }
+
+        players.forEach((p, i) => {
+            const isSenior = (p.grade || '').toLowerCase() === 'senior';
+            const label = document.createElement('label');
+            label.style.cssText = 'display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid #eee; cursor:pointer; font-size:0.95em;';
+            label.innerHTML = `
+                <input type="checkbox" data-team="${team}" data-index="${i}"
+                    style="width:16px;height:16px;"
+                    ${isSenior ? '' : 'checked'}>
+                <span>
+                    <strong>#${p.number || '—'} ${p.name || 'Unnamed'}</strong>
+                    <span style="color:#888; font-size:0.85em; margin-left:6px;">${p.position || ''} · ${p.grade || ''}</span>
+                    ${isSenior ? '<span style="background:#dc3545; color:white; font-size:0.75em; padding:2px 6px; border-radius:10px; margin-left:6px;">Senior</span>' : ''}
+                </span>
+            `;
+            container.appendChild(label);
+        });
+    });
+}
+
+function selectAllNewSeasonPlayers(checked) {
+    document.querySelectorAll('#newSeasonVarsityList input[type=checkbox], #newSeasonJVList input[type=checkbox]')
+        .forEach(cb => cb.checked = checked);
+}
+
+async function createNewSeason() {
+    const start = document.getElementById('newSeasonStart').value.trim();
+    const end   = document.getElementById('newSeasonEnd').value.trim();
+
+    if (!start || !end) {
+        alert('Please enter both a start year and end year for the new season.');
+        return;
+    }
+    if (parseInt(end) <= parseInt(start)) {
+        alert('End year must be greater than start year.');
+        return;
+    }
+
+    const newSeasonKey  = `${start}_${end}`;
+    const newFilename   = `rams_data_${newSeasonKey}.json`;
+    const currentSeasonKey = currentAdminSeason.replace('-', '_');
+
+    // Gather selected players
+    const savedPlayers = localStorage.getItem(`rams_${currentSeasonKey}_players`);
+    const allPlayers   = savedPlayers ? JSON.parse(savedPlayers) : playersData;
+
+    const newPlayers = { varsity: [], jv: [] };
+    ['varsity', 'jv'].forEach(team => {
+        document.querySelectorAll(`#newSeason${team === 'varsity' ? 'Varsity' : 'JV'}List input[type=checkbox]`)
+            .forEach(cb => {
+                if (cb.checked) {
+                    const p = (allPlayers[team] || [])[parseInt(cb.dataset.index)];
+                    if (p) {
+                        // Advance grade one year for returning players
+                        const gradeMap = { 'Freshman': 'Sophomore', 'Sophomore': 'Junior', 'Junior': 'Senior' };
+                        const newGrade = gradeMap[p.grade] || p.grade;
+                        newPlayers[team].push({ ...p, grade: newGrade });
+                    }
+                }
+            });
+    });
+
+    // Build the new season data object
+    const newData = {
+        players:  newPlayers,
+        schedule: [],
+        dues:     {},
+        requirements: {}
+    };
+
+    if (document.getElementById('carryCoaches').checked) {
+        const saved = localStorage.getItem(`rams_${currentSeasonKey}_coaches`);
+        newData.coaches = saved ? JSON.parse(saved) : coachesData;
+    } else { newData.coaches = []; }
+
+    if (document.getElementById('carryBooster').checked) {
+        const saved = localStorage.getItem(`rams_${currentSeasonKey}_booster`);
+        newData.booster = saved ? JSON.parse(saved) : boosterData;
+    } else { newData.booster = []; }
+
+    if (document.getElementById('carrySponsors').checked) {
+        const saved = localStorage.getItem(`rams_${currentSeasonKey}_sponsors`);
+        newData.sponsors = saved ? JSON.parse(saved) : sponsorsData;
+    } else { newData.sponsors = []; }
+
+    if (document.getElementById('carryDues').checked) {
+        const saved = localStorage.getItem(`rams_${currentSeasonKey}_dues`);
+        newData.dues = saved ? JSON.parse(saved) : {};
+    }
+
+    const jsonString = JSON.stringify(newData, null, 2);
+
+    // Save via File System Access API (Save As) so user places it in the right folder
+    if (window.showSaveFilePicker) {
+        try {
+            const handle = await window.showSaveFilePicker({
+                suggestedName: newFilename,
+                types: [{ description: 'JSON File', accept: { 'application/json': ['.json'] } }]
+            });
+            const writable = await handle.createWritable();
+            await writable.write(jsonString);
+            await writable.close();
+
+            // Add new season to dropdown if not already there
+            addSeasonToDropdown(`${start}-${end}`);
+
+            alert(`✅ New season file created: ${handle.name}\n\nUpload it to the same directory as your other JSON files on the server.\n\nReturning players have had their grade advanced by one year.`);
+            showDashboard();
+            return;
+        } catch (err) {
+            if (err.name === 'AbortError') return;
+        }
+    }
+
+    // Fallback download
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = newFilename;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    addSeasonToDropdown(`${start}-${end}`);
+    alert(`Downloaded: ${newFilename}\n\nUpload it to the same directory as your other JSON files on the server.\n\nReturning players have had their grade advanced by one year.`);
+    showDashboard();
+}
+
+function addSeasonToDropdown(seasonValue) {
+    const select = document.getElementById('adminSeasonYear');
+    const exists = Array.from(select.options).some(o => o.value === seasonValue);
+    if (!exists) {
+        const opt = document.createElement('option');
+        opt.value = seasonValue;
+        opt.textContent = seasonValue;
+        select.insertBefore(opt, select.firstChild);
+    }
+    select.value = seasonValue;
+    currentAdminSeason = seasonValue;
+    document.getElementById('dashboardSeasonDisplay').textContent = seasonValue;
 }
     </script>
 

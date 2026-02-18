@@ -912,7 +912,8 @@
             </div>
 
             <div class="schedule-filters">
-                <button class="filter-btn active" data-filter="all">All Games</button>
+                <button class="filter-btn active" data-filter="upcoming">⚡ Upcoming</button>
+                <button class="filter-btn" data-filter="all">All Games</button>
                 <button class="filter-btn" data-filter="varsity">Varsity</button>
                 <button class="filter-btn" data-filter="jv">JV</button>
                 <button class="filter-btn" data-filter="home">Home</button>
@@ -971,18 +972,12 @@
                 <button class="filter-btn" data-roster-filter="jv">JV</button>
             </div>
 
-            <div id="varsityRosterSection">
-                <h3 style="font-family: 'Oswald', sans-serif; color: var(--ram-navy); margin: 40px 0 20px 0; font-size: 2em; text-align: center;">Varsity Roster</h3>
-                <div id="varsityRosterGrid" class="roster-grid">
-                    <!-- Varsity roster will be loaded dynamically -->
-                </div>
+            <div id="varsityRosterGrid" class="roster-grid">
+                <!-- Varsity roster will be loaded dynamically -->
             </div>
 
-            <div id="jvRosterSection">
-                <h3 style="font-family: 'Oswald', sans-serif; color: var(--ram-navy); margin: 40px 0 20px 0; font-size: 2em; text-align: center;">Junior Varsity Roster</h3>
-                <div id="jvRosterGrid" class="roster-grid">
-                    <!-- JV roster will be loaded dynamically -->
-                </div>
+            <div id="jvRosterGrid" class="roster-grid" style="margin-top: 50px;">
+                <!-- JV roster will be loaded dynamically -->
             </div>
         </section>
     </div>
@@ -1480,7 +1475,7 @@
 
         // Global data variable
         let websiteData = null;
-        let currentScheduleFilter = 'all';
+        let currentScheduleFilter = 'upcoming';
         let currentRosterFilter = 'all';
         let currentMonthFilter = 'all';
         let currentSeason = '2026-2027';
@@ -1685,10 +1680,15 @@
             const tbody = document.getElementById('scheduleTableBody');
             tbody.innerHTML = '';
 
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // compare date only
+
             let filteredGames = websiteData.schedule;
 
-            // Apply team/location filters
-            if (currentScheduleFilter === 'varsity') {
+            // Apply team/location/upcoming filters
+            if (currentScheduleFilter === 'upcoming') {
+                filteredGames = filteredGames.filter(game => parseLocalDate(game.date) >= today);
+            } else if (currentScheduleFilter === 'varsity') {
                 filteredGames = filteredGames.filter(game => game.team === 'Varsity');
             } else if (currentScheduleFilter === 'jv') {
                 filteredGames = filteredGames.filter(game => game.team === 'JV');
@@ -1709,6 +1709,7 @@
             filteredGames.forEach(game => {
                 const row = tbody.insertRow();
                 const gameDate = parseLocalDate(game.date);
+                const isPast = gameDate < today;
                 const formattedDate = gameDate.toLocaleDateString('en-US', { 
                     weekday: 'short', 
                     month: 'short', 
@@ -1723,8 +1724,14 @@
                     address = game.address || schoolAddresses[game.opponent] || 'Address TBD';
                 }
 
+                // Dim past games when viewing all
+                if (isPast && currentScheduleFilter !== 'upcoming') {
+                    row.style.opacity = '0.45';
+                    row.style.background = '#f9f9f9';
+                }
+
                 row.innerHTML = `
-                    <td><strong>${formattedDate}</strong></td>
+                    <td><strong>${formattedDate}</strong>${isPast && currentScheduleFilter !== 'upcoming' ? '<br><span style="font-size:0.75em; color:#999; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Final</span>' : ''}</td>
                     <td>
                         <strong>vs ${game.opponent}</strong>
                         <div class="game-address">📍 ${address}</div>
@@ -1737,65 +1744,51 @@
 
             if (filteredGames.length === 0) {
                 const row = tbody.insertRow();
-                row.innerHTML = '<td colspan="5" style="text-align: center; padding: 40px; color: #999;">No games match the selected filter</td>';
+                const msg = currentScheduleFilter === 'upcoming'
+                    ? '🏁 No upcoming games — the season may be complete. Switch to <strong>All Games</strong> to view the full schedule.'
+                    : 'No games match the selected filter';
+                row.innerHTML = `<td colspan="5" style="text-align: center; padding: 40px; color: #999;">${msg}</td>`;
             }
         }
 
         // Load Roster
         function loadRoster() {
-            console.log('🔄 loadRoster called with filter:', currentRosterFilter);
-            
-            if (!websiteData || !websiteData.players) {
-                console.error('❌ No websiteData or players data');
-                return;
-            }
+            if (!websiteData || !websiteData.players) return;
 
             const varsityGrid = document.getElementById('varsityRosterGrid');
             const jvGrid = document.getElementById('jvRosterGrid');
-            const varsitySection = document.getElementById('varsityRosterSection');
-            const jvSection = document.getElementById('jvRosterSection');
-            
-            if (!varsityGrid || !jvGrid || !varsitySection || !jvSection) {
-                console.error('❌ Could not find roster elements');
-                return;
-            }
             
             varsityGrid.innerHTML = '';
             jvGrid.innerHTML = '';
 
             // Load Varsity players
             if (websiteData.players.varsity && Array.isArray(websiteData.players.varsity)) {
-                console.log(`✅ Loading ${websiteData.players.varsity.length} varsity players`);
                 websiteData.players.varsity.forEach(player => {
-                    varsityGrid.appendChild(createPlayerCard(player));
+                    if (currentRosterFilter === 'all' || currentRosterFilter === 'varsity') {
+                        varsityGrid.appendChild(createPlayerCard(player));
+                    }
                 });
-            } else {
-                console.warn('⚠️ No varsity players found');
             }
 
             // Load JV players
             if (websiteData.players.jv && Array.isArray(websiteData.players.jv)) {
-                console.log(`✅ Loading ${websiteData.players.jv.length} JV players`);
                 websiteData.players.jv.forEach(player => {
-                    jvGrid.appendChild(createPlayerCard(player));
+                    if (currentRosterFilter === 'all' || currentRosterFilter === 'jv') {
+                        jvGrid.appendChild(createPlayerCard(player));
+                    }
                 });
-            } else {
-                console.warn('⚠️ No JV players found');
             }
 
             // Show/hide sections based on filter
             if (currentRosterFilter === 'varsity') {
-                console.log('👁️ Showing: Varsity only');
-                varsitySection.style.display = 'block';
-                jvSection.style.display = 'none';
+                varsityGrid.style.display = 'grid';
+                jvGrid.style.display = 'none';
             } else if (currentRosterFilter === 'jv') {
-                console.log('👁️ Showing: JV only');
-                varsitySection.style.display = 'none';
-                jvSection.style.display = 'block';
+                varsityGrid.style.display = 'none';
+                jvGrid.style.display = 'grid';
             } else {
-                console.log('👁️ Showing: All players');
-                varsitySection.style.display = 'block';
-                jvSection.style.display = 'block';
+                varsityGrid.style.display = 'grid';
+                jvGrid.style.display = 'grid';
             }
         }
 
@@ -1804,28 +1797,27 @@
             card.className = 'player-card';
             card.innerHTML = `
                 <div class="player-header">
-                    <div class="player-number">#${player.number || '?'}</div>
-                    <div class="player-name">${player.name || 'Unknown'}</div>
-                    <div class="player-position">${player.position || 'Position TBD'}</div>
+                    <div class="player-number">#${player.number}</div>
+                    <div class="player-name">${player.name}</div>
+                    <div class="player-position">${player.position}</div>
                 </div>
                 <div class="player-body">
                     <div class="player-info">
-                        ${player.grade ? `
                         <div class="player-info-item">
-                            <div class="player-info-label">Grade</div>
-                            <div class="player-info-value">${player.grade}</div>
-                        </div>` : ''}
+                            <div class="player-info-label">Year</div>
+                            <div class="player-info-value">${player.year}</div>
+                        </div>
                         <div class="player-info-item">
                             <div class="player-info-label">Height</div>
-                            <div class="player-info-value">${player.height || 'N/A'}</div>
+                            <div class="player-info-value">${player.height}</div>
                         </div>
                         <div class="player-info-item">
                             <div class="player-info-label">Weight</div>
-                            <div class="player-info-value">${player.weight ? player.weight + ' lbs' : 'N/A'}</div>
+                            <div class="player-info-value">${player.weight} lbs</div>
                         </div>
                         <div class="player-info-item">
                             <div class="player-info-label">Bats/Throws</div>
-                            <div class="player-info-value">${player.batsThrows || 'N/A'}</div>
+                            <div class="player-info-value">${player.batsThrows}</div>
                         </div>
                     </div>
                     ${player.bio ? `<div class="player-bio">${player.bio}</div>` : ''}
@@ -2121,8 +2113,20 @@
                     
                     currentRosterFilter = btn.dataset.rosterFilter;
                     
-                    // Reload roster with new filter
-                    loadRoster();
+                    // Show/hide roster sections
+                    const varsitySection = document.getElementById('varsityRosterGrid').parentElement;
+                    const jvSection = document.getElementById('jvRosterGrid').parentElement;
+                    
+                    if (currentRosterFilter === 'all') {
+                        varsitySection.style.display = 'block';
+                        jvSection.style.display = 'block';
+                    } else if (currentRosterFilter === 'varsity') {
+                        varsitySection.style.display = 'block';
+                        jvSection.style.display = 'none';
+                    } else if (currentRosterFilter === 'jv') {
+                        varsitySection.style.display = 'none';
+                        jvSection.style.display = 'block';
+                    }
                 });
             });
         });
