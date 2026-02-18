@@ -1761,25 +1761,28 @@
             varsityGrid.innerHTML = '';
             jvGrid.innerHTML = '';
 
-            // Load Varsity players
+            // Always load varsity players into varsity grid
             if (websiteData.players.varsity && Array.isArray(websiteData.players.varsity)) {
                 websiteData.players.varsity.forEach(player => {
-                    if (currentRosterFilter === 'all' || currentRosterFilter === 'varsity') {
-                        varsityGrid.appendChild(createPlayerCard(player));
-                    }
+                    varsityGrid.appendChild(createPlayerCard(player));
                 });
             }
 
-            // Load JV players
+            // Always load JV players into JV grid
             if (websiteData.players.jv && Array.isArray(websiteData.players.jv)) {
                 websiteData.players.jv.forEach(player => {
-                    if (currentRosterFilter === 'all' || currentRosterFilter === 'jv') {
-                        jvGrid.appendChild(createPlayerCard(player));
-                    }
+                    jvGrid.appendChild(createPlayerCard(player));
                 });
             }
 
-            // Show/hide sections based on filter
+            // Apply current filter visibility
+            applyRosterFilter();
+        }
+
+        function applyRosterFilter() {
+            const varsityGrid = document.getElementById('varsityRosterGrid');
+            const jvGrid = document.getElementById('jvRosterGrid');
+
             if (currentRosterFilter === 'varsity') {
                 varsityGrid.style.display = 'grid';
                 jvGrid.style.display = 'none';
@@ -2110,23 +2113,8 @@
                 btn.addEventListener('click', () => {
                     rosterFilterBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-                    
                     currentRosterFilter = btn.dataset.rosterFilter;
-                    
-                    // Show/hide roster sections
-                    const varsitySection = document.getElementById('varsityRosterGrid').parentElement;
-                    const jvSection = document.getElementById('jvRosterGrid').parentElement;
-                    
-                    if (currentRosterFilter === 'all') {
-                        varsitySection.style.display = 'block';
-                        jvSection.style.display = 'block';
-                    } else if (currentRosterFilter === 'varsity') {
-                        varsitySection.style.display = 'block';
-                        jvSection.style.display = 'none';
-                    } else if (currentRosterFilter === 'jv') {
-                        varsitySection.style.display = 'none';
-                        jvSection.style.display = 'block';
-                    }
+                    applyRosterFilter();
                 });
             });
         });
