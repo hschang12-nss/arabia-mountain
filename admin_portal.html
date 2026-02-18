@@ -688,7 +688,7 @@
 
                     <div class="dashboard-card" onclick="exportDataToJson()" style="border-top: 5px solid var(--ram-gold);">
                         <h3><span class="icon">💾</span> Publish Data</h3>
-                        <p>Save <strong>rams_data_${currentAdminSeason.replace('-','_')}.json</strong> back to your computer to upload to the server</p>
+                        <p>Download the updated JSON file, then upload it to your web server to publish changes</p>
                     </div>
                 </div>
             </div>
@@ -1663,34 +1663,17 @@ async function exportDataToJson() {
         requirements: JSON.parse(localStorage.getItem(`rams_${seasonKey}_requirements`)) || {}
     };
 
-    const jsonString = JSON.stringify(masterData, null, 2);
-
-    // Try File System Access API "Save As" so user can overwrite the original file
-    if (window.showSaveFilePicker) {
-        try {
-            const handle = await window.showSaveFilePicker({
-                suggestedName: filename,
-                types: [{ description: 'JSON File', accept: { 'application/json': ['.json'] } }]
-            });
-            const writable = await handle.createWritable();
-            await writable.write(jsonString);
-            await writable.close();
-            alert(`✅ Saved as: ${handle.name}\n\nUpload this file to your web server to publish the changes.`);
-            return;
-        } catch (err) {
-            if (err.name === 'AbortError') return; // user cancelled
-        }
-    }
-
-    // Fallback: trigger browser download
-    const blob = new Blob([jsonString], { type: 'application/json' });
+    const blob = new Blob([JSON.stringify(masterData, null, 2)], { type: 'application/json' });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement('a');
-    a.href = url; a.download = filename;
-    document.body.appendChild(a); a.click();
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    alert(`Downloaded: ${filename}\n\nUpload this file to your web server to publish the changes.`);
+
+    alert(`✅ Downloaded: ${filename}\n\nUpload this file to your web server (same folder as the admin portal) to publish your changes.`);
 }
 
 // Update save functions to use season-specific keys
@@ -2046,41 +2029,18 @@ async function createNewSeason() {
         newData.dues = saved ? JSON.parse(saved) : {};
     }
 
-    const jsonString = JSON.stringify(newData, null, 2);
-
-    // Save via File System Access API (Save As) so user places it in the right folder
-    if (window.showSaveFilePicker) {
-        try {
-            const handle = await window.showSaveFilePicker({
-                suggestedName: newFilename,
-                types: [{ description: 'JSON File', accept: { 'application/json': ['.json'] } }]
-            });
-            const writable = await handle.createWritable();
-            await writable.write(jsonString);
-            await writable.close();
-
-            // Add new season to dropdown if not already there
-            addSeasonToDropdown(`${start}-${end}`);
-
-            alert(`✅ New season file created: ${handle.name}\n\nUpload it to the same directory as your other JSON files on the server.\n\nReturning players have had their grade advanced by one year.`);
-            showDashboard();
-            return;
-        } catch (err) {
-            if (err.name === 'AbortError') return;
-        }
-    }
-
-    // Fallback download
     const blob = new Blob([jsonString], { type: 'application/json' });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement('a');
-    a.href = url; a.download = newFilename;
-    document.body.appendChild(a); a.click();
+    a.href = url;
+    a.download = newFilename;
+    document.body.appendChild(a);
+    a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
     addSeasonToDropdown(`${start}-${end}`);
-    alert(`Downloaded: ${newFilename}\n\nUpload it to the same directory as your other JSON files on the server.\n\nReturning players have had their grade advanced by one year.`);
+    alert(`✅ Downloaded: ${newFilename}\n\nUpload this file to the same folder as your other JSON files on the web server.\n\nReturning players have had their grade automatically advanced by one year.`);
     showDashboard();
 }
 
