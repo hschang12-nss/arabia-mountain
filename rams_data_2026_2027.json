@@ -38,7 +38,7 @@
       },
       {
         "number": "9",
-        "name": "Ronald Jones II",
+        "name": "Ronald Jones III",
         "position": "Shortstop / Pitcher",
         "grade": "Senior",
         "height": "6'0\"",
@@ -71,6 +71,42 @@
         "height": "6'1",
         "weight": "180",
         "batsThrows": "L/R"
+      },
+      {
+        "number": "15",
+        "name": "James Carter III",
+        "position": "Outfield",
+        "grade": "Senior",
+        "height": "5'10",
+        "weight": "165",
+        "batsThrows": "R/R"
+      },
+      {
+        "number": "19",
+        "name": "Tyler  Frederick",
+        "position": "Outfield",
+        "grade": "Sophomore",
+        "height": "5'10",
+        "weight": "160",
+        "batsThrows": "R/R"
+      },
+      {
+        "number": "20",
+        "name": "Cameron Polain",
+        "position": "Outfield",
+        "grade": "Sophomore",
+        "height": "5'10",
+        "weight": "150",
+        "batsThrows": "R/R"
+      },
+      {
+        "number": "21",
+        "name": "Milton Swinson",
+        "position": "Short Stop",
+        "grade": "Sophomore",
+        "height": "5'10",
+        "weight": "160",
+        "batsThrows": "R/R"
       }
     ],
     "jv": [
@@ -109,6 +145,87 @@
         "height": "6'1\"",
         "weight": "180",
         "batsThrows": "L/R"
+      },
+      {
+        "number": "14",
+        "name": " Rylen Brown",
+        "position": "Second Baseman",
+        "grade": "Freshman",
+        "height": "5'8",
+        "weight": "150",
+        "batsThrows": "R/R"
+      },
+      {
+        "number": "15",
+        "name": "Aiden Eugene",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": ""
+      },
+      {
+        "number": "17",
+        "name": "Willie Jones Jr.",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": ""
+      },
+      {
+        "number": "25",
+        "name": "Syrus Melendrez-Lloyd",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": ""
+      },
+      {
+        "number": "6",
+        "name": "Ayden Mincey",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": ""
+      },
+      {
+        "number": "18",
+        "name": "Carson Parks",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": ""
+      },
+      {
+        "number": "33",
+        "name": "Avery Uryga",
+        "position": "Third Baseman",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": ""
+      },
+      {
+        "number": "25",
+        "name": "Braylon Williams",
+        "position": "Second Baseman",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": ""
+      },
+      {
+        "number": "19",
+        "name": "Tyler  Frederick",
+        "position": "Outfield",
+        "grade": "Sophomore",
+        "height": "",
+        "weight": "",
+        "batsThrows": ""
       }
     ]
   },
