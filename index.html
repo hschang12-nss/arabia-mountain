@@ -455,6 +455,26 @@
             font-style: italic;
         }
 
+        /* Weather Badge */
+        .weather-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .weather-sunny    { background: rgba(253,185,39,0.15); color: #b8860b; }
+        .weather-cloudy   { background: rgba(196,206,212,0.3); color: #555; }
+        .weather-rain     { background: rgba(59,130,246,0.15); color: #1d4ed8; }
+        .weather-storm    { background: rgba(139,92,246,0.15); color: #6d28d9; }
+        .weather-snow     { background: rgba(186,230,253,0.4); color: #0369a1; }
+        .weather-fog      { background: rgba(209,213,219,0.4); color: #4b5563; }
+        .weather-loading  { background: #f3f4f6; color: #9ca3af; font-style: italic; }
+        .weather-na       { background: #f3f4f6; color: #9ca3af; font-style: italic; }
+
         /* Roster Cards */
         .roster-grid {
             display: grid;
@@ -948,6 +968,7 @@
                             <th>Location</th>
                             <th>Time</th>
                             <th>Team</th>
+                            <th>Weather</th>
                         </tr>
                     </thead>
                     <tbody id="scheduleTableBody">
@@ -1730,6 +1751,8 @@
                     row.style.background = '#f9f9f9';
                 }
 
+                const weatherCellId = `weather-${game.date}-${game.team}-${game.opponent}`.replace(/[^a-zA-Z0-9-]/g, '_');
+
                 row.innerHTML = `
                     <td><strong>${formattedDate}</strong>${isPast && currentScheduleFilter !== 'upcoming' ? '<br><span style="font-size:0.75em; color:#999; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Final</span>' : ''}</td>
                     <td>
@@ -1739,7 +1762,14 @@
                     <td><span class="location-badge location-${game.location.toLowerCase()}">${game.location}</span></td>
                     <td>${game.time}</td>
                     <td><span class="team-badge team-${game.team.toLowerCase()}">${game.team}</span></td>
+                    <td id="${weatherCellId}"><span class="weather-badge weather-loading">⏳ Loading…</span></td>
                 `;
+
+                if (isPast) {
+                    document.getElementById(weatherCellId).innerHTML = `<span class="weather-badge weather-na">—</span>`;
+                } else {
+                    fetchWeatherForGame(game, address, weatherCellId);
+                }
             });
 
             if (filteredGames.length === 0) {
@@ -1747,7 +1777,7 @@
                 const msg = currentScheduleFilter === 'upcoming'
                     ? '🏁 No upcoming games — the season may be complete. Switch to <strong>All Games</strong> to view the full schedule.'
                     : 'No games match the selected filter';
-                row.innerHTML = `<td colspan="5" style="text-align: center; padding: 40px; color: #999;">${msg}</td>`;
+                row.innerHTML = `<td colspan="6" style="text-align: center; padding: 40px; color: #999;">${msg}</td>`;
             }
         }
 
@@ -2041,6 +2071,122 @@
                 dueDateText.innerHTML = `<strong>Due Date:</strong> ${date}`;
             }
         }
+
+        // ─── WEATHER INTEGRATION ─────────────────────────────────────────────────
+
+        // Cache: key = "lat,lon,date" → weather data object
+        const weatherCache = {};
+        // Cache: address string → {lat, lon}
+        const geocodeCache = {};
+
+        /**
+         * Geocode a street address using Nominatim (free, no key required).
+         * Returns {lat, lon} or null on failure.
+         */
+        async function geocodeAddress(address) {
+            if (geocodeCache[address]) return geocodeCache[address];
+            try {
+                const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(address)}`;
+                const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+                const data = await res.json();
+                if (data && data.length > 0) {
+                    const result = { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+                    geocodeCache[address] = result;
+                    return result;
+                }
+            } catch (e) { /* silent fail */ }
+            return null;
+        }
+
+        /**
+         * Map Open-Meteo WMO weather codes to { icon, label, cssClass }.
+         */
+        function interpretWMO(code) {
+            if (code === 0)              return { icon: '☀️',  label: 'Clear',         css: 'weather-sunny'  };
+            if (code <= 2)               return { icon: '🌤️',  label: 'Partly Cloudy', css: 'weather-cloudy' };
+            if (code === 3)              return { icon: '☁️',  label: 'Overcast',      css: 'weather-cloudy' };
+            if (code <= 49)              return { icon: '🌫️',  label: 'Fog',           css: 'weather-fog'    };
+            if (code <= 59)              return { icon: '🌦️',  label: 'Drizzle',       css: 'weather-rain'   };
+            if (code <= 69)              return { icon: '🌧️',  label: 'Rain',          css: 'weather-rain'   };
+            if (code <= 79)              return { icon: '🌨️',  label: 'Snow',          css: 'weather-snow'   };
+            if (code <= 84)              return { icon: '🌧️',  label: 'Rain Showers',  css: 'weather-rain'   };
+            if (code <= 86)              return { icon: '🌨️',  label: 'Snow Showers',  css: 'weather-snow'   };
+            if (code === 95)             return { icon: '⛈️',  label: 'Thunderstorm',  css: 'weather-storm'  };
+            if (code >= 96)              return { icon: '⛈️',  label: 'Severe Storm',  css: 'weather-storm'  };
+            return                              { icon: '🌡️',  label: 'Unknown',       css: 'weather-cloudy' };
+        }
+
+        /**
+         * Parse a "10:30 AM" style time string into an hour integer (0–23).
+         */
+        function parseGameHour(timeStr) {
+            if (!timeStr) return 18; // default 6 PM if unknown
+            const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+            if (!match) return 18;
+            let h = parseInt(match[1]);
+            const period = match[3].toUpperCase();
+            if (period === 'PM' && h !== 12) h += 12;
+            if (period === 'AM' && h === 12) h = 0;
+            return h;
+        }
+
+        /**
+         * Fetch weather for a game and update its cell in the DOM.
+         */
+        async function fetchWeatherForGame(game, address, cellId) {
+            const cell = document.getElementById(cellId);
+            if (!cell) return;
+
+            // Geocode
+            const coords = await geocodeAddress(address);
+            if (!coords) {
+                cell.innerHTML = `<span class="weather-badge weather-na" title="Could not find location">📍 N/A</span>`;
+                return;
+            }
+
+            const { lat, lon } = coords;
+            const cacheKey = `${lat.toFixed(3)},${lon.toFixed(3)},${game.date}`;
+
+            // Use cached data if available
+            let hourlyData = weatherCache[cacheKey];
+
+            if (!hourlyData) {
+                try {
+                    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode&temperature_unit=fahrenheit&timezone=America%2FNew_York&forecast_days=16&start_date=${game.date}&end_date=${game.date}`;
+                    const res = await fetch(url);
+                    const json = await res.json();
+
+                    if (!json.hourly || !json.hourly.time || json.hourly.time.length === 0) {
+                        cell.innerHTML = `<span class="weather-badge weather-na" title="Forecast not yet available">📅 Too Far Out</span>`;
+                        return;
+                    }
+
+                    weatherCache[cacheKey] = json.hourly;
+                    hourlyData = json.hourly;
+                } catch (e) {
+                    cell.innerHTML = `<span class="weather-badge weather-na">⚠️ Unavailable</span>`;
+                    return;
+                }
+            }
+
+            // Find the hour closest to game time
+            const gameHour = parseGameHour(game.time);
+            let bestIdx = 0;
+            let bestDiff = Infinity;
+            hourlyData.time.forEach((t, i) => {
+                const h = new Date(t).getHours();
+                const diff = Math.abs(h - gameHour);
+                if (diff < bestDiff) { bestDiff = diff; bestIdx = i; }
+            });
+
+            const temp = Math.round(hourlyData.temperature_2m[bestIdx]);
+            const code = hourlyData.weathercode[bestIdx];
+            const { icon, label, css } = interpretWMO(code);
+
+            cell.innerHTML = `<span class="weather-badge ${css}" title="Forecast for game time">${icon} ${temp}°F ${label}</span>`;
+        }
+
+        // ─────────────────────────────────────────────────────────────────────────
 
         // Navigation
         document.addEventListener('DOMContentLoaded', function() {
