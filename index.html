@@ -1779,7 +1779,7 @@
                     row.style.background = '#f9f9f9';
                 }
 
-                const weatherCellId = `weather-${game.date}-${game.team}-${game.opponent}`.replace(/[^a-zA-Z0-9-]/g, '_');
+                const weatherCellId = `weather-${game.date}-${game.team}-${game.opponent}-${game.time}`.replace(/[^a-zA-Z0-9-]/g, '_');
 
                 row.innerHTML = `
                     <td><strong>${formattedDate}</strong>${isPast && currentScheduleFilter !== 'upcoming' ? '<br><span style="font-size:0.75em; color:#999; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Final</span>' : ''}</td>
