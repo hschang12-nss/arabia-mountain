@@ -2160,6 +2160,17 @@
             const cell = document.getElementById(cellId);
             if (!cell) return;
 
+            // Check how far out the game is — Open-Meteo supports up to 16 days
+            const todayMidnight = new Date();
+            todayMidnight.setHours(0, 0, 0, 0);
+            const gameDateObj = parseLocalDate(game.date);
+            const daysAhead = Math.round((gameDateObj - todayMidnight) / (1000 * 60 * 60 * 24));
+
+            if (daysAhead > 16) {
+                cell.innerHTML = `<span class="weather-badge weather-na" title="Forecast not yet available">📅 Too Far Out</span>`;
+                return;
+            }
+
             const coords = getCoordsForGame(game);
             const { lat, lon } = coords;
             const cacheKey = `${lat},${lon},${game.date}`;
@@ -2168,29 +2179,37 @@
 
             if (!hourlyData) {
                 try {
-                    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode&temperature_unit=fahrenheit&timezone=America%2FNew_York&forecast_days=16&start_date=${game.date}&end_date=${game.date}`;
+                    // IMPORTANT: Do NOT use forecast_days with start_date/end_date - they conflict
+                    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode&temperature_unit=fahrenheit&timezone=America%2FNew_York&start_date=${game.date}&end_date=${game.date}`;
                     const res = await fetch(url);
                     const json = await res.json();
 
+                    if (json.error) {
+                        console.warn("Open-Meteo error:", json.reason);
+                        cell.innerHTML = `<span class="weather-badge weather-na">⚠️ Unavailable</span>`;
+                        return;
+                    }
+
                     if (!json.hourly || !json.hourly.time || json.hourly.time.length === 0) {
-                        cell.innerHTML = `<span class="weather-badge weather-na" title="Forecast not yet available">📅 Too Far Out</span>`;
+                        cell.innerHTML = `<span class="weather-badge weather-na">📅 Too Far Out</span>`;
                         return;
                     }
 
                     weatherCache[cacheKey] = json.hourly;
                     hourlyData = json.hourly;
                 } catch (e) {
+                    console.error("Weather fetch failed:", e);
                     cell.innerHTML = `<span class="weather-badge weather-na">⚠️ Unavailable</span>`;
                     return;
                 }
             }
 
-            // Find the hour closest to game time
+            // Find the hour closest to game time — parse directly from ISO string
             const gameHour = parseGameHour(game.time);
             let bestIdx = 0;
             let bestDiff = Infinity;
             hourlyData.time.forEach((t, i) => {
-                const h = new Date(t).getHours();
+                const h = parseInt(t.split("T")[1].split(":")[0], 10);
                 const diff = Math.abs(h - gameHour);
                 if (diff < bestDiff) { bestDiff = diff; bestIdx = i; }
             });
