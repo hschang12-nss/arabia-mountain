@@ -9,7 +9,13 @@
       "name": "AromaRidge Coffee",
       "logo": "aromaridge.png",
       "text": "https://aromaridge.com"
+    },
+{
+      "name": "All County Cumberland",
+      "logo": "ac-logo-sm-dark.png",
+      "text": "https://www.allcountyprop.com/locations/georgia/cumberland/"
     }
+
   ],
   "players": {
     "varsity": [
@@ -598,7 +604,7 @@
     },
     {
       "title": "Vice President",
-      "name": "Tank",
+      "name": "Tank Caldwell",
       "email": "",
       "phone": "",
       "description": "Assists the president and coordinates volunteers"
