@@ -1668,22 +1668,30 @@
             startRotation();
         }
 
+        let rotationInterval = null;
+
         function startRotation() {
             const items = document.querySelectorAll('.rotating-item');
-            if (items.length <= 1) return; // No need to rotate if only default content
-            
+            if (items.length <= 1) return;
+
+            // Clear any existing interval to prevent duplicates stacking up
+            if (rotationInterval) {
+                clearInterval(rotationInterval);
+                rotationInterval = null;
+            }
+
+            // Reset so only the first item is active
+            items.forEach((item, i) => {
+                item.classList.toggle('active', i === 0);
+            });
+
             let currentIndex = 0;
-            
-            setInterval(() => {
-                // Hide current item
+
+            rotationInterval = setInterval(() => {
                 items[currentIndex].classList.remove('active');
-                
-                // Move to next item
                 currentIndex = (currentIndex + 1) % items.length;
-                
-                // Show next item
                 items[currentIndex].classList.add('active');
-            }, 5000); // Rotate every 5 seconds
+            }, 5000);
         }
 
         // Load Schedule
