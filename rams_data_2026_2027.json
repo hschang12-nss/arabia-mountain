@@ -408,14 +408,6 @@
       "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
     },
     {
-      "date": "2026-02-29",
-      "opponent": "Lakeside",
-      "location": "Away",
-      "time": "4:30 PM",
-      "team": "Varsity",
-      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
-    },
-    {
       "date": "2026-02-25",
       "opponent": "Lakeside",
       "location": "Home",
@@ -425,6 +417,14 @@
     },
     {
       "date": "2026-02-26",
+      "opponent": "Lakeside",
+      "location": "Away",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
+    },
+    {
+      "date": "2026-02-29",
       "opponent": "Lakeside",
       "location": "Away",
       "time": "4:30 PM",
