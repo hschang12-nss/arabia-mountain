@@ -210,7 +210,7 @@
         /* Sponsor Rotation */
         .hero-rotating-content {
             position: relative;
-            min-height: 200px;
+            height: 180px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -222,17 +222,19 @@
             top: 0;
             left: 0;
             width: 100%;
+            height: 100%;
             opacity: 0;
             transition: opacity 1s ease-in-out;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            pointer-events: none;
         }
 
         .rotating-item.active {
             opacity: 1;
-            position: relative;
+            pointer-events: auto;
         }
 
         .sponsor-content {
@@ -1648,8 +1650,10 @@
                     logo.alt = sponsor.name;
                     logo.className = 'sponsor-logo';
                     sponsorContent.appendChild(logo);
-                } else if (sponsor.text) {
-                    // Display text
+                }
+                
+                if (sponsor.text) {
+                    // Display text (always, whether or not there's a logo)
                     const text = document.createElement('div');
                     text.className = 'sponsor-text';
                     text.textContent = sponsor.text;
