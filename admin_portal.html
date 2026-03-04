@@ -884,6 +884,8 @@
                             <th>Time</th>
                             <th>Team</th>
                             <th>Address (Optional)</th>
+                            <th style="text-align:center;">💰 Gwinnett Co.<br><small style="font-weight:400;">(Paid Entry)</small></th>
+                            <th>Notes</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -1412,7 +1414,14 @@ Team equipment and supplies"></textarea>
                             <option ${game.team === 'JV' ? 'selected' : ''}>JV</option>
                         </select>
                     </td>
-                    <td><input type="text" value="${game.address || ''}" data-index="${index}" data-field="address" placeholder="School address (optional)" style="width: 200px;"></td>
+                    <td><input type="text" value="${game.address || ''}" data-index="${index}" data-field="address" placeholder="School address (optional)" style="width: 180px;"></td>
+                    <td style="text-align:center;">
+                        <input type="checkbox" data-index="${index}" data-field="gwinnettPaid"
+                            ${game.gwinnettPaid ? 'checked' : ''}
+                            title="Check if this game is in Gwinnett County and requires paid entry"
+                            style="width:20px; height:20px; cursor:pointer; accent-color: var(--ram-navy);">
+                    </td>
+                    <td><input type="text" value="${game.notes || ''}" data-index="${index}" data-field="notes" placeholder="e.g. Senior Night" style="width: 140px;"></td>
                     <td><button class="btn btn-danger" onclick="deleteGame(${index})">Delete</button></td>
                 `;
             });
@@ -1421,7 +1430,11 @@ Team equipment and supplies"></textarea>
                 input.addEventListener('change', function() {
                     const index = this.dataset.index;
                     const field = this.dataset.field;
-                    scheduleData[index][field] = this.value;
+                    if (this.type === 'checkbox') {
+                        scheduleData[index][field] = this.checked;
+                    } else {
+                        scheduleData[index][field] = this.value;
+                    }
                 });
             });
         }
@@ -1433,7 +1446,9 @@ Team equipment and supplies"></textarea>
                 location: 'Home',
                 time: '',
                 team: 'Varsity',
-                address: ''
+                address: '',
+                gwinnettPaid: false,
+                notes: ''
             });
             loadSchedule();
         }

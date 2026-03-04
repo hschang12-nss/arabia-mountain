@@ -477,6 +477,34 @@
         .weather-loading  { background: #f3f4f6; color: #9ca3af; font-style: italic; }
         .weather-na       { background: #f3f4f6; color: #9ca3af; font-style: italic; }
 
+        .paid-entry-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(220, 38, 38, 0.1);
+            color: #b91c1c;
+            border: 1px solid rgba(220, 38, 38, 0.25);
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+            white-space: nowrap;
+        }
+        .game-notes-badge {
+            display: inline-block;
+            background: rgba(253, 185, 39, 0.18);
+            color: #7a5500;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-top: 4px;
+            letter-spacing: 0.3px;
+        }
+
         /* Result Badges */
         .result-badge {
             display: inline-flex;
@@ -1597,7 +1625,7 @@
                     <!-- Hidden spans used by PDF generator — values populated from JSON via loadBooster() -->
                     <span id="sponsorContactName" style="display:none;">Ronald Jones, II &mdash; President</span>
                     <span id="sponsorContactPhone" style="display:none;">770.241.7630</span>
-                    <span id="sponsorContactEmail" style="display:none;">baseball@arabiamountain.org</span>
+                    <span id="sponsorContactEmail" style="display:none;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c5e5d4f595e5d50507c5d4e5d5e555d51534952485d555212534e5b">[email&#160;protected]</a></span>
                 </div>
             </div>
 
@@ -2071,7 +2099,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Helper function to parse date strings as local dates (avoids timezone issues)
         function parseLocalDate(dateString) {
             const [year, month, day] = dateString.split('-');
@@ -2379,11 +2407,23 @@
                 // Opponent display: home = "vs", away = "@"
                 const atPrefix = game.location === 'Away' ? '@ ' : 'vs ';
 
+                // Build paid entry badge if flagged
+                const paidBadge = game.gwinnettPaid
+                    ? `<div><span class="paid-entry-badge">💰 Paid Entry — Gwinnett Co.</span></div>`
+                    : '';
+
+                // Build notes badge if present
+                const notesBadge = game.notes
+                    ? `<div><span class="game-notes-badge">⭐ ${game.notes}</span></div>`
+                    : '';
+
                 row.innerHTML = `
                     <td><strong>${formattedDate}</strong></td>
                     <td>
                         <strong>${atPrefix}${game.opponent}</strong>
                         <div class="game-address">📍 ${address}</div>
+                        ${paidBadge}
+                        ${notesBadge}
                     </td>
                     <td><span class="location-badge location-${game.location.toLowerCase()}">${game.location}</span></td>
                     <td>${game.time}</td>
@@ -3480,14 +3520,4 @@ async function loadSeasonData(season) {
         loadSponsors();
 
     } catch (error) {
-        console.error("❌ Failed to load season data:", error);
-        alert(`Unable to load data for season ${season}`);
-    }
-}
-
-/**
- * Handle season change
- */
-document.getElementById('seasonYear').addEventListener('change', (e) => {
-    currentSeason = e.target.value;
-    updateSeasonYear(
+        console.error("❌ Failed to load season data:", e
