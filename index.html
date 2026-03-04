@@ -765,6 +765,7 @@
         .facility-card[data-skills] { display: flex; }
         .facility-card.hidden { display: none; }
 
+
         /* Roster Cards */
         .roster-grid {
             display: grid;
@@ -1144,6 +1145,7 @@
             }
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -1568,6 +1570,37 @@
             <div class="info-cards" id="boosterCardsContainer">
                 <!-- Booster club members will be loaded dynamically -->
             </div>
+
+            <!-- Sponsorship Download Block -->
+            <div style="margin-top: 60px; background: linear-gradient(135deg, var(--ram-navy), #003366); border-radius: 16px; padding: 50px 40px; text-align: center; position: relative; overflow: hidden;">
+                <div style="position: absolute; font-size: 300px; opacity: 0.04; top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events:none;">&#9918;</div>
+                <div style="position: relative; z-index: 1;">
+                    <div style="font-family: 'Bebas Neue', cursive; font-size: 1.3em; color: var(--ram-gold); letter-spacing: 3px; margin-bottom: 12px;">ARABIA MOUNTAIN DUGOUT CLUB &middot; <span id="sponsorshipYear">2025-2026</span></div>
+                    <h3 style="font-family: 'Oswald', sans-serif; font-size: 2em; color: white; margin-bottom: 16px; font-weight: 700;">&#129309; Become a Sponsor</h3>
+                    <p style="color: rgba(255,255,255,0.85); font-size: 1.05em; line-height: 1.8; max-width: 620px; margin: 0 auto 32px; font-weight: 300;">
+                        Download our sponsorship package and share it with local businesses in the Arabia Mountain community. Sponsorship levels range from $500 to $1,500 with banner placement, social media recognition, first pitch opportunities, and more.
+                    </p>
+                    <button onclick="downloadSponsorPDF()" style="
+                        display: inline-flex; align-items: center; gap: 12px;
+                        background: var(--ram-gold); color: var(--ram-navy);
+                        border: none; padding: 18px 42px; border-radius: 10px;
+                        font-family: 'Oswald', sans-serif; font-size: 1.2em;
+                        font-weight: 700; letter-spacing: 1px; cursor: pointer;
+                        text-transform: uppercase;
+                        box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+                        transition: all 0.3s ease;">
+                        &#128196; Download Sponsorship Package
+                    </button>
+                    <div style="margin-top: 14px; color: rgba(255,255,255,0.5); font-size: 0.82em;">
+                        Print-ready PDF &middot; Includes cover letter, all sponsorship levels &amp; printable sponsor form &middot; Auto-updates each season
+                    </div>
+                    <!-- Hidden spans used by PDF generator — values populated from JSON via loadBooster() -->
+                    <span id="sponsorContactName" style="display:none;">Ronald Jones, II &mdash; President</span>
+                    <span id="sponsorContactPhone" style="display:none;">770.241.7630</span>
+                    <span id="sponsorContactEmail" style="display:none;">baseball@arabiamountain.org</span>
+                </div>
+            </div>
+
         </section>
     </div>
 
@@ -2038,7 +2071,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Helper function to parse date strings as local dates (avoids timezone issues)
         function parseLocalDate(dateString) {
             const [year, month, day] = dateString.split('-');
@@ -2547,8 +2580,338 @@
                 `;
                 container.appendChild(card);
             });
+
+            // ── Pull sponsorship contact from JSON ──
+            // Looks for a booster member with title containing "President" or
+            // falls back to a top-level websiteData.sponsorContact object.
+            const sc = websiteData.sponsorContact || {};
+            const president = websiteData.booster.find(m =>
+                (m.title || '').toLowerCase().includes('president')
+            ) || {};
+
+            const contactName  = sc.name  || president.name  || 'Dugout Club President';
+            const contactPhone = sc.phone || president.phone || '770.241.7630';
+            const contactEmail = sc.email || president.email || 'baseball@arabiamountain.org';
+
+            const nameEl  = document.getElementById('sponsorContactName');
+            const phoneEl = document.getElementById('sponsorContactPhone');
+            const emailEl = document.getElementById('sponsorContactEmail');
+
+            if (nameEl)  nameEl.textContent   = contactName;
+            if (phoneEl) { phoneEl.textContent = contactPhone; phoneEl.href = 'tel:' + contactPhone.replace(/\D/g,''); }
+            if (emailEl) { emailEl.textContent = contactEmail; emailEl.href = 'mailto:' + contactEmail; }
+
+            // Auto-set sponsorship year to current season
+            const syEl = document.getElementById('sponsorshipYear');
+            if (syEl) syEl.textContent = currentSeason;
         }
 
+        // ── Download Sponsorship Package as PDF ──
+        function downloadSponsorPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+
+            const W = 612, H = 792;
+            const margin = 54;
+            const navy   = [0, 56, 101];
+            const green  = [45, 95, 63];
+            const gold   = [200, 145, 20];
+            const white  = [255, 255, 255];
+            const light  = [245, 247, 250];
+
+            // Pull live contact info from the page
+            const season      = (document.getElementById('sponsorshipYear') || {}).textContent || currentSeason;
+            const contactName = (document.getElementById('sponsorContactName') || {}).textContent || 'Dugout Club President';
+            const contactPhone= (document.getElementById('sponsorContactPhone') || {}).textContent || '770.241.7630';
+            const contactEmail= (document.getElementById('sponsorContactEmail') || {}).textContent || 'baseball@arabiamountain.org';
+
+            // ── Helper functions ──
+            function setFont(style, size, color) {
+                doc.setFont('helvetica', style);
+                doc.setFontSize(size);
+                doc.setTextColor(...(color || [30,30,30]));
+            }
+            function rect(x, y, w, h, color, rounded) {
+                doc.setFillColor(...color);
+                if (rounded) doc.roundedRect(x, y, w, h, 6, 6, 'F');
+                else doc.rect(x, y, w, h, 'F');
+            }
+            function line(x1, y1, x2, y2, color, thickness) {
+                doc.setDrawColor(...(color || [200,200,200]));
+                doc.setLineWidth(thickness || 0.5);
+                doc.line(x1, y1, x2, y2);
+            }
+            function wrap(text, x, y, maxW, lineH) {
+                const lines = doc.splitTextToSize(text, maxW);
+                doc.text(lines, x, y);
+                return y + lines.length * lineH;
+            }
+
+            // ══════════════════════════════════════
+            // PAGE 1 — Cover / Letter
+            // ══════════════════════════════════════
+
+            // Navy header bar
+            rect(0, 0, W, 130, navy);
+            // Gold accent stripe
+            rect(0, 130, W, 6, gold);
+
+            // Title
+            setFont('bold', 26, white);
+            doc.text('ARABIA MOUNTAIN DUGOUT CLUB', W/2, 58, { align: 'center' });
+            setFont('bold', 42, [253,185,39]);
+            doc.text(season, W/2, 100, { align: 'center' });
+
+            // Baseball diamond decoration (simple shapes)
+            doc.setFillColor(...gold);
+            doc.setDrawColor(...gold);
+
+            // Subheader
+            setFont('bold', 13, navy);
+            doc.text('SPONSORSHIP PACKAGE', W/2, 158, { align: 'center' });
+            line(margin, 168, W - margin, 168, gold, 1.5);
+
+            // Hank Aaron quote box
+            rect(margin, 182, W - margin*2, 52, light);
+            doc.setDrawColor(...gold);
+            doc.setLineWidth(3);
+            doc.line(margin, 182, margin, 234);
+            setFont('italic', 9.5, [80,80,80]);
+            doc.text(
+                doc.splitTextToSize(
+                    '"What you do with your life and how you do it is not only a reflection on you, but on your family and all of those institutions that have helped to make you who you are."  — Hank Aaron',
+                    W - margin*2 - 18
+                ),
+                margin + 12, 200
+            );
+
+            // Dear Sponsor letter
+            let y = 258;
+            setFont('bold', 11, navy);
+            doc.text('Dear Potential Sponsor,', margin, y);
+            y += 22;
+
+            setFont('normal', 10.5, [50,50,50]);
+            y = wrap(
+                'Baseball season is upon us, and we are excited for our Athletes to showcase their talent. This letter is a personal invitation for your business or organization to get involved and positively impact the lives of young adolescents and their families right here in the Arabia Mountain area. The success of our season comes from an overwhelming response from the parents and the support of local businesses and organizations like you, so we invite you to join us anytime during our season for a showing of the skills learned and other events that our participants enjoy, including playoffs!',
+                margin, y, W - margin*2, 15
+            );
+            y += 10;
+            y = wrap(
+                'Please consider becoming a sponsor for this season because together we can invest in the future of our children. I have enclosed detailed information regarding our various levels of sponsorship.',
+                margin, y, W - margin*2, 15
+            );
+            y += 24;
+
+            setFont('normal', 10.5, [50,50,50]);
+            doc.text('With Sincerest Regards,', margin, y);
+            y += 36;
+            setFont('bold', 11, navy);
+            doc.text(contactName, margin, y);
+            y += 16;
+            setFont('normal', 10, [80,80,80]);
+            doc.text('President, Arabia Mountain Dugout Club', margin, y);
+
+            // Contact box bottom of page 1
+            rect(margin, 680, W - margin*2, 76, navy, true);
+            setFont('bold', 9, [253,185,39]);
+            doc.text('CONTACT INFORMATION', W/2, 700, { align: 'center' });
+
+            const colW = (W - margin*2) / 3;
+            const labels = ['Contact', 'Phone', 'Email'];
+            const vals   = [contactName, contactPhone, contactEmail];
+            labels.forEach((lbl, i) => {
+                const cx = margin + colW * i + colW/2;
+                setFont('normal', 8, [180,200,220]);
+                doc.text(lbl.toUpperCase(), cx, 718, { align: 'center' });
+                setFont('bold', 9, white);
+                doc.text(vals[i], cx, 734, { align: 'center' });
+            });
+
+            // ══════════════════════════════════════
+            // PAGE 2 — Sponsorship Levels
+            // ══════════════════════════════════════
+            doc.addPage();
+
+            rect(0, 0, W, 72, navy);
+            rect(0, 72, W, 5, gold);
+            setFont('bold', 22, white);
+            doc.text('SPONSORSHIP LEVELS', W/2, 30, { align: 'center' });
+            setFont('normal', 11, [200,220,240]);
+            doc.text(`Arabia Mountain Rams Baseball · ${season}`, W/2, 54, { align: 'center' });
+
+            const tiers = [
+                { name: 'GRAND SLAM SPONSOR',  amount: '$1,500', color: navy,  textColor: white,
+                  perks: ['4\' x 6\' banner on CENTER FIELD WALL — installed for one year',
+                          'Company logo on all social media platforms',
+                          'Sponsorship announced at every home game',
+                          'Opportunity to throw the FIRST PITCH at a home game',
+                          'Team photo for display within your organization',
+                          'Arabia Mountain baseball fan swag item of your choice'] },
+                { name: 'HOME RUN SPONSOR',    amount: '$1,000', color: green, textColor: white,
+                  perks: ['4\' x 4\' banner on LEFT or RIGHT FIELD WALL — installed for one year',
+                          'Company logo on all social media platforms',
+                          'Sponsorship announced at every home game',
+                          'Team photo for display within your organization',
+                          'Arabia Mountain baseball fan swag item of your choice'] },
+                { name: 'TRIPLE SPONSOR',      amount: '$750',   color: [240,244,248], textColor: navy,
+                  perks: ['2\' x 3\' banner on PRESS BOX EXTERIOR WALL — installed for one year',
+                          'Company logo on all social media platforms',
+                          'Sponsorship announced at every home game',
+                          'Team photo for display within your organization',
+                          'Arabia Mountain baseball fan swag item of your choice'] },
+                { name: 'DOUBLE SPONSOR',      amount: '$500',   color: [240,244,248], textColor: navy,
+                  perks: ['Company logo on all social media platforms',
+                          'Sponsorship announced at every home game',
+                          'Team photo for display within your organization',
+                          'Arabia Mountain baseball fan swag item of your choice'] },
+                { name: 'SINGLE DONATION',     amount: 'Custom', color: [250,250,250], textColor: [80,80,80],
+                  perks: ['Team photo for display within your organization',
+                          'Arabia Mountain baseball fan swag item of your choice',
+                          'You choose the donation amount'] },
+            ];
+
+            let ty = 92;
+            tiers.forEach(tier => {
+                const rowH = 20 + tier.perks.length * 14 + 14;
+
+                // Tier header bar
+                rect(margin, ty, W - margin*2, 28, tier.color, false);
+                setFont('bold', 12, tier.textColor);
+                doc.text(tier.name, margin + 12, ty + 19);
+                setFont('bold', 13, [253,185,39]);
+                doc.text(tier.amount, W - margin - 12, ty + 19, { align: 'right' });
+
+                // Perks background
+                rect(margin, ty + 28, W - margin*2, rowH - 28, light, false);
+                doc.setDrawColor(220,220,220);
+                doc.setLineWidth(0.5);
+                doc.rect(margin, ty, W - margin*2, rowH, 'S');
+
+                let py = ty + 44;
+                setFont('normal', 9.5, [50,50,50]);
+                tier.perks.forEach(perk => {
+                    doc.setFillColor(...green);
+                    doc.circle(margin + 14, py - 3.5, 2.5, 'F');
+                    doc.text(perk, margin + 24, py);
+                    py += 14;
+                });
+
+                ty += rowH + 8;
+            });
+
+            // ══════════════════════════════════════
+            // PAGE 3 — Sponsor Information Form
+            // ══════════════════════════════════════
+            doc.addPage();
+
+            rect(0, 0, W, 72, navy);
+            rect(0, 72, W, 5, gold);
+            setFont('bold', 22, white);
+            doc.text('SPONSOR INFORMATION', W/2, 30, { align: 'center' });
+            setFont('normal', 11, [200,220,240]);
+            doc.text('Please complete and return to your Arabia Mountain Dugout Club representative', W/2, 54, { align: 'center' });
+
+            let fy = 100;
+            setFont('normal', 9, [80,80,80]);
+
+            function formField(label, x, y, w) {
+                setFont('bold', 8.5, navy);
+                doc.text(label, x, y);
+                doc.setDrawColor(180,180,180);
+                doc.setLineWidth(0.75);
+                doc.line(x, y + 16, x + w, y + 16);
+                return y + 32;
+            }
+            function formFieldBox(label, x, y, w, h) {
+                setFont('bold', 8.5, navy);
+                doc.text(label, x, y);
+                doc.setDrawColor(180,180,180);
+                doc.setLineWidth(0.75);
+                doc.rect(x, y + 6, w, h, 'S');
+                return y + h + 16;
+            }
+
+            // Fields
+            const halfW = (W - margin*2 - 16) / 2;
+            fy = formField('COMPANY NAME', margin, fy, W - margin*2);
+            fy = formField('CONTACT PERSON', margin, fy, halfW);
+            formField('PHONE NUMBER', margin + halfW + 16, fy - 32, halfW);
+            fy = formField('EMAIL ADDRESS', margin, fy, W - margin*2);
+            fy = formField('STREET ADDRESS', margin, fy, W - margin*2);
+            fy = formField('CITY', margin, fy, halfW);
+            formField('STATE / ZIP', margin + halfW + 16, fy - 32, halfW);
+
+            fy += 8;
+            // Sponsorship level checkboxes
+            setFont('bold', 10, navy);
+            doc.text('PLEASE INDICATE YOUR SPONSORSHIP LEVEL:', margin, fy);
+            fy += 18;
+
+            const cbTiers = [
+                ['GRAND SLAM SPONSOR', '$1,500'],
+                ['HOME RUN SPONSOR',   '$1,000'],
+                ['TRIPLE SPONSOR',     '$750'],
+                ['DOUBLE SPONSOR',     '$500'],
+                ['SINGLE DONATION',    '$________'],
+            ];
+            cbTiers.forEach(([name, amt]) => {
+                doc.setDrawColor(...navy);
+                doc.setLineWidth(0.75);
+                doc.rect(margin, fy - 9, 10, 10, 'S');
+                setFont('normal', 10, [40,40,40]);
+                doc.text(`${name}  ............................................................................  ${amt}`, margin + 16, fy);
+                fy += 18;
+            });
+
+            fy += 8;
+            setFont('bold', 10, navy);
+            doc.text('PLEASE CHOOSE YOUR FORM OF PAYMENT:', margin, fy);
+            fy += 18;
+            const payOpts = ['Cash', 'Check', 'Credit Card', 'Zelle / CashApp', 'Commit to Pay Later'];
+            let px = margin;
+            payOpts.forEach(opt => {
+                doc.setDrawColor(...navy);
+                doc.setLineWidth(0.75);
+                doc.rect(px, fy - 9, 10, 10, 'S');
+                setFont('normal', 9, [40,40,40]);
+                doc.text(opt, px + 14, fy);
+                px += doc.getTextWidth(opt) + 34;
+                if (px > W - margin - 80) { px = margin; fy += 18; }
+            });
+
+            fy += 22;
+            // Payment note box
+            rect(margin, fy, W - margin*2, 50, light, true);
+            doc.setDrawColor(...gold);
+            doc.setLineWidth(2);
+            doc.line(margin, fy, margin, fy + 50);
+            setFont('normal', 9, [60,60,60]);
+            doc.text(
+                doc.splitTextToSize(
+                    'Please make checks payable to ARABIA MOUNTAIN HIGH SCHOOL BASEBALL. A letter of acknowledgement for your donation will be mailed to you including our tax information for your records.',
+                    W - margin*2 - 20
+                ),
+                margin + 12, fy + 18
+            );
+
+            fy += 66;
+            setFont('bold', 9, navy);
+            doc.text('NAME OF ARABIA MOUNTAIN DUGOUT REPRESENTATIVE: ________________________________________', margin, fy);
+
+            // Footer all pages
+            const totalPages = doc.internal.getNumberOfPages();
+            for (let p = 1; p <= totalPages; p++) {
+                doc.setPage(p);
+                rect(0, H - 36, W, 36, navy);
+                setFont('normal', 8, [180,200,220]);
+                doc.text(`Arabia Mountain Rams Baseball · ${season}  |  ${contactPhone}  |  ${contactEmail}`, W/2, H - 16, { align: 'center' });
+                setFont('normal', 8, [150,170,190]);
+                doc.text(`Page ${p} of ${totalPages}`, W - margin, H - 16, { align: 'right' });
+            }
+
+            doc.save(`Arabia_Mountain_Rams_Sponsorship_${season.replace('-','_')}.pdf`);
+        }
         // Load Dues
         function loadDues() {
             if (!websiteData || !websiteData.dues) return;
@@ -3127,18 +3490,4 @@ async function loadSeasonData(season) {
  */
 document.getElementById('seasonYear').addEventListener('change', (e) => {
     currentSeason = e.target.value;
-    updateSeasonYear();
-    loadSeasonData(e.target.value);
-});
-
-/**
- * Initial load (on page load)
- */
-document.addEventListener('DOMContentLoaded', () => {
-    const season = document.getElementById('seasonYear').value;
-    loadSeasonData(season);
-});
-</script>
-
-</body>
-</html>
+    updateSeasonYear(
