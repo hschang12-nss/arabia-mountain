@@ -477,6 +477,50 @@
         .weather-loading  { background: #f3f4f6; color: #9ca3af; font-style: italic; }
         .weather-na       { background: #f3f4f6; color: #9ca3af; font-style: italic; }
 
+        /* Result Badges */
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 700;
+            white-space: nowrap;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .result-win  { background: rgba(45, 95, 63, 0.15); color: #1a6b35; border: 1.5px solid rgba(45,95,63,0.3); }
+        .result-loss { background: rgba(180, 30, 30, 0.12); color: #b91c1c; border: 1.5px solid rgba(180,30,30,0.25); }
+        .result-tie  { background: rgba(100, 100, 100, 0.12); color: #555; border: 1.5px solid rgba(100,100,100,0.25); }
+        .result-upcoming { background: #f3f4f6; color: #9ca3af; font-style: italic; font-weight: 400; font-family: 'Lato', sans-serif; border: none; }
+        .result-loading  { background: #f3f4f6; color: #9ca3af; font-style: italic; font-weight: 400; font-family: 'Lato', sans-serif; border: none; }
+
+        /* MaxPreps live-data banner */
+        .maxpreps-banner {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            font-size: 0.78em;
+            color: #888;
+            margin-bottom: 8px;
+            padding-right: 4px;
+        }
+        .maxpreps-banner a { color: var(--ram-navy); font-weight: 600; text-decoration: none; }
+        .maxpreps-banner a:hover { text-decoration: underline; }
+        .live-dot {
+            width: 8px; height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.5; transform: scale(0.7); }
+        }
+
         /* Roster Cards */
         .roster-grid {
             display: grid;
@@ -961,6 +1005,11 @@
                 </select>
             </div>
 
+            <div class="maxpreps-banner">
+                <span class="live-dot"></span>
+                Results live from <a href="https://www.maxpreps.com/ga/lithonia/arabia-mountain-rams/baseball/schedule/" target="_blank" rel="noopener">MaxPreps</a>
+                &nbsp;·&nbsp; <span id="maxprepsLastUpdated">Fetching…</span>
+            </div>
             <div class="schedule-table">
                 <table>
                     <thead>
@@ -970,6 +1019,7 @@
                             <th>Location</th>
                             <th>Time</th>
                             <th>Team</th>
+                            <th>Result</th>
                             <th>Weather</th>
                         </tr>
                     </thead>
@@ -1792,18 +1842,26 @@
                 }
 
                 const weatherCellId = `weather-${game.date}-${game.team}-${game.opponent}-${game.time}`.replace(/[^a-zA-Z0-9-]/g, '_');
+                const resultCellId  = `result-${game.date}-${game.team}-${game.opponent}`.replace(/[^a-zA-Z0-9-]/g, '_');
+
+                // Opponent display: home = "vs", away = "@"
+                const atPrefix = game.location === 'Away' ? '@ ' : 'vs ';
 
                 row.innerHTML = `
-                    <td><strong>${formattedDate}</strong>${isPast && currentScheduleFilter !== 'upcoming' ? '<br><span style="font-size:0.75em; color:#999; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Final</span>' : ''}</td>
+                    <td><strong>${formattedDate}</strong></td>
                     <td>
-                        <strong>vs ${game.opponent}</strong>
+                        <strong>${atPrefix}${game.opponent}</strong>
                         <div class="game-address">📍 ${address}</div>
                     </td>
                     <td><span class="location-badge location-${game.location.toLowerCase()}">${game.location}</span></td>
                     <td>${game.time}</td>
                     <td><span class="team-badge team-${game.team.toLowerCase()}">${game.team}</span></td>
+                    <td id="${resultCellId}"><span class="result-badge result-loading">⏳</span></td>
                     <td id="${weatherCellId}"><span class="weather-badge weather-loading">⏳ Loading…</span></td>
                 `;
+
+                // Inject result from MaxPreps cache if available
+                injectResult(game, resultCellId);
 
                 if (isPast) {
                     document.getElementById(weatherCellId).innerHTML = `<span class="weather-badge weather-na">—</span>`;
@@ -1817,7 +1875,7 @@
                 const msg = currentScheduleFilter === 'upcoming'
                     ? '🏁 No upcoming games — the season may be complete. Switch to <strong>All Games</strong> to view the full schedule.'
                     : 'No games match the selected filter';
-                row.innerHTML = `<td colspan="6" style="text-align: center; padding: 40px; color: #999;">${msg}</td>`;
+                row.innerHTML = `<td colspan="7" style="text-align: center; padding: 40px; color: #999;">${msg}</td>`;
             }
         }
 
@@ -2234,8 +2292,149 @@
         }
 
         // ─────────────────────────────────────────────────────────────────────────
+        // MAXPREPS LIVE RESULTS
+        // ─────────────────────────────────────────────────────────────────────────
 
-        // Navigation
+        /**
+         * Results cache: key = "YYYY-MM-DD|OpponentName" → { result: 'W'|'L'|'T', score: '3-0', boxScoreUrl }
+         * Populated once per page load by fetchMaxPrepsResults().
+         */
+        const maxprepsResultsCache = {};
+        let maxprepsFetchDone = false;
+
+        const MAXPREPS_VARSITY_URL = 'https://www.maxpreps.com/ga/lithonia/arabia-mountain-rams/baseball/schedule/';
+
+        /**
+         * Use a public CORS proxy to fetch the MaxPreps schedule page,
+         * then parse the results table out of the HTML.
+         */
+        async function fetchMaxPrepsResults() {
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(MAXPREPS_VARSITY_URL)}&t=${Date.now()}`;
+            try {
+                const res  = await fetch(proxyUrl);
+                const json = await res.json();
+                if (!json || !json.contents) throw new Error('Empty proxy response');
+                parseMaxPrepsHTML(json.contents);
+                maxprepsFetchDone = true;
+                // Stamp the update time
+                const el = document.getElementById('maxprepsLastUpdated');
+                if (el) el.textContent = 'Updated ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                // Re-render to fill in results
+                renderSchedule();
+            } catch (err) {
+                console.warn('MaxPreps fetch failed:', err);
+                const el = document.getElementById('maxprepsLastUpdated');
+                if (el) el.textContent = 'Results unavailable';
+            }
+        }
+
+        /**
+         * Parse the raw MaxPreps HTML to extract game results.
+         * Looks for table rows containing W/L/T result links like "W 3-0".
+         */
+        function parseMaxPrepsHTML(html) {
+            const parser  = new DOMParser();
+            const doc     = parser.parseFromString(html, 'text/html');
+            const rows    = doc.querySelectorAll('table tr');
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                if (cells.length < 3) return;
+
+                // Date cell (e.g. "2/9")
+                const dateText = cells[0] ? cells[0].textContent.trim() : '';
+                // Opponent cell
+                const oppText  = cells[1] ? cells[1].textContent.trim() : '';
+                // Result cell – look for a link like "W 3-0" or "L 17-1"
+                const resultCell = cells[2] ? cells[2] : null;
+                if (!resultCell) return;
+
+                const resultLink = resultCell.querySelector('a');
+                const resultRaw  = resultLink ? resultLink.textContent.trim() : resultCell.textContent.trim();
+                const boxScoreUrl = resultLink ? resultLink.href : null;
+
+                // Only process rows that have a W/L/T result
+                const resultMatch = resultRaw.match(/^([WLT])\s+(\d+)-(\d+)/i);
+                if (!resultMatch) return;
+
+                const outcome   = resultMatch[1].toUpperCase();   // W, L, T
+                const runsFor   = resultMatch[2];
+                const runsAgainst = resultMatch[3];
+                const score     = `${runsFor}-${runsAgainst}`;
+
+                // Parse date into YYYY-MM-DD (season is 2025-2026 → games in Feb-Apr are 2026)
+                const isoDate = parseMaxPrepsDate(dateText);
+                if (!isoDate) return;
+
+                // Clean opponent name: strip leading @/vs, trailing * ** ***
+                const oppClean = oppText.replace(/^[@vs\s]+/i, '').replace(/\*+$/, '').trim();
+                // Normalize to first word for fuzzy matching
+                const oppKey = oppClean.split(/\s+/)[0].toLowerCase();
+
+                const cacheKey = `${isoDate}|${oppKey}`;
+                maxprepsResultsCache[cacheKey] = { outcome, score, boxScoreUrl };
+            });
+        }
+
+        /**
+         * Convert MaxPreps "M/D" date string to YYYY-MM-DD.
+         * Season spans Feb-Apr 2026 in current 25-26 season.
+         */
+        function parseMaxPrepsDate(dateStr) {
+            const match = dateStr.match(/^(\d{1,2})\/(\d{1,2})$/);
+            if (!match) return null;
+            const month = parseInt(match[1]);
+            const day   = parseInt(match[2]);
+            // For baseball season: months 1-7 = 2026, months 8-12 = 2025
+            const year  = month <= 7 ? 2026 : 2025;
+            return `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        }
+
+        /**
+         * Look up a game in the results cache and populate its result cell.
+         */
+        function injectResult(game, cellId) {
+            const cell = document.getElementById(cellId);
+            if (!cell) return;
+
+            if (!maxprepsFetchDone) {
+                cell.innerHTML = `<span class="result-badge result-loading">⏳</span>`;
+                return;
+            }
+
+            // Try to match by date + first word of opponent
+            const oppKey  = game.opponent.split(/\s+/)[0].toLowerCase();
+            const cacheKey = `${game.date}|${oppKey}`;
+            const cached   = maxprepsResultsCache[cacheKey];
+
+            if (!cached) {
+                // Game date is in the future or result not yet posted
+                const gameDate = parseLocalDate(game.date);
+                const today    = new Date(); today.setHours(0,0,0,0);
+                if (gameDate >= today) {
+                    cell.innerHTML = `<span class="result-badge result-upcoming">Upcoming</span>`;
+                } else {
+                    cell.innerHTML = `<span class="result-badge result-upcoming">—</span>`;
+                }
+                return;
+            }
+
+            const { outcome, score, boxScoreUrl } = cached;
+            const icon  = outcome === 'W' ? '✔' : outcome === 'L' ? '✖' : '~';
+            const cls   = outcome === 'W' ? 'result-win' : outcome === 'L' ? 'result-loss' : 'result-tie';
+            const label = `${outcome} ${score}`;
+
+            if (boxScoreUrl) {
+                cell.innerHTML = `<a href="${boxScoreUrl}" target="_blank" rel="noopener" style="text-decoration:none;"><span class="result-badge ${cls}">${icon} ${label}</span></a>`;
+            } else {
+                cell.innerHTML = `<span class="result-badge ${cls}">${icon} ${label}</span>`;
+            }
+        }
+
+        // Kick off MaxPreps fetch immediately when schedule loads
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchMaxPrepsResults();
+        });
         document.addEventListener('DOMContentLoaded', function() {
             // Load data
             loadDataFromJSON();
