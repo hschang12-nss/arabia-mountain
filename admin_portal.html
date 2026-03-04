@@ -908,10 +908,32 @@
                     <button class="back-btn" onclick="showDashboard()">← Back to Dashboard</button>
                 </div>
 
+                <!-- Sponsor Contact Block -->
+                <div style="background: #eef4ff; border-left: 5px solid var(--ram-navy); border-radius: 10px; padding: 28px 30px; margin-bottom: 40px;">
+                    <h3 style="font-family: 'Oswald', sans-serif; color: var(--ram-navy); margin-bottom: 6px; font-size: 1.3em;">📋 Sponsorship Contact Info</h3>
+                    <p style="color: #666; font-size: 0.88em; margin-bottom: 20px;">
+                        This is the contact name, phone, and email that appears on the sponsorship package PDF downloaded from the Booster Club page. Update this whenever leadership changes — no other edits needed.
+                    </p>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label>Contact Name &amp; Title</label>
+                            <input type="text" id="sc_name" placeholder="e.g. Ronald Jones, II - President">
+                        </div>
+                        <div class="form-field">
+                            <label>Phone Number</label>
+                            <input type="tel" id="sc_phone" placeholder="e.g. 770.241.7630">
+                        </div>
+                        <div class="form-field">
+                            <label>Email Address</label>
+                            <input type="email" id="sc_email" placeholder="e.g. baseball@arabiamountain.org">
+                        </div>
+                    </div>
+                </div>
+
                 <div id="boosterList"></div>
 
                 <div class="action-buttons">
-                    <button class="btn btn-success" onclick="saveBooster()">Save Changes</button>
+                    <button class="btn btn-success" onclick="saveBooster()">💾 Save Changes</button>
                 </div>
             </div>
 
@@ -1077,6 +1099,7 @@ Team equipment and supplies"></textarea>
         let scheduleData = [];
         let boosterData = [];
         let sponsorsData = [];
+        let sponsorContactData = { name: '', phone: '', email: '' };
         let pendingImportData = null;
 
         // Login functionality
@@ -1432,6 +1455,11 @@ Team equipment and supplies"></textarea>
         function loadBooster() {
             const container = document.getElementById('boosterList');
             container.innerHTML = '';
+
+            // Populate sponsor contact fields
+            document.getElementById('sc_name').value  = sponsorContactData.name  || '';
+            document.getElementById('sc_phone').value = sponsorContactData.phone || '';
+            document.getElementById('sc_email').value = sponsorContactData.email || '';
             
             boosterData.forEach((member, index) => {
                 const div = document.createElement('div');
@@ -1474,7 +1502,15 @@ Team equipment and supplies"></textarea>
 
         function saveBooster() {
             const seasonKey = currentAdminSeason.replace('-', '_');
+            // Save booster members
             localStorage.setItem(`rams_${seasonKey}_booster`, JSON.stringify(boosterData));
+            // Save sponsor contact
+            sponsorContactData = {
+                name:  document.getElementById('sc_name').value.trim(),
+                phone: document.getElementById('sc_phone').value.trim(),
+                email: document.getElementById('sc_email').value.trim()
+            };
+            localStorage.setItem(`rams_${seasonKey}_sponsorContact`, JSON.stringify(sponsorContactData));
             showSuccess('boosterSuccess');
         }
 
@@ -1568,12 +1604,14 @@ function loadSeasonData() {
     const savedBooster = localStorage.getItem(`${seasonKey}_booster`);
     const savedDues = localStorage.getItem(`${seasonKey}_dues`);
     const savedRequirements = localStorage.getItem(`${seasonKey}_requirements`);
+    const savedSponsorContact = localStorage.getItem(`${seasonKey}_sponsorContact`);
     
     if (savedSponsors) sponsorsData = JSON.parse(savedSponsors);
     if (savedPlayers) playersData = JSON.parse(savedPlayers);
     if (savedCoaches) coachesData = JSON.parse(savedCoaches);
     if (savedSchedule) scheduleData = JSON.parse(savedSchedule);
     if (savedBooster) boosterData = JSON.parse(savedBooster);
+    if (savedSponsorContact) sponsorContactData = JSON.parse(savedSponsorContact);
     
     // Reload all sections
     loadPlayers();
@@ -1612,13 +1650,14 @@ async function autoFetchSeasonJson() {
 }
 
 function ingestJsonData(data, seasonKey) {
-    if (data.sponsors)     { sponsorsData  = data.sponsors;  localStorage.setItem(`rams_${seasonKey}_sponsors`,     JSON.stringify(sponsorsData)); }
-    if (data.players)      { playersData   = data.players;   localStorage.setItem(`rams_${seasonKey}_players`,      JSON.stringify(playersData)); }
-    if (data.coaches)      { coachesData   = data.coaches;   localStorage.setItem(`rams_${seasonKey}_coaches`,      JSON.stringify(coachesData)); }
-    if (data.schedule)     { scheduleData  = data.schedule;  localStorage.setItem(`rams_${seasonKey}_schedule`,     JSON.stringify(scheduleData)); }
-    if (data.booster)      { boosterData   = data.booster;   localStorage.setItem(`rams_${seasonKey}_booster`,      JSON.stringify(boosterData)); }
-    if (data.dues)                                           { localStorage.setItem(`rams_${seasonKey}_dues`,         JSON.stringify(data.dues)); }
-    if (data.requirements)                                   { localStorage.setItem(`rams_${seasonKey}_requirements`, JSON.stringify(data.requirements)); }
+    if (data.sponsors)       { sponsorsData  = data.sponsors;  localStorage.setItem(`rams_${seasonKey}_sponsors`,       JSON.stringify(sponsorsData)); }
+    if (data.players)        { playersData   = data.players;   localStorage.setItem(`rams_${seasonKey}_players`,        JSON.stringify(playersData)); }
+    if (data.coaches)        { coachesData   = data.coaches;   localStorage.setItem(`rams_${seasonKey}_coaches`,        JSON.stringify(coachesData)); }
+    if (data.schedule)       { scheduleData  = data.schedule;  localStorage.setItem(`rams_${seasonKey}_schedule`,       JSON.stringify(scheduleData)); }
+    if (data.booster)        { boosterData   = data.booster;   localStorage.setItem(`rams_${seasonKey}_booster`,        JSON.stringify(boosterData)); }
+    if (data.sponsorContact) { sponsorContactData = data.sponsorContact; localStorage.setItem(`rams_${seasonKey}_sponsorContact`, JSON.stringify(sponsorContactData)); }
+    if (data.dues)                                             { localStorage.setItem(`rams_${seasonKey}_dues`,          JSON.stringify(data.dues)); }
+    if (data.requirements)                                     { localStorage.setItem(`rams_${seasonKey}_requirements`,  JSON.stringify(data.requirements)); }
 }
 
 function updateStatusBox(state, filename, hint = '') {
@@ -1654,13 +1693,14 @@ async function exportDataToJson() {
     const filename  = `rams_data_${seasonKey}.json`;
 
     const masterData = {
-        sponsors:     JSON.parse(localStorage.getItem(`rams_${seasonKey}_sponsors`))     || sponsorsData,
-        players:      JSON.parse(localStorage.getItem(`rams_${seasonKey}_players`))      || playersData,
-        coaches:      JSON.parse(localStorage.getItem(`rams_${seasonKey}_coaches`))      || coachesData,
-        schedule:     JSON.parse(localStorage.getItem(`rams_${seasonKey}_schedule`))     || scheduleData,
-        booster:      JSON.parse(localStorage.getItem(`rams_${seasonKey}_booster`))      || boosterData,
-        dues:         JSON.parse(localStorage.getItem(`rams_${seasonKey}_dues`))         || {},
-        requirements: JSON.parse(localStorage.getItem(`rams_${seasonKey}_requirements`)) || {}
+        sponsors:       JSON.parse(localStorage.getItem(`rams_${seasonKey}_sponsors`))       || sponsorsData,
+        sponsorContact: JSON.parse(localStorage.getItem(`rams_${seasonKey}_sponsorContact`)) || sponsorContactData,
+        players:        JSON.parse(localStorage.getItem(`rams_${seasonKey}_players`))        || playersData,
+        coaches:        JSON.parse(localStorage.getItem(`rams_${seasonKey}_coaches`))        || coachesData,
+        schedule:       JSON.parse(localStorage.getItem(`rams_${seasonKey}_schedule`))       || scheduleData,
+        booster:        JSON.parse(localStorage.getItem(`rams_${seasonKey}_booster`))        || boosterData,
+        dues:           JSON.parse(localStorage.getItem(`rams_${seasonKey}_dues`))           || {},
+        requirements:   JSON.parse(localStorage.getItem(`rams_${seasonKey}_requirements`))   || {}
     };
 
     const blob = new Blob([JSON.stringify(masterData, null, 2)], { type: 'application/json' });
@@ -1760,6 +1800,9 @@ function showImportPreview(data) {
     if (data.sponsors) {
         html += `<li>✓ <strong>Sponsors:</strong> ${data.sponsors.length} sponsors</li>`;
     }
+    if (data.sponsorContact) {
+        html += `<li>✓ <strong>Sponsorship Contact:</strong> ${data.sponsorContact.name || 'Name set'}</li>`;
+    }
     if (data.players) {
         const varsityCount = data.players.varsity ? data.players.varsity.length : 0;
         const jvCount = data.players.jv ? data.players.jv.length : 0;
@@ -1823,6 +1866,11 @@ function confirmImport() {
         if (pendingImportData.booster) {
             boosterData = pendingImportData.booster;
             localStorage.setItem(`rams_${seasonKey}_booster`, JSON.stringify(boosterData));
+        }
+
+        if (pendingImportData.sponsorContact) {
+            sponsorContactData = pendingImportData.sponsorContact;
+            localStorage.setItem(`rams_${seasonKey}_sponsorContact`, JSON.stringify(sponsorContactData));
         }
         
         if (pendingImportData.dues) {
@@ -2017,7 +2065,10 @@ async function createNewSeason() {
     if (document.getElementById('carryBooster').checked) {
         const saved = localStorage.getItem(`rams_${currentSeasonKey}_booster`);
         newData.booster = saved ? JSON.parse(saved) : boosterData;
-    } else { newData.booster = []; }
+        // Always carry sponsor contact with booster — it's leadership info
+        const savedSC = localStorage.getItem(`rams_${currentSeasonKey}_sponsorContact`);
+        newData.sponsorContact = savedSC ? JSON.parse(savedSC) : sponsorContactData;
+    } else { newData.booster = []; newData.sponsorContact = { name: '', phone: '', email: '' }; }
 
     if (document.getElementById('carrySponsors').checked) {
         const saved = localStorage.getItem(`rams_${currentSeasonKey}_sponsors`);
