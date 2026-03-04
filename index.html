@@ -521,6 +521,250 @@
             50%       { opacity: 0.5; transform: scale(0.7); }
         }
 
+        /* ── Player Development Resources Page ── */
+        .resources-hero {
+            background: linear-gradient(135deg, var(--ram-navy) 0%, var(--ram-hunter-green) 100%);
+            color: white;
+            padding: 50px 20px 40px;
+            text-align: center;
+        }
+        .resources-hero h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3.5em;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        }
+        .resources-hero p {
+            font-size: 1.15em;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .skill-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 30px 20px 10px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #eee;
+            position: sticky;
+            top: 62px;
+            z-index: 50;
+        }
+        .skill-tab {
+            padding: 10px 22px;
+            border: 2px solid var(--ram-navy);
+            background: white;
+            color: var(--ram-navy);
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.85em;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.25s;
+        }
+        .skill-tab:hover, .skill-tab.active {
+            background: var(--ram-navy);
+            color: white;
+        }
+        .skill-tab.active {
+            box-shadow: 0 4px 14px rgba(0,56,101,0.25);
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .facility-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--ram-navy);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .facility-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+        }
+        .facility-card.featured {
+            border-top-color: var(--ram-gold);
+        }
+        .facility-card-header {
+            padding: 24px 24px 16px;
+        }
+        .facility-card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .facility-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4em;
+            color: var(--ram-navy);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .facility-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.72em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .badge-featured  { background: rgba(253,185,39,0.2);  color: #8a6000; }
+        .badge-nearby    { background: rgba(45,95,63,0.15);   color: #1a5c2e; }
+        .badge-regional  { background: rgba(0,56,101,0.12);   color: var(--ram-navy); }
+
+        .facility-tagline {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 14px;
+            font-style: italic;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .skill-tag {
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.76em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tag-hitting   { background: rgba(253,185,39,0.18); color: #7a5500; }
+        .tag-pitching  { background: rgba(59,130,246,0.15); color: #1d4ed8; }
+        .tag-catching  { background: rgba(139,92,246,0.15); color: #5b21b6; }
+        .tag-fielding  { background: rgba(16,185,129,0.15); color: #065f46; }
+        .tag-cages     { background: rgba(100,100,100,0.12); color: #374151; }
+        .tag-strength  { background: rgba(239,68,68,0.12);  color: #991b1b; }
+        .tag-lessons   { background: rgba(6,182,212,0.15);  color: #155e75; }
+        .tag-camps     { background: rgba(245,158,11,0.15); color: #78350f; }
+
+        .facility-info {
+            padding: 0 24px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.9em;
+            flex: 1;
+        }
+        .facility-info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .facility-info-row .icon { flex-shrink: 0; width: 18px; text-align: center; }
+        .facility-info-row strong { color: var(--ram-dark); }
+
+        .facility-highlights {
+            margin: 4px 0 0;
+            padding: 14px 20px;
+            background: #f8f9fa;
+            border-radius: 0 0 12px 12px;
+        }
+        .facility-highlights ul {
+            list-style: none;
+            padding: 0; margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .facility-highlights li {
+            font-size: 0.85em;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+        }
+        .facility-highlights li::before {
+            content: '✓';
+            color: var(--ram-hunter-green);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .facility-actions {
+            display: flex;
+            gap: 10px;
+            padding: 16px 24px 20px;
+            border-top: 1px solid #eee;
+            flex-wrap: wrap;
+        }
+        .facility-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.83em;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.25s;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: var(--ram-navy);
+            color: white;
+        }
+        .btn-primary:hover { background: #002244; color: white; }
+        .btn-secondary {
+            background: white;
+            color: var(--ram-navy);
+            border: 2px solid var(--ram-navy);
+        }
+        .btn-secondary:hover { background: var(--ram-navy); color: white; }
+
+        .resources-tip-box {
+            background: linear-gradient(135deg, var(--ram-hunter-green), #4A7C59);
+            color: white;
+            padding: 30px 35px;
+            border-radius: 16px;
+            margin: 0 20px 40px;
+            max-width: 1160px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .resources-tip-box h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .resources-tip-box p { font-size: 0.95em; line-height: 1.7; opacity: 0.93; }
+
+        .facility-card[data-skills] { display: flex; }
+        .facility-card.hidden { display: none; }
+
         /* Roster Cards */
         .roster-grid {
             display: grid;
@@ -927,6 +1171,7 @@
                 <li><a href="#" class="nav-link" data-page="duesPage">Dues</a></li>
                 <li><a href="#" class="nav-link" data-page="boosterPage">Booster Club</a></li>
                 <li><a href="#" class="nav-link" data-page="constitutionPage">Constitution</a></li>
+                <li><a href="#" class="nav-link" data-page="resourcesPage">⚾ Resources</a></li>
             </ul>
         </div>
     </nav>
@@ -1524,6 +1769,259 @@
                 <p>The chairperson selected for this committee will be responsible for ensuring all committee members provide adequate water/Powerade for players during practice and games. This committee will also coordinate pre-game/postgame meals, spirit wear selections, and sideline assistance.</p>
             </div>
         </section>
+    </div>
+
+    <!-- Player Development Resources Page -->
+    <div id="resourcesPage" class="content-page">
+
+        <div class="resources-hero">
+            <h2>⚾ Player Development Resources</h2>
+            <p>Top training facilities near Stone Mountain & Lithonia to help Rams players sharpen every part of their game</p>
+        </div>
+
+        <!-- Skill Filter Tabs -->
+        <div class="skill-tabs">
+            <button class="skill-tab active" data-skill="all">All Facilities</button>
+            <button class="skill-tab" data-skill="hitting">🏏 Hitting</button>
+            <button class="skill-tab" data-skill="pitching">⚾ Pitching</button>
+            <button class="skill-tab" data-skill="catching">🥅 Catching</button>
+            <button class="skill-tab" data-skill="fielding">🧤 Fielding</button>
+            <button class="skill-tab" data-skill="cages">🎯 Batting Cages</button>
+            <button class="skill-tab" data-skill="strength">💪 Strength</button>
+        </div>
+
+        <div class="facilities-grid">
+
+            <!-- ── MLSA / ATL Metro RBI ── FEATURED ── -->
+            <div class="facility-card featured" data-skills="hitting pitching catching fielding cages lessons camps">
+                <div class="facility-card-header">
+                    <div class="facility-card-top">
+                        <div class="facility-name">ATL Metro MLSA</div>
+                        <span class="facility-badge badge-featured">⭐ Closest to Rams</span>
+                    </div>
+                    <div class="facility-tagline">Metro Leadership Sports Academy — former college & MLB players coaching</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-hitting">Hitting</span>
+                        <span class="skill-tag tag-pitching">Pitching</span>
+                        <span class="skill-tag tag-catching">Catching</span>
+                        <span class="skill-tag tag-fielding">Fielding</span>
+                        <span class="skill-tag tag-cages">Cages</span>
+                        <span class="skill-tag tag-lessons">Private Lessons</span>
+                    </div>
+                </div>
+                <div class="facility-info">
+                    <div class="facility-info-row"><span class="icon">📍</span><span>4960 Covington Hwy, Suite 2, Decatur, GA 30035</span></div>
+                    <div class="facility-info-row"><span class="icon">📞</span><span>(404) 941-7530</span></div>
+                    <div class="facility-info-row"><span class="icon">🕐</span><span>Mon–Fri 10 AM–8 PM &nbsp;·&nbsp; Sat 10 AM–6 PM &nbsp;·&nbsp; Sun 10 AM–5 PM</span></div>
+                    <div class="facility-info-row"><span class="icon">📏</span><span><strong>~8 miles</strong> from Arabia Mountain</span></div>
+                    <div class="facility-info-row"><span class="icon">⭐</span><span>5.0 rating &nbsp;·&nbsp; Air-conditioned facility</span></div>
+                </div>
+                <div class="facility-highlights">
+                    <ul>
+                        <li>Trained by former college &amp; MLB players including Kyle Lewis</li>
+                        <li>Rental cages &amp; private lessons — all skill levels welcome</li>
+                        <li>Convenient to Decatur, Stone Mountain &amp; east Atlanta</li>
+                        <li>Nike camps, U16/U17/U18 travel teams available</li>
+                    </ul>
+                </div>
+                <div class="facility-actions">
+                    <a href="https://www.atlmetrorbi.org" target="_blank" rel="noopener" class="facility-btn btn-primary">Visit Website</a>
+                    <a href="https://atlmetrorbi.playbookapi.com/programs/rentals/" target="_blank" rel="noopener" class="facility-btn btn-secondary">Book a Cage</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=4960+Covington+Hwy+Decatur+GA+30035" target="_blank" rel="noopener" class="facility-btn btn-secondary">📍 Directions</a>
+                </div>
+            </div>
+
+            <!-- ── D-BAT Perimeter ── -->
+            <div class="facility-card featured" data-skills="hitting pitching catching fielding cages lessons camps strength">
+                <div class="facility-card-header">
+                    <div class="facility-card-top">
+                        <div class="facility-name">D-BAT Perimeter</div>
+                        <span class="facility-badge badge-featured">⭐ Closest D-BAT</span>
+                    </div>
+                    <div class="facility-tagline">Premier baseball &amp; softball academy — real baseballs, pro instructors</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-hitting">Hitting</span>
+                        <span class="skill-tag tag-pitching">Pitching</span>
+                        <span class="skill-tag tag-cages">Batting Cages</span>
+                        <span class="skill-tag tag-lessons">Private Lessons</span>
+                        <span class="skill-tag tag-camps">Camps & Clinics</span>
+                    </div>
+                </div>
+                <div class="facility-info">
+                    <div class="facility-info-row"><span class="icon">📍</span><span>3039 Amwiler Rd, Suite 130, Atlanta, GA 30360</span></div>
+                    <div class="facility-info-row"><span class="icon">📞</span><span>(678) 459-2457</span></div>
+                    <div class="facility-info-row"><span class="icon">🕐</span><span>Mon–Fri 10 AM–9 PM &nbsp;·&nbsp; Sat 9 AM–5 PM &nbsp;·&nbsp; Sun 11 AM–6 PM</span></div>
+                    <div class="facility-info-row"><span class="icon">📏</span><span><strong>~20 miles</strong> from Arabia Mountain</span></div>
+                    <div class="facility-info-row"><span class="icon">⭐</span><span>4.5 rating (181 reviews) &nbsp;·&nbsp; Indoor climate-controlled</span></div>
+                </div>
+                <div class="facility-highlights">
+                    <ul>
+                        <li>Pitching machines with real baseballs &amp; softballs</li>
+                        <li>50+ camps &amp; clinics per year for all ages &amp; skill levels</li>
+                        <li>Pro shop stocked with Rawlings &amp; Easton gear</li>
+                        <li>Birthday party packages available</li>
+                    </ul>
+                </div>
+                <div class="facility-actions">
+                    <a href="https://www.dbatperimeter.com" target="_blank" rel="noopener" class="facility-btn btn-primary">Visit Website</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=3039+Amwiler+Rd+Atlanta+GA+30360" target="_blank" rel="noopener" class="facility-btn btn-secondary">📍 Directions</a>
+                </div>
+            </div>
+
+            <!-- ── D-BAT Buckhead ── -->
+            <div class="facility-card" data-skills="hitting pitching cages lessons camps">
+                <div class="facility-card-header">
+                    <div class="facility-card-top">
+                        <div class="facility-name">D-BAT Buckhead</div>
+                        <span class="facility-badge badge-nearby">Nearby</span>
+                    </div>
+                    <div class="facility-tagline">21,000+ sq ft facility with brand new turf &amp; lighting</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-hitting">Hitting</span>
+                        <span class="skill-tag tag-pitching">Pitching</span>
+                        <span class="skill-tag tag-cages">Batting Cages</span>
+                        <span class="skill-tag tag-lessons">Private Lessons</span>
+                        <span class="skill-tag tag-camps">Camps</span>
+                    </div>
+                </div>
+                <div class="facility-info">
+                    <div class="facility-info-row"><span class="icon">📍</span><span>2345 Adams Dr NW, Atlanta, GA 30318</span></div>
+                    <div class="facility-info-row"><span class="icon">📞</span><span>(404) 355-9700</span></div>
+                    <div class="facility-info-row"><span class="icon">🕐</span><span>Mon–Fri 10 AM–9 PM &nbsp;·&nbsp; Sat 9 AM–5 PM &nbsp;·&nbsp; Sun 11 AM–6 PM</span></div>
+                    <div class="facility-info-row"><span class="icon">⭐</span><span>4.6 rating (276 reviews)</span></div>
+                </div>
+                <div class="facility-highlights">
+                    <ul>
+                        <li>Former professional &amp; collegiate player instructors</li>
+                        <li>Speed-adjustable pitching machines for all ages</li>
+                        <li>Rapid Sports Performance training on-site</li>
+                    </ul>
+                </div>
+                <div class="facility-actions">
+                    <a href="https://www.dbatbuckhead.com" target="_blank" rel="noopener" class="facility-btn btn-primary">Visit Website</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=2345+Adams+Dr+NW+Atlanta+GA+30318" target="_blank" rel="noopener" class="facility-btn btn-secondary">📍 Directions</a>
+                </div>
+            </div>
+
+            <!-- ── Georgia Strike Zone ── -->
+            <div class="facility-card" data-skills="hitting pitching catching fielding cages lessons camps">
+                <div class="facility-card-header">
+                    <div class="facility-card-top">
+                        <div class="facility-name">Georgia Strike Zone</div>
+                        <span class="facility-badge badge-regional">Regional</span>
+                    </div>
+                    <div class="facility-tagline">Elite private &amp; small group training — 40+ years combined coaching experience</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-hitting">Hitting</span>
+                        <span class="skill-tag tag-pitching">Pitching</span>
+                        <span class="skill-tag tag-catching">Catching</span>
+                        <span class="skill-tag tag-fielding">Fielding</span>
+                        <span class="skill-tag tag-cages">7 Batting Cages</span>
+                        <span class="skill-tag tag-lessons">Private Lessons</span>
+                    </div>
+                </div>
+                <div class="facility-info">
+                    <div class="facility-info-row"><span class="icon">📍</span><span>200 Barrett St, Monroe, GA 30655</span></div>
+                    <div class="facility-info-row"><span class="icon">📞</span><span>(770) 322-4449</span></div>
+                    <div class="facility-info-row"><span class="icon">🕐</span><span>Mon–Fri 3–8:30 PM &nbsp;·&nbsp; Sat 9 AM–12 PM &nbsp;·&nbsp; Sun Closed</span></div>
+                    <div class="facility-info-row"><span class="icon">⭐</span><span>5.0 rating (29 reviews)</span></div>
+                </div>
+                <div class="facility-highlights">
+                    <ul>
+                        <li>Covers hitting, pitching, fielding &amp; catching all under one roof</li>
+                        <li>7 professional batting cages with pitching mound lanes</li>
+                        <li>Seasonal camps with limited enrollment for focused coaching</li>
+                    </ul>
+                </div>
+                <div class="facility-actions">
+                    <a href="https://www.georgiastrikezone.com" target="_blank" rel="noopener" class="facility-btn btn-primary">Visit Website</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=200+Barrett+St+Monroe+GA+30655" target="_blank" rel="noopener" class="facility-btn btn-secondary">📍 Directions</a>
+                </div>
+            </div>
+
+            <!-- ── Mike Cameron Baseball Academy ── -->
+            <div class="facility-card" data-skills="hitting pitching catching fielding cages lessons strength">
+                <div class="facility-card-header">
+                    <div class="facility-card-top">
+                        <div class="facility-name">Mike Cameron Baseball Academy</div>
+                        <span class="facility-badge badge-nearby">South of Atlanta</span>
+                    </div>
+                    <div class="facility-tagline">Founded by MLB veteran Mike Cameron — batting cages, indoor infield &amp; weight room</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-hitting">Hitting</span>
+                        <span class="skill-tag tag-pitching">Pitching</span>
+                        <span class="skill-tag tag-fielding">Indoor Infield</span>
+                        <span class="skill-tag tag-strength">Strength Training</span>
+                        <span class="skill-tag tag-cages">Batting Cages</span>
+                        <span class="skill-tag tag-lessons">Private Lessons</span>
+                    </div>
+                </div>
+                <div class="facility-info">
+                    <div class="facility-info-row"><span class="icon">📍</span><span>80 Andrew Dr, Stockbridge, GA 30281</span></div>
+                    <div class="facility-info-row"><span class="icon">📞</span><span>(678) 759-8430</span></div>
+                    <div class="facility-info-row"><span class="icon">🕐</span><span>Mon–Fri 3–9 PM &nbsp;·&nbsp; Sat 10 AM–4 PM</span></div>
+                    <div class="facility-info-row"><span class="icon">⭐</span><span>4.7 rating (38 reviews)</span></div>
+                </div>
+                <div class="facility-highlights">
+                    <ul>
+                        <li>Full indoor infield for realistic fielding practice</li>
+                        <li>Fully equipped weight &amp; fitness center on site</li>
+                        <li>Merchandise center with baseball gear</li>
+                        <li>Camp &amp; boot camp training sessions available</li>
+                    </ul>
+                </div>
+                <div class="facility-actions">
+                    <a href="https://mikecameronbaseballacademy.com" target="_blank" rel="noopener" class="facility-btn btn-primary">Visit Website</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=80+Andrew+Dr+Stockbridge+GA+30281" target="_blank" rel="noopener" class="facility-btn btn-secondary">📍 Directions</a>
+                </div>
+            </div>
+
+            <!-- ── GA Sports / Layton Indoor ── -->
+            <div class="facility-card" data-skills="hitting pitching cages lessons">
+                <div class="facility-card-header">
+                    <div class="facility-card-top">
+                        <div class="facility-name">GA Sports (Layton Indoor)</div>
+                        <span class="facility-badge badge-nearby">Nearby</span>
+                    </div>
+                    <div class="facility-tagline">Rapsodo Pro ball-flight data &amp; advanced pitching machines in a local facility</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-hitting">Hitting</span>
+                        <span class="skill-tag tag-pitching">Pitching</span>
+                        <span class="skill-tag tag-cages">4 Full Cages</span>
+                        <span class="skill-tag tag-lessons">Private Lessons</span>
+                    </div>
+                </div>
+                <div class="facility-info">
+                    <div class="facility-info-row"><span class="icon">📍</span><span>Georgia area — see website for current location</span></div>
+                    <div class="facility-info-row"><span class="icon">🌐</span><span>ga-sports.org</span></div>
+                </div>
+                <div class="facility-highlights">
+                    <ul>
+                        <li>Rapsodo Pro monitor: exit velocity, launch angle &amp; more</li>
+                        <li>Advanced machine throws curves, sliders, changeups &amp; fastballs</li>
+                        <li>3 smaller soft-toss / tee-work cages plus fielding area</li>
+                        <li>Teams, small groups, families &amp; individuals all welcome</li>
+                    </ul>
+                </div>
+                <div class="facility-actions">
+                    <a href="https://ga-sports.org" target="_blank" rel="noopener" class="facility-btn btn-primary">Visit Website</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Map -->
+        <div style="max-width:1200px; margin: 0 auto 10px; padding: 0 20px;">
+            <h3 style="font-family:'Oswald',sans-serif; font-size:1.6em; color:var(--ram-navy); margin-bottom:16px;">📍 Facility Locations</h3>
+        </div>
+        <div id="resourcesMap" style="max-width:1200px; margin: 0 auto 50px; padding: 0 20px;"></div>
+
+        <!-- Coaching Tip Box -->
+        <div class="resources-tip-box" style="margin-bottom:60px;">
+            <h3>💡 Parent Tip: Making the Most of Training</h3>
+            <p>For the biggest gains, pair facility work with consistency at home — tee work, wall ball, and long toss all translate directly to game performance. Private lessons work best when players also get repetitions on their own between sessions. Talk to coaches at any of these facilities about what your son's specific goals are so they can tailor sessions to what Arabia Mountain needs most: situational hitting, arm strength, or defensive footwork.</p>
+        </div>
+
     </div>
 
     <!-- Footer -->
@@ -2555,6 +3053,23 @@
             monthDropdown.addEventListener('change', () => {
                 currentMonthFilter = monthDropdown.value;
                 renderSchedule();
+            });
+
+            // ── Resources skill-tab filtering ──
+            const skillTabs = document.querySelectorAll('.skill-tab');
+            skillTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    skillTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    const skill = tab.dataset.skill;
+                    document.querySelectorAll('.facility-card').forEach(card => {
+                        if (skill === 'all' || (card.dataset.skills || '').includes(skill)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
             });
 
             // Roster filters
