@@ -1,0 +1,644 @@
+{
+  "sponsors": [
+    {
+      "name": "McCart Plumbing",
+      "logo": "McCart.png",
+      "text": "www.McCartPlumbing.com"
+    },
+    {
+      "name": "AromaRidge Coffee",
+      "logo": "aromaridge.png",
+      "text": "www.aromaridge.com"
+    },
+    {
+      "name": "All County Cumberland",
+      "logo": "ac-logo-sm-dark.png",
+      "text": "https://www.allcountyprop.com/locations/georgia/cumberland/"
+    }
+  ],
+  "sponsorContact": {
+  "name": "Ronald Jones, II — President",
+  "phone": "770.241.7630",
+  "email": "ronjonesii@att.net"
+    }
+  ],
+  "players": {
+    "varsity": [
+      {
+        "number": "17",
+        "name": "Dominic Chang",
+        "position": "Second Baseman / Pitcher",
+        "grade": "Sophomore",
+        "height": "5'10\"",
+        "weight": "165",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "12",
+        "name": "Darian Rainey",
+        "position": "Catcher",
+        "grade": "Sophomore",
+        "height": "5'11\"",
+        "weight": "180",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "9",
+        "name": "Ronald Jones III",
+        "position": "Shortstop / Pitcher",
+        "grade": "Senior",
+        "height": "6'0\"",
+        "weight": "175",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "5",
+        "name": "Tracy Finch",
+        "position": "First Baseman",
+        "grade": "Senior",
+        "height": "6'2\"",
+        "weight": "195",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "23",
+        "name": "Daniel Veal",
+        "position": "Short Stop / Second Baseman",
+        "grade": "Senior",
+        "height": "5'10",
+        "weight": "155",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "3",
+        "name": "Chancelor Caldwell",
+        "position": "Right Fielder",
+        "grade": "Sophomore",
+        "height": "6'1",
+        "weight": "180",
+        "batsThrows": "L/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "15",
+        "name": "James Carter III",
+        "position": "Outfield",
+        "grade": "Senior",
+        "height": "5'10",
+        "weight": "165",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "19",
+        "name": "Tyler  Frederick",
+        "position": "Outfield",
+        "grade": "Sophomore",
+        "height": "5'10",
+        "weight": "160",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "20",
+        "name": "Cameron Polain",
+        "position": "Outfield",
+        "grade": "Sophomore",
+        "height": "5'10",
+        "weight": "150",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "21",
+        "name": "Milton Swinson",
+        "position": "Short Stop",
+        "grade": "Sophomore",
+        "height": "5'10",
+        "weight": "160",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      }
+    ],
+    "jv": [
+      {
+        "number": "17",
+        "name": "Dominic Chang",
+        "position": "Second Baseman / Pitcher",
+        "grade": "Sophomore",
+        "height": "5'10\"",
+        "weight": "165",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "12",
+        "name": "Darian Rainey",
+        "position": "Catcher",
+        "grade": "Sophomore",
+        "height": "5'11\"",
+        "weight": "180",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "13",
+        "name": "Alexander Kinsale",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "5'8\"",
+        "weight": "195",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "3",
+        "name": "Chancelor Caldwell",
+        "position": "Right Fielder",
+        "grade": "Sophomore",
+        "height": "6'1\"",
+        "weight": "180",
+        "batsThrows": "L/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "14",
+        "name": " Rylen Brown",
+        "position": "Second Baseman",
+        "grade": "Freshman",
+        "height": "5'8",
+        "weight": "150",
+        "batsThrows": "R/R",
+        "year": "2026-27"
+      },
+      {
+        "number": "15",
+        "name": "Aiden Eugene",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "17",
+        "name": "Willie Jones Jr.",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "25",
+        "name": "Syrus Melendrez-Lloyd",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "6",
+        "name": "Ayden Mincey",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "18",
+        "name": "Carson Parks",
+        "position": "Outfield",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "33",
+        "name": "Avery Uryga",
+        "position": "Third Baseman",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "25",
+        "name": "Braylon Williams",
+        "position": "Second Baseman",
+        "grade": "Freshman",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      },
+      {
+        "number": "19",
+        "name": "Tyler  Frederick",
+        "position": "Outfield",
+        "grade": "Sophomore",
+        "height": "",
+        "weight": "",
+        "batsThrows": "",
+        "year": "2026-27"
+      }
+    ]
+  },
+  "coaches": [
+    {
+      "name": "Sharon Richard",
+      "title": "Athletic Director",
+      "email": "SHARON_G_RICHARD@dekalbschoolsga.org",
+      "phone": "678-875-3645",
+      "experience": "",
+      "philosophy": "",
+      "achievements": "",
+      "specialties": "",
+      "background": "",
+      "focus": "Oversight of all athletic programs and compliance"
+    },
+    {
+      "name": "Eric Hoxie",
+      "title": "Head Coach",
+      "email": "coach@arabiamtnhs.com",
+      "phone": "",
+      "experience": "",
+      "philosophy": "Developing complete student-athletes through discipline, hard work, and dedication to excellence both on and off the field.",
+      "achievements": "",
+      "specialties": "",
+      "background": "",
+      "focus": "Varsity Baseball Program Leadership"
+    },
+    {
+      "name": "Dex",
+      "title": "Assistant Coach",
+      "email": "assistant@arabiamtnhs.com",
+      "phone": "",
+      "experience": "",
+      "philosophy": "",
+      "achievements": "",
+      "specialties": "Player development and on-field support",
+      "background": "",
+      "focus": "Assisting varsity operations and player growth"
+    },
+    {
+      "name": "Eric Hoxie",
+      "title": "Junior Varsity Program",
+      "email": "jvcoach@arabiamtnhs.com",
+      "phone": "",
+      "experience": "",
+      "philosophy": "",
+      "achievements": "",
+      "specialties": "",
+      "background": "",
+      "focus": "Fundamental skill development and preparing players for varsity competition"
+    }
+  ],
+  "schedule": [
+    {
+      "date": "2026-02-14",
+      "opponent": "Cedar Grove",
+      "location": "Home",
+      "time": "11:00 AM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-14",
+      "opponent": "Cedar Grove",
+      "location": "Away",
+      "time": "1:00 PM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-21",
+      "opponent": "Sandy Creek",
+      "location": "Home",
+      "time": "11:00 AM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-21",
+      "opponent": "Sandy Creek",
+      "location": "Away",
+      "time": "1:00 PM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-03",
+      "opponent": "Stephenson",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "JV",
+      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
+    },
+    {
+      "date": "2026-03-19",
+      "opponent": "Stephenson",
+      "location": "Home",
+      "time": "1:00 PM",
+      "team": "JV",
+      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
+    },
+    {
+      "date": "2026-03-07",
+      "opponent": "Columbia",
+      "location": "Home",
+      "time": "9:00 AM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-07",
+      "opponent": "Towers",
+      "location": "Home",
+      "time": "12:00 PM",
+      "team": "JV",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-14",
+      "opponent": "McNair",
+      "location": "Away",
+      "time": "9:00 AM",
+      "team": "JV",
+      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA"
+    },
+    {
+      "date": "2026-03-14",
+      "opponent": "McNair",
+      "location": "Away",
+      "time": "11:00 AM",
+      "team": "JV",
+      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA"
+    },
+    {
+      "date": "2026-02-09",
+      "opponent": "Columbia",
+      "location": "Away",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "2106 Columbia Drive, Decatur, GA 30032, USA"
+    },
+    {
+      "date": "2026-02-11",
+      "opponent": "Columbia",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-12",
+      "opponent": "Stephenson",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
+    },
+    {
+      "date": "2026-02-25",
+      "opponent": "Lakeside",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-02-28",
+      "opponent": "Lakeside",
+      "location": "Away",
+      "time": "9:00 AM",
+      "team": "Varsity",
+      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
+    },
+    {
+      "date": "2026-02-27",
+      "opponent": "Lakeside",
+      "location": "Away",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
+    },
+    {
+      "date": "2026-03-02",
+      "opponent": "Shiloh",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-04",
+      "opponent": "Shiloh",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "4210 Shiloh Road, Snellville, GA 30039, USA"
+    },
+    {
+      "date": "2026-03-05",
+      "opponent": "Shiloh",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-09",
+      "opponent": "Woodward Academy",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "1662 Rugby Avenue, College Park, GA 30337, USA"
+    },
+    {
+      "date": "2026-03-10",
+      "opponent": "Lovejoy",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-11",
+      "opponent": "Woodward Academy",
+      "location": "Home",
+      "time": "4:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-12",
+      "opponent": "Woodward Academy",
+      "location": "Home",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-16",
+      "opponent": "Tri-Cities",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-18",
+      "opponent": "Tri-Cities",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "2575 Harris Street, East Point, GA 30344, USA"
+    },
+    {
+      "date": "2026-03-19",
+      "opponent": "Tri-Cities",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-23",
+      "opponent": "Chamblee",
+      "location": "Away",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA"
+    },
+    {
+      "date": "2026-03-25",
+      "opponent": "Chamblee",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-03-26",
+      "opponent": "Chamblee",
+      "location": "Away",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA"
+    },
+    {
+      "date": "2026-03-30",
+      "opponent": "Decatur",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Decatur",
+      "location": "Away",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "310 North McDonough Street, Decatur, GA 30030, USA"
+    },
+    {
+      "date": "2026-04-02",
+      "opponent": "Decatur",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-04-13",
+      "opponent": "Dunwoody",
+      "location": "Home",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-04-15",
+      "opponent": "Dunwoody",
+      "location": "Away",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "5035 Vermack Road, Dunwoody, GA 30338, USA"
+    },
+    {
+      "date": "2026-04-16",
+      "opponent": "Dunwoody",
+      "location": "Home",
+      "time": "5:30 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+    },
+    {
+      "date": "2026-04-17",
+      "opponent": "Douglas HS",
+      "location": "Home",
+      "time": "5:00 PM",
+      "team": "Varsity",
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "notes": "Senior Night"
+    }
+  ],
+  "booster": [
+    {
+      "title": "President",
+      "name": "Ronald Jones",
+      "email": "",
+      "phone": "",
+      "description": "Oversees all booster club activities"
+    },
+    {
+      "title": "Vice President",
+      "name": "Tank Caldwell",
+      "email": "",
+      "phone": "",
+      "description": "Assists the president and coordinates volunteers"
+    },
+    {
+      "title": "Treasurer",
+      "name": "Stacy",
+      "email": "",
+      "phone": "",
+      "description": "Manages all financial matters"
+    },
+    {
+      "title": "Secretary",
+      "name": "Dieldra",
+      "email": "",
+      "phone": "",
+      "description": "Maintains records and meeting minutes"
+    }
+  ],
+  "dues": {
+    "fee": "740",
+    "deadline": "2026-04-15",
+    "installments": "",
+    "included": "Batting Jacket w/ logo - $50\nCoach Uniform - 11.25\nCustom Jersey - $65\nCoach Pay - $60\nPre-game meals - $276\nBatting Cages - $80\nSr. Gift - $30\nSr. Night Meal - $22.50\nArabia Spring Banquet - $20\nRams Baseball Banquet - $75\nAdmin - $50"
+  },
+  "requirements": {
+    "registration": "2026-12-01",
+    "physicalDue": "2027-01-15",
+    "tryouts": "2027-01-20",
+    "seasonStart": "2027-02-01"
+  }
+}
