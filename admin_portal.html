@@ -886,6 +886,9 @@
                             <th>Address (Optional)</th>
                             <th style="text-align:center;">💰 Gwinnett Co.<br><small style="font-weight:400;">(Paid Entry)</small></th>
                             <th>Notes</th>
+                            <th>Result</th>
+                            <th>Score</th>
+                            <th>Box Score URL</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -1422,6 +1425,16 @@ Team equipment and supplies"></textarea>
                             style="width:20px; height:20px; cursor:pointer; accent-color: var(--ram-navy);">
                     </td>
                     <td><input type="text" value="${game.notes || ''}" data-index="${index}" data-field="notes" placeholder="e.g. Senior Night" style="width: 140px;"></td>
+                    <td>
+                        <select data-index="${index}" data-field="result" style="width:70px;">
+                            <option value="" ${!game.result ? 'selected' : ''}>—</option>
+                            <option value="W" ${game.result === 'W' ? 'selected' : ''}>W</option>
+                            <option value="L" ${game.result === 'L' ? 'selected' : ''}>L</option>
+                            <option value="T" ${game.result === 'T' ? 'selected' : ''}>T</option>
+                        </select>
+                    </td>
+                    <td><input type="text" value="${game.resultScore || ''}" data-index="${index}" data-field="resultScore" placeholder="e.g. 4-2" style="width:70px;"></td>
+                    <td><input type="text" value="${game.resultUrl || ''}" data-index="${index}" data-field="resultUrl" placeholder="MaxPreps box score URL" style="width:200px;"></td>
                     <td><button class="btn btn-danger" onclick="deleteGame(${index})">Delete</button></td>
                 `;
             });
@@ -1448,7 +1461,10 @@ Team equipment and supplies"></textarea>
                 team: 'Varsity',
                 address: '',
                 gwinnettPaid: false,
-                notes: ''
+                notes: '',
+                result: '',
+                resultScore: '',
+                resultUrl: ''
             });
             loadSchedule();
         }

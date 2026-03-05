@@ -314,7 +314,12 @@
       "location": "Home",
       "time": "11:00 AM",
       "team": "JV",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-02-14",
@@ -322,7 +327,12 @@
       "location": "Away",
       "time": "1:00 PM",
       "team": "JV",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-02-21",
@@ -330,7 +340,12 @@
       "location": "Home",
       "time": "11:00 AM",
       "team": "JV",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-02-21",
@@ -338,7 +353,12 @@
       "location": "Away",
       "time": "1:00 PM",
       "team": "JV",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-03",
@@ -346,7 +366,12 @@
       "location": "Away",
       "time": "5:30 PM",
       "team": "JV",
-      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
+      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-19",
@@ -354,7 +379,12 @@
       "location": "Home",
       "time": "1:00 PM",
       "team": "JV",
-      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
+      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-07",
@@ -362,7 +392,12 @@
       "location": "Home",
       "time": "9:00 AM",
       "team": "JV",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-07",
@@ -370,7 +405,12 @@
       "location": "Home",
       "time": "12:00 PM",
       "team": "JV",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-14",
@@ -378,7 +418,12 @@
       "location": "Away",
       "time": "9:00 AM",
       "team": "JV",
-      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA"
+      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-14",
@@ -386,7 +431,12 @@
       "location": "Away",
       "time": "11:00 AM",
       "team": "JV",
-      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA"
+      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-02-09",
@@ -394,7 +444,12 @@
       "location": "Away",
       "time": "4:30 PM",
       "team": "Varsity",
-      "address": "2106 Columbia Drive, Decatur, GA 30032, USA"
+      "address": "2106 Columbia Drive, Decatur, GA 30032, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "W",
+      "resultScore": "3-2",
+      "resultUrl": "https://www.maxpreps.com/games/02-09-2026/baseball-26/arabia-mountain-vs-columbia.htm?c=4U-zmv1m3EGnrVmL5DLz4Q"
     },
     {
       "date": "2026-02-11",
@@ -402,7 +457,12 @@
       "location": "Home",
       "time": "4:30 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "W",
+      "resultScore": "2-0",
+      "resultUrl": "https://www.maxpreps.com/games/02-11-2026/baseball-26/arabia-mountain-vs-columbia.htm?c=zaM2V_xFJkOFecDDPlXrng"
     },
     {
       "date": "2026-02-12",
@@ -410,7 +470,12 @@
       "location": "Away",
       "time": "5:30 PM",
       "team": "Varsity",
-      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA"
+      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "L",
+      "resultScore": "17-1",
+      "resultUrl": "https://www.maxpreps.com/games/02-12-2026/baseball-26/arabia-mountain-vs-stephenson.htm?c=QXSTEU7fF0qsWlEtTIOGTg"
     },
     {
       "date": "2026-02-25",
@@ -418,7 +483,12 @@
       "location": "Home",
       "time": "4:30 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "L",
+      "resultScore": "19-1",
+      "resultUrl": "https://www.maxpreps.com/games/02-25-2026/baseball-26/arabia-mountain-vs-lakeside.htm?c=DHlgSoXH6k-P32rd01hohA"
     },
     {
       "date": "2026-02-28",
@@ -426,7 +496,12 @@
       "location": "Away",
       "time": "9:00 AM",
       "team": "Varsity",
-      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
+      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "L",
+      "resultScore": "16-1",
+      "resultUrl": "https://www.maxpreps.com/games/02-28-2026/baseball-26/arabia-mountain-vs-lakeside.htm?c=IPD4oyawQEKx3FITMaiIBw"
     },
     {
       "date": "2026-02-27",
@@ -434,7 +509,12 @@
       "location": "Away",
       "time": "4:30 PM",
       "team": "Varsity",
-      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA"
+      "address": "3801 Briarcliff Road NE, Atlanta, GA 30345, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "L",
+      "resultScore": "15-0",
+      "resultUrl": "https://www.maxpreps.com/games/02-27-2026/baseball-26/arabia-mountain-vs-lakeside.htm?c=3gD7nVjt-UG-seZxMgh7HA"
     },
     {
       "date": "2026-03-02",
@@ -442,7 +522,12 @@
       "location": "Home",
       "time": "4:30 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "L",
+      "resultScore": "13-1",
+      "resultUrl": "https://www.maxpreps.com/games/03-02-2026/baseball-26/arabia-mountain-vs-shiloh.htm?c=5LSLh5LAP0-VMo8ERL7Bpg"
     },
     {
       "date": "2026-03-04",
@@ -450,7 +535,12 @@
       "location": "Away",
       "time": "5:30 PM",
       "team": "Varsity",
-      "address": "4210 Shiloh Road, Snellville, GA 30039, USA"
+      "address": "4210 Shiloh Road, Snellville, GA 30039, USA",
+      "gwinnettPaid": true,
+      "notes": "",
+      "result": "L",
+      "resultScore": "4-2",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-05",
@@ -458,7 +548,12 @@
       "location": "Home",
       "time": "4:30 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-09",
@@ -466,7 +561,12 @@
       "location": "Away",
       "time": "5:30 PM",
       "team": "Varsity",
-      "address": "1662 Rugby Avenue, College Park, GA 30337, USA"
+      "address": "1662 Rugby Avenue, College Park, GA 30337, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-10",
@@ -474,7 +574,12 @@
       "location": "Home",
       "time": "4:30 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-11",
@@ -482,7 +587,12 @@
       "location": "Home",
       "time": "4:30 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-12",
@@ -490,7 +600,12 @@
       "location": "Home",
       "time": "5:30 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-16",
@@ -498,7 +613,12 @@
       "location": "Home",
       "time": "5:00 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-18",
@@ -506,7 +626,12 @@
       "location": "Away",
       "time": "5:30 PM",
       "team": "Varsity",
-      "address": "2575 Harris Street, East Point, GA 30344, USA"
+      "address": "2575 Harris Street, East Point, GA 30344, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-19",
@@ -514,7 +639,12 @@
       "location": "Home",
       "time": "5:00 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-23",
@@ -522,7 +652,12 @@
       "location": "Away",
       "time": "5:00 PM",
       "team": "Varsity",
-      "address": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA"
+      "address": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-25",
@@ -530,7 +665,12 @@
       "location": "Home",
       "time": "5:00 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-26",
@@ -538,7 +678,12 @@
       "location": "Away",
       "time": "5:00 PM",
       "team": "Varsity",
-      "address": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA"
+      "address": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-03-30",
@@ -546,7 +691,12 @@
       "location": "Home",
       "time": "5:00 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-04-01",
@@ -554,7 +704,12 @@
       "location": "Away",
       "time": "5:00 PM",
       "team": "Varsity",
-      "address": "310 North McDonough Street, Decatur, GA 30030, USA"
+      "address": "310 North McDonough Street, Decatur, GA 30030, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-04-02",
@@ -562,7 +717,12 @@
       "location": "Home",
       "time": "5:00 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-04-13",
@@ -570,7 +730,12 @@
       "location": "Home",
       "time": "5:30 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-04-15",
@@ -578,7 +743,12 @@
       "location": "Away",
       "time": "5:30 PM",
       "team": "Varsity",
-      "address": "5035 Vermack Road, Dunwoody, GA 30338, USA"
+      "address": "5035 Vermack Road, Dunwoody, GA 30338, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-04-16",
@@ -586,7 +756,12 @@
       "location": "Home",
       "time": "5:30 PM",
       "team": "Varsity",
-      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA"
+      "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     },
     {
       "date": "2026-04-17",
@@ -595,7 +770,11 @@
       "time": "5:00 PM",
       "team": "Varsity",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
-      "notes": "Senior Night"
+      "notes": "Senior Night",
+      "gwinnettPaid": false,
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
     }
   ],
   "booster": [
