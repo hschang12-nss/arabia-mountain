@@ -414,6 +414,19 @@
     },
     {
       "date": "2026-03-14",
+      "opponent": "Lithonia",
+      "location": "Away",
+      "time": "10:00 AM",
+      "team": "JV",
+      "address": "2440 Phillips Rd, Lithonia, GA 30058, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
+    }, 
+    {
+      "date": "2026-04-11",
       "opponent": "McNair",
       "location": "Away",
       "time": "9:00 AM",
@@ -426,7 +439,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-14",
+      "date": "2026-04-11",
       "opponent": "McNair",
       "location": "Away",
       "time": "11:00 AM",
@@ -601,6 +614,19 @@
       "time": "7:00 PM",
       "team": "Varsity",
       "address": "1662 Rugby Avenue, College Park, GA 30337, USA",
+      "gwinnettPaid": false,
+      "notes": "",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
+    },
+    {
+      "date": "2026-03-14",
+      "opponent": "Lithonia",
+      "location": "Away",
+      "time": "12:00 AM",
+      "team": "Varsity",
+      "address": "2440 Phillips Rd, Lithonia, GA 30058, USA",
       "gwinnettPaid": false,
       "notes": "",
       "result": "",
