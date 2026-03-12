@@ -24,7 +24,7 @@
   "players": {
     "varsity": [
       {
-        "number": "17",
+        "number": "5",
         "name": "Dominic Chang",
         "position": "Second Baseman / Pitcher",
         "grade": "Sophomore",
@@ -126,7 +126,7 @@
     ],
     "jv": [
       {
-        "number": "17",
+        "number": "5",
         "name": "Dominic Chang",
         "position": "Second Baseman / Pitcher",
         "grade": "Sophomore",
@@ -629,7 +629,7 @@
       "address": "2440 Phillips Rd, Lithonia, GA 30058, USA",
       "gwinnettPaid": false,
       "notes": "",
-      "result": "L",
+      "result": "",
       "resultScore": "",
       "resultUrl": ""
     },
