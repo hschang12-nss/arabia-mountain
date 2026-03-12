@@ -2573,7 +2573,7 @@
                 }
 
                 const weatherCellId = `weather-${game.date}-${game.team}-${game.opponent}-${game.time}`.replace(/[^a-zA-Z0-9-]/g, '_');
-                const resultCellId  = `result-${game.date}-${game.team}-${game.opponent}`.replace(/[^a-zA-Z0-9-]/g, '_');
+                const resultCellId  = `result-${game.date}-${game.team}-${game.opponent}-${game.time}`.replace(/[^a-zA-Z0-9-]/g, '_');
 
                 // Opponent display: home = "vs", away = "@"
                 const atPrefix = game.location === 'Away' ? '@ ' : 'vs ';
