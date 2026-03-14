@@ -317,8 +317,8 @@
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
       "gwinnettPaid": false,
       "notes": "",
-      "result": "",
-      "resultScore": "",
+      "result": "L",
+      "resultScore": "14-12",
       "resultUrl": ""
     },
     {
@@ -330,8 +330,8 @@
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
       "gwinnettPaid": false,
       "notes": "",
-      "result": "",
-      "resultScore": "",
+      "result": "W",
+      "resultScore": "12-0",
       "resultUrl": ""
     },
     {
@@ -342,7 +342,7 @@
       "team": "JV",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
       "gwinnettPaid": false,
-      "notes": "",
+      "notes": "Cancelled",
       "result": "",
       "resultScore": "",
       "resultUrl": ""
@@ -355,7 +355,7 @@
       "team": "JV",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
       "gwinnettPaid": false,
-      "notes": "",
+      "notes": "Cancelled",
       "result": "",
       "resultScore": "",
       "resultUrl": ""
@@ -369,8 +369,8 @@
       "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA",
       "gwinnettPaid": false,
       "notes": "",
-      "result": "",
-      "resultScore": "",
+      "result": "L",
+      "resultScore": "11-3",
       "resultUrl": ""
     },
     {
