@@ -411,7 +411,21 @@
       "result": "W",
       "resultScore": "9-4",
       "resultUrl": ""
-    }, 
+    },
+    {
+      "date": "2026-03-21",
+      "opponent": "Chamblee",
+      "location": "Away",
+      "time": "12:00 PM",
+      "team": "JV",
+      "address": "3688 Chamblee Dunwoody Road, Chamblee, GA 30341, USA",
+      "gwinnettPaid": false,
+      "notes": "Double Elimination Tournament",
+      "result": "",
+      "resultScore": "",
+      "resultUrl": ""
+    },
+ 
     {
       "date": "2026-04-11",
       "opponent": "McNair",
@@ -621,14 +635,14 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-16",
+      "date": "2026-03-20",
       "opponent": "Tri-Cities",
       "location": "Home",
       "time": "5:00 PM",
       "team": "Varsity",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
       "gwinnettPaid": false,
-      "notes": "Cancelled",
+      "notes": "",
       "result": "",
       "resultScore": "",
       "resultUrl": ""
