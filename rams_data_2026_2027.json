@@ -374,19 +374,6 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-21",
-      "opponent": "Stephenson",
-      "location": "Home",
-      "time": "1:00 PM",
-      "team": "JV",
-      "address": "701 Stephenson Road, Stone Mountain, GA 30087, USA",
-      "gwinnettPaid": false,
-      "notes": "",
-      "result": "",
-      "resultScore": "",
-      "resultUrl": ""
-    },
-    {
       "date": "2026-03-07",
       "opponent": "Columbia",
       "location": "Home",
@@ -433,7 +420,7 @@
       "team": "JV",
       "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA",
       "gwinnettPaid": false,
-      "notes": "",
+      "notes": "Pending Schedule Change",
       "result": "",
       "resultScore": "",
       "resultUrl": ""
@@ -446,7 +433,7 @@
       "team": "JV",
       "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA",
       "gwinnettPaid": false,
-      "notes": "",
+      "notes": "Pending Schedule Change",
       "result": "",
       "resultScore": "",
       "resultUrl": ""
