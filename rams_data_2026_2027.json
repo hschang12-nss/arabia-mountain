@@ -590,9 +590,9 @@
       "team": "Varsity",
       "address": "6610 Browns Mill Road, Stonecrest, GA 30038, USA",
       "gwinnettPaid": false,
-      "notes": "Cancelled",
-      "result": "",
-      "resultScore": "",
+      "notes": "",
+      "result": "T",
+      "resultScore": "8-8",
       "resultUrl": ""
     },
     {
@@ -644,7 +644,7 @@
       "gwinnettPaid": false,
       "notes": "",
       "result": "W",
-      "resultScore": "17-0",
+      "resultScore": "16-0",
       "resultUrl": ""
     },
     {
