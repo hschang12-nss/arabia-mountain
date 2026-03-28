@@ -427,32 +427,6 @@
     },
  
     {
-      "date": "2026-04-11",
-      "opponent": "McNair",
-      "location": "Away",
-      "time": "9:00 AM",
-      "team": "JV",
-      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA",
-      "gwinnettPaid": false,
-      "notes": "Pending Schedule Change",
-      "result": "",
-      "resultScore": "",
-      "resultUrl": ""
-    },
-    {
-      "date": "2026-04-11",
-      "opponent": "McNair",
-      "location": "Away",
-      "time": "11:00 AM",
-      "team": "JV",
-      "address": "1804 Bouldercrest Rd SE, Atlanta, GA 30316, USA",
-      "gwinnettPaid": false,
-      "notes": "Pending Schedule Change",
-      "result": "",
-      "resultScore": "",
-      "resultUrl": ""
-    },
-    {
       "date": "2026-02-09",
       "opponent": "Columbia",
       "location": "Away",
