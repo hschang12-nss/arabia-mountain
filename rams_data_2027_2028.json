@@ -31,7 +31,7 @@
         "height": "5'10\"",
         "weight": "165",
         "batsThrows": "R/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "10",
@@ -41,7 +41,7 @@
         "height": "5'11\"",
         "weight": "180",
         "batsThrows": "R/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "3",
@@ -51,7 +51,7 @@
         "height": "6'1\"",
         "weight": "180",
         "batsThrows": "L/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "44",
@@ -61,7 +61,7 @@
         "height": "5'10\"",
         "weight": "160",
         "batsThrows": "R/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "12",
@@ -71,7 +71,7 @@
         "height": "5'10\"",
         "weight": "150",
         "batsThrows": "R/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "5",
@@ -81,7 +81,7 @@
         "height": "5'10\"",
         "weight": "160",
         "batsThrows": "R/R",
-        "year": "2026-27"
+        "year": "2027-27"
       }
     ],
     "jv": [
@@ -93,7 +93,7 @@
         "height": "5'10\"",
         "weight": "165",
         "batsThrows": "R/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "10",
@@ -103,7 +103,7 @@
         "height": "5'11\"",
         "weight": "180",
         "batsThrows": "R/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "40",
@@ -113,7 +113,7 @@
         "height": "5'8\"",
         "weight": "195",
         "batsThrows": "R/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "3",
@@ -123,7 +123,7 @@
         "height": "6'1\"",
         "weight": "180",
         "batsThrows": "L/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "15",
@@ -133,7 +133,7 @@
         "height": "5'8\"",
         "weight": "150",
         "batsThrows": "R/R",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "1",
@@ -143,7 +143,7 @@
         "height": "",
         "weight": "",
         "batsThrows": "",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "13",
@@ -153,7 +153,7 @@
         "height": "",
         "weight": "",
         "batsThrows": "",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "9",
@@ -163,7 +163,7 @@
         "height": "",
         "weight": "",
         "batsThrows": "",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "16",
@@ -173,7 +173,7 @@
         "height": "",
         "weight": "",
         "batsThrows": "",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "20",
@@ -183,7 +183,7 @@
         "height": "",
         "weight": "",
         "batsThrows": "",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "24",
@@ -193,7 +193,7 @@
         "height": "",
         "weight": "",
         "batsThrows": "",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "6",
@@ -203,7 +203,7 @@
         "height": "",
         "weight": "",
         "batsThrows": "",
-        "year": "2026-27"
+        "year": "2027-27"
       },
       {
         "number": "44",
@@ -213,7 +213,7 @@
         "height": "",
         "weight": "",
         "batsThrows": "",
-        "year": "2026-27"
+        "year": "2027-27"
       }
     ]
   },
@@ -269,7 +269,7 @@
   ],
   "schedule": [
     {
-      "date": "2026-02-14",
+      "date": "2027-02-14",
       "opponent": "Cedar Grove",
       "location": "Home",
       "time": "11:00 AM",
@@ -282,7 +282,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-02-14",
+      "date": "2027-02-14",
       "opponent": "Cedar Grove",
       "location": "Away",
       "time": "1:00 PM",
@@ -295,7 +295,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-02-21",
+      "date": "2027-02-21",
       "opponent": "Sandy Creek",
       "location": "Home",
       "time": "11:00 AM",
@@ -308,7 +308,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-02-21",
+      "date": "2027-02-21",
       "opponent": "Sandy Creek",
       "location": "Away",
       "time": "1:00 PM",
@@ -321,7 +321,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-03",
+      "date": "2027-03-03",
       "opponent": "Stephenson",
       "location": "Away",
       "time": "5:30 PM",
@@ -334,7 +334,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-07",
+      "date": "2027-03-07",
       "opponent": "Columbia",
       "location": "Home",
       "time": "9:00 AM",
@@ -347,7 +347,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-07",
+      "date": "2027-03-07",
       "opponent": "Towers",
       "location": "Home",
       "time": "12:00 PM",
@@ -360,7 +360,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-14",
+      "date": "2027-03-14",
       "opponent": "Eagles Landing",
       "location": "Away",
       "time": "10:00 AM",
@@ -373,7 +373,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-21",
+      "date": "2027-03-21",
       "opponent": "Chamblee",
       "location": "Away",
       "time": "12:00 PM",
@@ -387,7 +387,7 @@
     },
  
     {
-      "date": "2026-02-09",
+      "date": "2027-02-09",
       "opponent": "Columbia",
       "location": "Away",
       "time": "4:30 PM",
@@ -397,10 +397,10 @@
       "notes": "",
       "result": "W",
       "resultScore": "3-2",
-      "resultUrl": "https://www.maxpreps.com/games/02-09-2026/baseball-26/arabia-mountain-vs-columbia.htm?c=4U-zmv1m3EGnrVmL5DLz4Q"
+      "resultUrl": "https://www.maxpreps.com/games/02-09-2027/baseball-26/arabia-mountain-vs-columbia.htm?c=4U-zmv1m3EGnrVmL5DLz4Q"
     },
     {
-      "date": "2026-02-11",
+      "date": "2027-02-11",
       "opponent": "Columbia",
       "location": "Home",
       "time": "4:30 PM",
@@ -410,10 +410,10 @@
       "notes": "",
       "result": "W",
       "resultScore": "2-0",
-      "resultUrl": "https://www.maxpreps.com/games/02-11-2026/baseball-26/arabia-mountain-vs-columbia.htm?c=zaM2V_xFJkOFecDDPlXrng"
+      "resultUrl": "https://www.maxpreps.com/games/02-11-2027/baseball-26/arabia-mountain-vs-columbia.htm?c=zaM2V_xFJkOFecDDPlXrng"
     },
     {
-      "date": "2026-02-12",
+      "date": "2027-02-12",
       "opponent": "Stephenson",
       "location": "Away",
       "time": "5:30 PM",
@@ -423,10 +423,10 @@
       "notes": "",
       "result": "L",
       "resultScore": "17-1",
-      "resultUrl": "https://www.maxpreps.com/games/02-12-2026/baseball-26/arabia-mountain-vs-stephenson.htm?c=QXSTEU7fF0qsWlEtTIOGTg"
+      "resultUrl": "https://www.maxpreps.com/games/02-12-2027/baseball-26/arabia-mountain-vs-stephenson.htm?c=QXSTEU7fF0qsWlEtTIOGTg"
     },
     {
-      "date": "2026-02-25",
+      "date": "2027-02-25",
       "opponent": "Lakeside",
       "location": "Home",
       "time": "4:30 PM",
@@ -436,10 +436,10 @@
       "notes": "",
       "result": "L",
       "resultScore": "19-1",
-      "resultUrl": "https://www.maxpreps.com/games/02-25-2026/baseball-26/arabia-mountain-vs-lakeside.htm?c=DHlgSoXH6k-P32rd01hohA"
+      "resultUrl": "https://www.maxpreps.com/games/02-25-2027/baseball-26/arabia-mountain-vs-lakeside.htm?c=DHlgSoXH6k-P32rd01hohA"
     },
     {
-      "date": "2026-02-28",
+      "date": "2027-02-28",
       "opponent": "Lakeside",
       "location": "Away",
       "time": "9:00 AM",
@@ -449,10 +449,10 @@
       "notes": "",
       "result": "L",
       "resultScore": "16-1",
-      "resultUrl": "https://www.maxpreps.com/games/02-28-2026/baseball-26/arabia-mountain-vs-lakeside.htm?c=IPD4oyawQEKx3FITMaiIBw"
+      "resultUrl": "https://www.maxpreps.com/games/02-28-2027/baseball-26/arabia-mountain-vs-lakeside.htm?c=IPD4oyawQEKx3FITMaiIBw"
     },
     {
-      "date": "2026-02-27",
+      "date": "2027-02-27",
       "opponent": "Lakeside",
       "location": "Away",
       "time": "4:30 PM",
@@ -462,10 +462,10 @@
       "notes": "",
       "result": "L",
       "resultScore": "15-0",
-      "resultUrl": "https://www.maxpreps.com/games/02-27-2026/baseball-26/arabia-mountain-vs-lakeside.htm?c=3gD7nVjt-UG-seZxMgh7HA"
+      "resultUrl": "https://www.maxpreps.com/games/02-27-2027/baseball-26/arabia-mountain-vs-lakeside.htm?c=3gD7nVjt-UG-seZxMgh7HA"
     },
     {
-      "date": "2026-03-02",
+      "date": "2027-03-02",
       "opponent": "Shiloh",
       "location": "Home",
       "time": "4:30 PM",
@@ -475,10 +475,10 @@
       "notes": "",
       "result": "L",
       "resultScore": "13-1",
-      "resultUrl": "https://www.maxpreps.com/games/03-02-2026/baseball-26/arabia-mountain-vs-shiloh.htm?c=5LSLh5LAP0-VMo8ERL7Bpg"
+      "resultUrl": "https://www.maxpreps.com/games/03-02-2027/baseball-26/arabia-mountain-vs-shiloh.htm?c=5LSLh5LAP0-VMo8ERL7Bpg"
     },
     {
-      "date": "2026-03-04",
+      "date": "2027-03-04",
       "opponent": "Shiloh",
       "location": "Away",
       "time": "5:30 PM",
@@ -491,7 +491,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-05",
+      "date": "2027-03-05",
       "opponent": "Shiloh",
       "location": "Home",
       "time": "4:30 PM",
@@ -504,7 +504,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-09",
+      "date": "2027-03-09",
       "opponent": "Woodward Academy",
       "location": "Away",
       "time": "5:30 PM",
@@ -517,7 +517,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-10",
+      "date": "2027-03-10",
       "opponent": "Lovejoy",
       "location": "Home",
       "time": "4:30 PM",
@@ -530,7 +530,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-11",
+      "date": "2027-03-11",
       "opponent": "Woodward Academy",
       "location": "Away",
       "time": "5:30 PM",
@@ -543,7 +543,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-11",
+      "date": "2027-03-11",
       "opponent": "Woodward Academy",
       "location": "Away",
       "time": "7:00 PM",
@@ -556,7 +556,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-14",
+      "date": "2027-03-14",
       "opponent": "Lithonia",
       "location": "Away",
       "time": "12:00 AM",
@@ -569,7 +569,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-20",
+      "date": "2027-03-20",
       "opponent": "Tri-Cities",
       "location": "Home",
       "time": "5:00 PM",
@@ -582,7 +582,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-18",
+      "date": "2027-03-18",
       "opponent": "Tri-Cities",
       "location": "Away",
       "time": "5:30 PM",
@@ -595,7 +595,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-19",
+      "date": "2027-03-19",
       "opponent": "Tri-Cities",
       "location": "Home",
       "time": "5:00 PM",
@@ -608,7 +608,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-23",
+      "date": "2027-03-23",
       "opponent": "Chamblee",
       "location": "Away",
       "time": "5:00 PM",
@@ -621,7 +621,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-25",
+      "date": "2027-03-25",
       "opponent": "Chamblee",
       "location": "Home",
       "time": "5:00 PM",
@@ -634,7 +634,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-26",
+      "date": "2027-03-26",
       "opponent": "Chamblee",
       "location": "Away",
       "time": "5:00 PM",
@@ -647,7 +647,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-03-30",
+      "date": "2027-03-30",
       "opponent": "Decatur",
       "location": "Home",
       "time": "6:00 PM",
@@ -660,7 +660,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-04-01",
+      "date": "2027-04-01",
       "opponent": "Decatur",
       "location": "Away",
       "time": "6:00 PM",
@@ -673,7 +673,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-04-02",
+      "date": "2027-04-02",
       "opponent": "Decatur",
       "location": "Home",
       "time": "5:00 PM",
@@ -686,7 +686,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-04-13",
+      "date": "2027-04-13",
       "opponent": "Dunwoody",
       "location": "Home",
       "time": "5:30 PM",
@@ -699,7 +699,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-04-15",
+      "date": "2027-04-15",
       "opponent": "Dunwoody",
       "location": "Away",
       "time": "5:30 PM",
@@ -712,7 +712,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-04-16",
+      "date": "2027-04-16",
       "opponent": "Dunwoody",
       "location": "Home",
       "time": "5:30 PM",
@@ -725,7 +725,7 @@
       "resultUrl": ""
     },
     {
-      "date": "2026-04-17",
+      "date": "2027-04-17",
       "opponent": "Douglas HS",
       "location": "Home",
       "time": "5:00 PM",
@@ -770,12 +770,12 @@
   ],
   "dues": {
     "fee": "740",
-    "deadline": "2026-04-15",
+    "deadline": "2027-04-15",
     "installments": "",
     "included": "Batting Jacket w/ logo - $50\nCoach Uniform - $11.25\nCustom Jersey - $65\nCoach Pay - $60\nPre-game meals - $276\nBatting Cages - $80\nSr. Gift - $30\nSr. Night Meal - $22.50\nArabia Spring Banquet - $20\nRams Baseball Banquet - $75\nAdmin - $50"
   },
   "requirements": {
-    "registration": "2026-12-01",
+    "registration": "2027-12-01",
     "physicalDue": "2027-01-15",
     "tryouts": "2027-01-20",
     "seasonStart": "2027-02-01"
