@@ -1524,7 +1524,7 @@
                 <div class="info-card">
                     <h3>🔗 Registration Links</h3>
                     <ul>
-                        <li><strong>FinalForms:</strong> <a href="https://www.finalforms.com" target="_blank" style="color: var(--ram-navy);">Register Here</a></li>
+                        <li><strong>FinalForms:</strong> <a href="https://dekalbschools-ga.finalforms.com/" target="_blank" style="color: var(--ram-navy);">Register Here</a></li>
                         <li><strong>Physical Form:</strong> Download GHSA form from school website</li>
                         <li><strong>Questions:</strong> Contact coaching staff via email</li>
                     </ul>
@@ -3514,28 +3514,40 @@
                     applyRosterFilter();
                 });
             });
+
+            // Year selector: reload all data when season changes
+            const seasonYearSelect = document.getElementById('seasonYear');
+            if (seasonYearSelect) {
+                // Sync currentSeason with the dropdown's initial (selected) value
+                currentSeason = seasonYearSelect.value;
+                updateSeasonYear();
+
+                seasonYearSelect.addEventListener('change', async () => {
+                    currentSeason = seasonYearSelect.value;
+                    updateSeasonYear();
+                    // Reset all filters back to defaults
+                    currentScheduleFilter = 'upcoming';
+                    currentRosterFilter = 'all';
+                    currentMonthFilter = 'all';
+                    // Reload all data for the newly selected season
+                    await loadDataFromJSON();
+                });
+            }
         });
     </script>
 <script>
 /**
- * Load season data based on selected year
+ * Load season data based on selected year.
+ * Called by the year-selector change handler in DOMContentLoaded.
+ * NOTE: loadDataFromJSON() (defined above) already handles season-based
+ * file loading and re-rendering, so this function delegates to it.
  */
 async function loadSeasonData(season) {
-    const formattedSeason = season.replace('-', '_');
-    const filename = `rams_data_${formattedSeason}.json`;
-
-    console.log(`📂 Loading season data from: ${filename}`);
-
-    try {
-        const response = await fetch(filename, { cache: "no-store" });
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status} – ${filename} not found`);
-        }
-
-        const data = await response.json();
-        console.log("✅ Season data loaded:", data);
-
-        window.websiteData = data;
-
-        // Call your existing load functio
+    // Update the global season variable so loadDataFromJSON picks the right file
+    currentSeason = season;
+    updateSeasonYear();
+    await loadDataFromJSON();
+}
+</script>
+</body>
+</html>
